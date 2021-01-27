@@ -60,36 +60,63 @@ int main(void)
     ulPeriod = SysCtlClockGet() / 64; //se divide el reloj del sistema
     load=(ulPeriod/55)-1;//se divide el periodo por la frecuencia deseada del PWM y se realiza el ajuste con -1
     PWMGenConfigure(PWM1_BASE, PWM_GEN_0,PWM_GEN_MODE_DOWN);//se configura el PWM para contar de un numero haca abajo
-    PWMGenPeriodSet(PWM1_BASE,PWM_GEN_0,load);//se especifica el periodo del PWM
+    PWMGenPeriodSet(PWM1_BASE,PWM_GEN_0,ulPeriod);//se especifica el periodo del PWM
+    PWMPulseWidthSet(PWM1_BASE, PWM_OUT_0, load * ulPeriod / 1000);
     PWMOutputState(PWM1_BASE,PWM_OUT_0_BIT,true); //se coloca el PWM como salida
     PWMGenEnable(PWM1_BASE,PWM_GEN_0);//se activa el PWM
 
 //--------------------------------ADC-------------------------------------------------------------------
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC0);
-    ADCHardwareOversampleConfigure(ADC0_BASE, 64);
-    ADCSequenceConfigure(ADC0_BASE, 3, ADC_TRIGGER_PROCESSOR, 0);
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
     GPIOPinTypeADC(GPIO_PORTB_BASE,GPIO_PIN_5);
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC0);
 
-    ADCSequenceDisable(ADC0_BASE,3);
-
-    ADCSequenceStepConfigure(ADC0_BASE, 3, 0, ADC_CTL_CH0|ADC_CTL_IE|ADC_CTL_END);
+    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3);
+    ADCSequenceConfigure(ADC0_BASE, 3, ADC_TRIGGER_PROCESSOR, 0);
+    ADCSequenceStepConfigure(ADC0_BASE, 3, 0, ADC_CTL_CH11|ADC_CTL_IE|ADC_CTL_END);
     ADCSequenceEnable(ADC0_BASE,3);
+    IntMasterEnable();
 
 
     while(1){
+        giro=83;
         ADCIntClear(ADC0_BASE, 3);
         ADCProcessorTrigger(ADC0_BASE, 3);
         while(!ADCIntStatus(ADC0_BASE, 3, false));
 
         ADCSequenceDataGet(ADC0_BASE, 3, COUNT);
-        giro=COUNT[0]*3.2/4096;
-        PWMPulseWidthSet(PWM1_BASE, PWM_OUT_0, COUNT[0]/4096);
-
-
+        if(COUNT[0]>=0 && COUNT[0]<1365){
+            giro--;
+            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3);
+        }
+        else{
+            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, 0x00);
+        }
+        if(COUNT[0]>=1365 && COUNT[0]<=2730){
+            giro=83;
+            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
+        }
+        else{
+            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0x00);
+        }
+        if(COUNT[0]>2730 && COUNT[0]<=4096){
+            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIO_PIN_1);
+            giro++;
+        }
+        else{
+            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, 0x00);
+        }
+        if (giro < 56){
+            giro = 56; // TRAVA NO LIMITE DE 1mS
+        }
+        else if (giro > 56){
+            giro = 56; // TRAVA NO LIMITE DE 1mS
+        }
+        else{
+            giro=83;
+        }
+        PWMPulseWidthSet(PWM1_BASE, PWM_OUT_0, giro); // SETA O DUTY CYCLE DO PWM
 
     }
-
 	return 0;
 }
 
