@@ -1,6 +1,5 @@
 #include <stdint.h>
 #include <stdbool.h>
-#include "inc/tm4c123gh6pm.h"
 #include "inc/hw_memmap.h"
 #include "inc/hw_types.h"
 #include "inc/hw_ints.h"
@@ -12,58 +11,164 @@
 #include "driverlib/pin_map.h"
 #include "driverlib/pwm.h"
 #include "driverlib/adc.h"
+#include "driverlib/rom.h"
+#include "inc/hw_gpio.h"
 
 
 /**
  * main.c
- */
+*/
 //https://forum.43oh.com/topic/7171-using-hardware-pwm-on-tiva-launchpad/
-uint32_t servo;
-unsigned long ulPeriod;
+//https://github.com/mathmagson/microservo9g_tm4c123g/blob/master/main.c
+//https://www.ti.com/seclit/ml/ssqu015/ssqu015.pdf
+//https://github.com/YashBansod/ARM-TM4C-CCS/blob/master/TM4C123G%20LaunchPad%20ADC%20Potentiometer/main.c
+volatile uint32_t servo;
 
+uint32_t COUNT[1];
+uint32_t giro;
+unsigned long ulPeriod;
+volatile uint32_t elPeriodo;
+volatile uint32_t load;
 int main(void)
 {
+    servo=56;
     //----------------------------------------INICIALIZACION DEL RELOJ-------------------------------------------
     SysCtlClockSet(SYSCTL_SYSDIV_5 | SYSCTL_USE_PLL |  SYSCTL_XTAL_16MHZ | SYSCTL_OSC_MAIN);
     //---------------------------------------INICIALIZACION DE PERIFERICOS---------------------------------------
-    SysCtlPWMClockSet(SYSCTL_PWMDIV_1);
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_PWM0);
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
-    GPIOPinConfigure(GPIO_PB6_M0PWM0);
-    ulPeriod = SysCtlClockGet() / 50; //PWM frequency 50HZ
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
+    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
 
-    GPIOPinTypePWM(GPIO_PORTB_BASE, GPIO_PIN_6);
+    //---------------------------------------SETEO DE PINES COMO SALIDA (LEDS)----------------------------------
+    HWREG(GPIO_PORTF_BASE + GPIO_O_LOCK) = GPIO_LOCK_KEY;
+    HWREG(GPIO_PORTF_BASE + GPIO_O_CR) |= 0x01;
+    HWREG(GPIO_PORTF_BASE + GPIO_O_LOCK) = 0;
+    GPIODirModeSet(GPIO_PORTF_BASE, GPIO_PIN_4|GPIO_PIN_0, GPIO_DIR_MODE_IN);
+    GPIOPadConfigSet(GPIO_PORTF_BASE, GPIO_PIN_4|GPIO_PIN_0, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD_WPU);
 
-    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_PWM0));
+//----------------------------------PWM-----------------------------------------------
+//--------------------INISCIALIZACION DEL SISTEMA-------------------------------------
 
-    PWMGenConfigure(PWM0_BASE, PWM_GEN_0,PWM_GEN_MODE_DOWN|PWM_GEN_MODE_NO_SYNC);
-    PWMGenPeriodSet(PWM0_BASE,PWM_GEN_0,ulPeriod);
-    PWMPulseWidthSet(PWM0_BASE,PWM_OUT_0,ulPeriod/2);
-    PWMGenEnable(PWM0_BASE,PWM_GEN_0);
-    PWMOutputState(PWM0_BASE,PWM_OUT_0_BIT,true);
+    SysCtlPWMClockSet(SYSCTL_PWMDIV_64);
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_PWM1);
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);
+//----------------------Se configura el  modo del pin---------------------------------
+    GPIOPinTypePWM(GPIO_PORTD_BASE, GPIO_PIN_0);
+    GPIOPinConfigure(GPIO_PD0_M1PWM0);
 
+//-------------------------Se desactiva el M0PWM0-----------------------------------
 
+    ulPeriod = SysCtlClockGet() / 64; //se divide el reloj del sistema
+    load=(ulPeriod/55)-1;//se divide el periodo por la frecuencia deseada del PWM y se realiza el ajuste con -1
+    PWMGenConfigure(PWM1_BASE, PWM_GEN_0,PWM_GEN_MODE_DOWN);//se configura el PWM para contar de un numero haca abajo
+    PWMGenPeriodSet(PWM1_BASE,PWM_GEN_0,load);//se especifica el periodo del PWM
+    PWMOutputState(PWM1_BASE,PWM_OUT_0_BIT,true); //se coloca el PWM como salida
+    PWMGenEnable(PWM1_BASE,PWM_GEN_0);//se activa el PWM
+
+//--------------------------------ADC-------------------------------------------------------------------
     SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC0);
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOE);
-    GPIOPinConfigure(GPIO_PE3_AIN0);
-    GPIOPinTypeADC(GPIO_PORTE_BASE,GPIO_PIN_3)
-    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_ADC0));
-    ADCSequenceConfigure(ADC0_BASE, 0, ADC_TRIGGER_PROCESSOR, 0);
-    ADCSequenceStepConfigure(ADC0_BASE, 0, 0, ADC_CTL_IE|ADC_CTL_END|ADC_CTL_CH0);
-    ADCSequenceEnable(ADC0_BASE,0);
+    ADCHardwareOversampleConfigure(ADC0_BASE, 64);
+    ADCSequenceConfigure(ADC0_BASE, 3, ADC_TRIGGER_PROCESSOR, 0);
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
+    GPIOPinTypeADC(GPIO_PORTB_BASE,GPIO_PIN_5);
 
-    //---------------------------------------SE INICIALIZAN UART0----------------------------------
-        SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
-        SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
-    //---------------------------------------SETEAMOS LOS PINES DEL PUERTO A PARA COMUNICACION SERIAL--------------------
-        GPIOPinTypeUART(GPIO_PORTA_BASE,GPIO_PIN_0|GPIO_PIN_1);
-    //----------------------------------------CONFIGURACION DE RELOJ UART---------------------------------
-        UARTConfigSetExpClk(UART0_BASE,SysCtlClockGet(),115200,
-        (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE | UART_CONFIG_PAR_NONE));
+    ADCSequenceDisable(ADC0_BASE,3);
 
-    ADCProcessorTrigger(ADC0_BASE,0);
-    while(!ADCIntStatus(ADC0_BASE,0,false));
-    ADCSequenceDataGet(ADC0_BASE, 0, servo);
+    ADCSequenceStepConfigure(ADC0_BASE, 3, 0, ADC_CTL_CH0|ADC_CTL_IE|ADC_CTL_END);
+    ADCSequenceEnable(ADC0_BASE,3);
+
+
+    while(1){
+        ADCIntClear(ADC0_BASE, 3);
+        ADCProcessorTrigger(ADC0_BASE, 3);
+        while(!ADCIntStatus(ADC0_BASE, 3, false));
+
+        ADCSequenceDataGet(ADC0_BASE, 3, COUNT);
+        giro=COUNT[0]*3.2/4096;
+        PWMPulseWidthSet(PWM1_BASE, PWM_OUT_0, COUNT[0]/4096);
+
+
+
+    }
 
 	return 0;
 }
+
+/*
+#include <stdint.h>
+#include <stdbool.h>
+#include "inc/hw_memmap.h"
+#include "inc/hw_types.h"
+#include "driverlib/sysctl.h"
+#include "driverlib/gpio.h"
+#include "driverlib/debug.h"
+#include "driverlib/pwm.h"
+#include "driverlib/pin_map.h"
+#include "inc/hw_gpio.h"
+#include "driverlib/rom.h"
+
+
+#define PWM_FREQUENCY 55
+
+int main(void)
+{
+    volatile uint32_t ui32Load;
+    volatile uint32_t ui32PWMClock;
+    volatile uint8_t ui8Adjust;
+    ui8Adjust = 83;
+
+    //SysCtlClockSet(SYSCTL_SYSDIV_5|SYSCTL_USE_PLL|SYSCTL_OSC_MAIN|SYSCTL_XTAL_16MHZ); // CLOCK 40 MHZ
+    SysCtlClockSet(SYSCTL_SYSDIV_2_5|SYSCTL_USE_PLL|SYSCTL_XTAL_16MHZ|SYSCTL_OSC_MAIN); // CLOCK 80 MHZ
+    SysCtlPWMClockSet(SYSCTL_PWMDIV_64); // SETA O CLOCK DO PWM POR: CLOCK_CPU/64
+
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_PWM1); // HABILITA PWM
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD); // HABILITA PD
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF); // HABILITA PF
+
+    GPIOPinTypePWM(GPIO_PORTD_BASE, GPIO_PIN_0); // DEFINIE PWM NO PINO PD0
+    GPIOPinConfigure(GPIO_PD0_M1PWM0); // CONFIGURA PD0 COMO M1PWM0
+
+    // INICIO HABILITA CHAVES SW1 E SW2
+    HWREG(GPIO_PORTF_BASE + GPIO_O_LOCK) = GPIO_LOCK_KEY;
+    HWREG(GPIO_PORTF_BASE + GPIO_O_CR) |= 0x01;
+    HWREG(GPIO_PORTF_BASE + GPIO_O_LOCK) = 0;
+    GPIODirModeSet(GPIO_PORTF_BASE, GPIO_PIN_4|GPIO_PIN_0, GPIO_DIR_MODE_IN);
+    GPIOPadConfigSet(GPIO_PORTF_BASE, GPIO_PIN_4|GPIO_PIN_0, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD_WPU);
+    // FIM HABILITA CHAVES SW1 E SW2
+
+    ui32PWMClock = SysCtlClockGet() / 64; // PEGA CLOCK DEFINIDO PARA O PWM
+    ui32Load = (ui32PWMClock / PWM_FREQUENCY) - 1; // PEGA O CLOCK DO PWM E DIVIDE PELO CLOCK COM QUE SE QUER TRABALHAR SUBTRAINDO 1 POR CONTAR ATÉ 0
+    PWMGenConfigure(PWM1_BASE, PWM_GEN_0, PWM_GEN_MODE_DOWN); // CONFIGURA O CONTADOR COMO DECRESCENTE
+    PWMGenPeriodSet(PWM1_BASE, PWM_GEN_0, ui32Load); // SETA O CONTADOR
+
+    PWMPulseWidthSet(PWM1_BASE, PWM_OUT_0, ui8Adjust * ui32Load / 1000); // DIVIDE-SE O CONTADOR POR 1000 E FAZ A MULTIPLICACAO PARA AJUSTE PARA 1.51ms (MEIO DA POSICAO DO SERVO)
+    PWMOutputState(PWM1_BASE, PWM_OUT_0_BIT, true); // CONFIGURA PWM Module 1 COMO SAIDA
+    PWMGenEnable(PWM1_BASE, PWM_GEN_0); // HABILITA GERACAO DE PWM
+
+    while(1)
+    {
+
+        if(GPIOPinRead(GPIO_PORTF_BASE,GPIO_PIN_4)==0x00) // VERIFICA SE O PINO PF4 FOI PRESSIONADO
+        {
+            ui8Adjust--;
+            if (ui8Adjust < 56)
+            {
+                ui8Adjust = 56; // TRAVA NO LIMITE DE 1mS
+            }
+            PWMPulseWidthSet(PWM1_BASE, PWM_OUT_0, ui8Adjust * ui32Load / 1000); // SETA O DUTY CYCLE DO PWM
+        }
+
+        if(GPIOPinRead(GPIO_PORTF_BASE,GPIO_PIN_0)==0x00)  // VERIFICA SE O PINO PF0 FOI PRESSIONADO
+        {
+            ui8Adjust++;
+            if (ui8Adjust > 111)
+            {
+                ui8Adjust = 111; // TRAVA NO LIMITE DE 2mS
+            }
+            PWMPulseWidthSet(PWM1_BASE, PWM_OUT_0, ui8Adjust * ui32Load / 1000); // SETA O DUTY CYCLE DO PWM
+        }
+
+        SysCtlDelay(100000); // SETA A VELOCIDADE DA REPETICAO SOMENTE
+    }
+
+}
+*/
