@@ -22,6 +22,7 @@
 //https://github.com/mathmagson/microservo9g_tm4c123g/blob/master/main.c
 //https://www.ti.com/seclit/ml/ssqu015/ssqu015.pdf
 //https://github.com/YashBansod/ARM-TM4C-CCS/blob/master/TM4C123G%20LaunchPad%20ADC%20Potentiometer/main.c
+//https://github.com/ntua-cslep/Motor-Control-with-Tiva-EK-TM4C123GXL
 volatile uint32_t servo;
 
 uint32_t COUNT[1];
@@ -59,9 +60,9 @@ int main(void)
 
     ulPeriod = SysCtlClockGet() / 64; //se divide el reloj del sistema
     load=(ulPeriod/55)-1;//se divide el periodo por la frecuencia deseada del PWM y se realiza el ajuste con -1
-    PWMGenConfigure(PWM1_BASE, PWM_GEN_0,PWM_GEN_MODE_DOWN);//se configura el PWM para contar de un numero haca abajo
+    PWMGenConfigure(PWM1_BASE, PWM_GEN_0,PWM_GEN_MODE_UP_DOWN);//se configura el PWM para contar de un numero haca abajo
     PWMGenPeriodSet(PWM1_BASE,PWM_GEN_0,ulPeriod);//se especifica el periodo del PWM
-    PWMPulseWidthSet(PWM1_BASE, PWM_OUT_0, load * ulPeriod / 1000);
+    PWMPulseWidthSet(PWM1_BASE, PWM_OUT_0, 1000);
     PWMOutputState(PWM1_BASE,PWM_OUT_0_BIT,true); //se coloca el PWM como salida
     PWMGenEnable(PWM1_BASE,PWM_GEN_0);//se activa el PWM
 
@@ -78,21 +79,19 @@ int main(void)
 
 
     while(1){
-        giro=83;
         ADCIntClear(ADC0_BASE, 3);
         ADCProcessorTrigger(ADC0_BASE, 3);
         while(!ADCIntStatus(ADC0_BASE, 3, false));
-
+        giro=(COUNT[0]*360)/4096;
         ADCSequenceDataGet(ADC0_BASE, 3, COUNT);
-        if(COUNT[0]>=0 && COUNT[0]<1365){
-            giro--;
+        if(COUNT[0]>=1 && COUNT[0]<1365){
+            giro=-giro;
             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3);
         }
         else{
             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, 0x00);
         }
         if(COUNT[0]>=1365 && COUNT[0]<=2730){
-            giro=83;
             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
         }
         else{
@@ -100,21 +99,12 @@ int main(void)
         }
         if(COUNT[0]>2730 && COUNT[0]<=4096){
             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, GPIO_PIN_1);
-            giro++;
         }
         else{
             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, 0x00);
         }
-        if (giro < 56){
-            giro = 56; // TRAVA NO LIMITE DE 1mS
-        }
-        else if (giro > 56){
-            giro = 56; // TRAVA NO LIMITE DE 1mS
-        }
-        else{
-            giro=83;
-        }
-        PWMPulseWidthSet(PWM1_BASE, PWM_OUT_0, giro); // SETA O DUTY CYCLE DO PWM
+
+        PWMPulseWidthSet(PWM1_BASE, PWM_OUT_0, giro/100*1000); // SETA O DUTY CYCLE DO PWM
 
     }
 	return 0;
