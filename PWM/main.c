@@ -26,9 +26,8 @@
 volatile uint32_t servo;
 
 uint32_t COUNT[1];
-uint32_t giro;
+uint32_t giro[1];
 unsigned long ulPeriod;
-volatile uint32_t elPeriodo;
 volatile uint32_t load;
 int main(void)
 {
@@ -48,19 +47,19 @@ int main(void)
 
 //----------------------------------PWM-----------------------------------------------
 //--------------------INISCIALIZACION DEL SISTEMA-------------------------------------
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_PWM1);
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_PWM1);//se activa el perifericos PWM1
     SysCtlPWMClockSet(SYSCTL_PWMDIV_64);
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);//se activa el periferico D
 //----------------------Se configura el  modo del pin---------------------------------
-    GPIOPinTypePWM(GPIO_PORTD_BASE, GPIO_PIN_0);
-    GPIOPinConfigure(GPIO_PD0_M1PWM0);
+    GPIOPinTypePWM(GPIO_PORTD_BASE, GPIO_PIN_0); // se configura el pin PD0 como salidad de PWM
+    GPIOPinConfigure(GPIO_PD0_M1PWM0);//se configura el pin PD0 como PWM1PWM0
 
 //-------------------------Se desactiva el M0PWM0-----------------------------------
 
     ulPeriod = SysCtlClockGet() / 64; //se divide el reloj del sistema
-    load=(ulPeriod/55)-1;//se divide el periodo por la frecuencia deseada del PWM y se realiza el ajuste con -1
+    load=(ulPeriod/50)-1;//se divide el periodo por la frecuencia deseada del PWM y se realiza el ajuste con -1
     PWMGenConfigure(PWM1_BASE, PWM_GEN_0,PWM_GEN_MODE_DOWN);//se configura el PWM para contar de un numero haca abajo
-    PWMGenPeriodSet(PWM1_BASE,PWM_GEN_0,ulPeriod);//se especifica el periodo del PWM
+    PWMGenPeriodSet(PWM1_BASE,PWM_GEN_0,load);//se especifica el periodo del PWM
     PWMOutputState(PWM1_BASE,PWM_OUT_0_BIT,true); //se coloca el PWM como salida
     PWMGenEnable(PWM1_BASE,PWM_GEN_0);//se activa el PWM
 
@@ -75,15 +74,13 @@ int main(void)
     ADCSequenceEnable(ADC0_BASE,3);
     IntMasterEnable();
 
-
     while(1){
+
         ADCIntClear(ADC0_BASE, 3);
         ADCProcessorTrigger(ADC0_BASE, 3);
         while(!ADCIntStatus(ADC0_BASE, 3, false));
-        giro=(COUNT[0]*180)/4096;
         ADCSequenceDataGet(ADC0_BASE, 3, COUNT);
         if(COUNT[0]>=1 && COUNT[0]<1365){
-            giro=-giro;
             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3);
         }
         else{
@@ -101,8 +98,13 @@ int main(void)
         else{
             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, 0x00);
         }
-        giro=COUNT[0]*180/4096;
-        PWMPulseWidthSet(PWM1_BASE, PWM_OUT_0, giro); // SETA O DUTY CYCLE DO PWM
+        if (0<COUNT[0] && COUNT[0]<2048){
+            giro[0]=COUNT[0]-2048;
+        }
+        else{
+            giro[0]=2048-COUNT[0];
+        }
+        PWMPulseWidthSet(PWM1_BASE, PWM_OUT_0, COUNT[0]); // SETA O DUTY CYCLE DO PWM
 
     }
 	return 0;
