@@ -38,6 +38,7 @@ volatile bool g_bMPU6050Done;
 tI2CMInstance g_sI2CMSimpleInst;
 ///---------------Se tomo la inicializacion del MPU6050 del manual de TIVAWARE-----------------------------
 //https://www.ti.com/lit/ug/spmu371e/spmu371e.pdf?ts=1611376130603&ref_url=https%253A%252F%252Fwww.google.com%252F
+//https://github.com/mathmagson/mpu6050_tm4c123g/blob/master/main.c
 tI2CMInstance g_sI2CMSimpleInst;
 
 void ConfigureUART(void) { // Função retirada do exemplo hello.c
@@ -73,6 +74,14 @@ void I2CInit(void){
     //clear I2C FIFOs
     HWREG(I2C0_BASE + I2C_O_FIFOCTL) = 80008000;
     I2CMInit(&g_sI2CMSimpleInst, I2C0_BASE, INT_I2C0, 0xff, 0xff, SysCtlClockGet());
+}
+void
+I2CMSimpleIntHandler(void)
+{
+//
+// Call the I2C master driver interrupt handler.
+//
+I2CMIntHandler(&g_sI2CMSimpleInst);
 }
 //
 // A boolean that is set when a MPU6050 command has completed.
@@ -114,7 +123,7 @@ void MPU6050Example(void)
 // has already been initialized.
 //
         g_bMPU6050Done = false;
-        MPU6050Init(&sMPU6050, &g_sI2CMSimpleInst, 0x68, MPU6050Callback,0);
+        MPU6050Init(&sMPU6050, &g_sI2CMSimpleInst, 0x68, MPU6050Callback,&sMPU6050);
 
         while(!g_bMPU6050Done)
             {
@@ -126,7 +135,7 @@ void MPU6050Example(void)
         g_bMPU6050Done = false;
         MPU6050ReadModifyWrite(&sMPU6050, MPU6050_O_ACCEL_CONFIG,
                                 ~MPU6050_ACCEL_CONFIG_AFS_SEL_M,
-                                MPU6050_ACCEL_CONFIG_AFS_SEL_4G, MPU6050Callback,0);
+                                MPU6050_ACCEL_CONFIG_AFS_SEL_4G, MPU6050Callback,&sMPU6050);
         while(!g_bMPU6050Done)
             {
             }
@@ -141,7 +150,7 @@ void MPU6050Example(void)
 // Request another reading from the MPU6050.
 //
             g_bMPU6050Done = false;
-            MPU6050DataRead(&sMPU6050, MPU6050Callback, 0);
+            MPU6050DataRead(&sMPU6050, MPU6050Callback, &sMPU6050);
             while(!g_bMPU6050Done)
             {
             }
@@ -162,6 +171,7 @@ int main()
     SysCtlClockSet(SYSCTL_SYSDIV_5 | SYSCTL_USE_PLL |  SYSCTL_XTAL_16MHZ | SYSCTL_OSC_MAIN);
     //---------------------------------------INICIALIZACION DE PERIFERICOS---------------------------------------
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
+    SysCtlIntEnable();
     //---------------------------------------SETEO DE PINES COMO SALIDA (LEDS)----------------------------------
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
     I2CInit();
