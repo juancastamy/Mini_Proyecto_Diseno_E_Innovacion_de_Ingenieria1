@@ -33,12 +33,15 @@
 /**
  * main.c
  */
-float fAccel[3], fGyro[3];
 volatile bool g_bMPU6050Done;
 tI2CMInstance g_sI2CMSimpleInst;
 ///---------------Se tomo la inicializacion del MPU6050 del manual de TIVAWARE-----------------------------
 //https://www.ti.com/lit/ug/spmu371e/spmu371e.pdf?ts=1611376130603&ref_url=https%253A%252F%252Fwww.google.com%252F
 //https://github.com/mathmagson/mpu6050_tm4c123g/blob/master/main.c
+//https://e2e.ti.com/support/microcontrollers/other/f/908/t/683082?tisearch=e2e-sitesearch&keymatch=CCS%252FTM4C123GH6PM%2520MPU6050
+//https://e2e.ti.com/support/tools/ccs/f/81/t/754471?CCS-EK-TM4C123GXL-How-to-add-interrupt-handlers-in-CCS-
+//https://e2e.ti.com/support/microcontrollers/other/f/908/t/381843
+//https://e2e.ti.com/support/microcontrollers/other/f/908/t/564858?CCS-MPU6050-Sensorlib
 tI2CMInstance g_sI2CMSimpleInst;
 
 void ConfigureUART(void) { // Função retirada do exemplo hello.c
@@ -53,45 +56,27 @@ void ConfigureUART(void) { // Função retirada do exemplo hello.c
 
 }
 void I2CInit(void){
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
-
     //enable I2C module 0
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_I2C0);
-    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_I2C0));
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_I2C3);
+    SysCtlPeripheralReset(SYSCTL_PERIPH_I2C3);
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);
 
     // Configure the pin muxing for I2C0 functions on port B2 and B3.
-    GPIOPinConfigure(GPIO_PB2_I2C0SCL);
-    GPIOPinConfigure(GPIO_PB3_I2C0SDA);
+    GPIOPinConfigure(GPIO_PD0_I2C3SCL);
+    GPIOPinConfigure(GPIO_PD1_I2C3SDA);
     // Select the I2C function for these pins.
-    GPIOPinTypeI2CSCL(GPIO_PORTB_BASE, GPIO_PIN_2);
-    GPIOPinTypeI2C(GPIO_PORTB_BASE, GPIO_PIN_3);
+    GPIOPinTypeI2CSCL(GPIO_PORTD_BASE, GPIO_PIN_0);
+    GPIOPinTypeI2C(GPIO_PORTD_BASE, GPIO_PIN_1);
     // Enable and initialize the I2C0 master module.  Use the system clock for
     // the I2C0 module.  The last parameter sets the I2C data transfer rate.
     // If false the data rate is set to 100kbps and if true the data rate will
     // be set to 400kbps.
-    I2CMasterInitExpClk(I2C0_BASE, SysCtlClockGet(), true);
-
+    I2CMasterInitExpClk(I2C3_BASE, SysCtlClockGet(), true);
+    I2CMasterIntEnable(I2C3_BASE);
     //clear I2C FIFOs
-    HWREG(I2C0_BASE + I2C_O_FIFOCTL) = 80008000;
-    I2CMInit(&g_sI2CMSimpleInst, I2C0_BASE, INT_I2C0, 0xff, 0xff, SysCtlClockGet());
+    HWREG(I2C3_BASE + I2C_O_FIFOCTL) = 80008000;
+    I2CMInit(&g_sI2CMSimpleInst, I2C3_BASE, INT_I2C3, 0xff, 0xff, SysCtlClockGet());
 }
-void
-I2CMSimpleIntHandler(void)
-{
-//
-// Call the I2C master driver interrupt handler.
-//
-I2CMIntHandler(&g_sI2CMSimpleInst);
-}
-//
-// A boolean that is set when a MPU6050 command has completed.
-//
-
-//
-// The function that is provided by this example as a callback when MPU6050
-// transactions have completed.
-//
-
 
 void MPU6050Callback(void *pvCallbackData, uint_fast8_t ui8Status)
     {
@@ -110,8 +95,13 @@ void MPU6050Callback(void *pvCallbackData, uint_fast8_t ui8Status)
     g_bMPU6050Done = true;
     }
 //
-// The MPU6050 example.
-//
+void I2CMSimpleIntHandler(void)
+{
+    //
+    // Call the I2C master driver interrupt handler.
+    //
+    I2CMIntHandler(&g_sI2CMSimpleInst);
+}
 
 void MPU6050Example(void)
     {
@@ -128,7 +118,7 @@ void MPU6050Example(void)
         while(!g_bMPU6050Done)
             {
             }
-        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
+
 //
 // Configure the MPU6050 for +/- 4 g accelerometer range.
 //
@@ -157,21 +147,28 @@ void MPU6050Example(void)
             //
             // Get the new accelerometer and gyroscope readings.
             //
-            MPU6050DataAccelGetFloat(&sMPU6050, &fAccel[0], &fAccel[1],
-            &fAccel[2]);
+            MPU6050DataAccelGetFloat(&sMPU6050, &fAccel[0], &fAccel[1], &fAccel[2]);
             MPU6050DataGyroGetFloat(&sMPU6050, &fGyro[0], &fGyro[1], &fGyro[2]);
             //
             // Do something with the new accelerometer and gyroscope readings.
             //
+            if(fGyro[1]>1){
+                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
+            }
+            else{
+                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0x00);
+
+            }
+
         }
     }
 
 int main()
 {
     SysCtlClockSet(SYSCTL_SYSDIV_5 | SYSCTL_USE_PLL |  SYSCTL_XTAL_16MHZ | SYSCTL_OSC_MAIN);
+    IntMasterEnable();
     //---------------------------------------INICIALIZACION DE PERIFERICOS---------------------------------------
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
-    SysCtlIntEnable();
     //---------------------------------------SETEO DE PINES COMO SALIDA (LEDS)----------------------------------
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
     I2CInit();

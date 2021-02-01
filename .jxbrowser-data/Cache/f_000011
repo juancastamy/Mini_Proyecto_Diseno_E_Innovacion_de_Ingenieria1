@@ -1,126 +1,854 @@
-import { r as registerInstance, h, H as Host, c as getElement } from './core-800e68f4.js';
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
 
-var SvgIconColor;
-(function (SvgIconColor) {
-    SvgIconColor["error"] = "error";
-    SvgIconColor["primary"] = "primary";
-    SvgIconColor["secondary"] = "secondary";
-    SvgIconColor["success"] = "success";
-    SvgIconColor["tertiary"] = "tertiary";
-    SvgIconColor["warn"] = "warn";
-    SvgIconColor["reversed"] = "reversed";
-})(SvgIconColor || (SvgIconColor = {}));
-;
-const SvgIconColorValues = [
-    SvgIconColor.error,
-    SvgIconColor.primary,
-    SvgIconColor.secondary,
-    SvgIconColor.success,
-    SvgIconColor.tertiary,
-    SvgIconColor.warn,
-    SvgIconColor.reversed
-];
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-media-query/iron-media-query.html">
+<link rel="import" href="../iron-selector/iron-selector.html">
+<link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
 
-const SvgIcon = class {
-    constructor(hostRef) {
-        registerInstance(this, hostRef);
-        /**
-         * Property for icon color and style.
-         * Can be one of: `primary`, `secondary`, `tertiary`, `success`, `warn`, `error`. It is `tertiary` by default.
-         * Also, `reversed` can be added as in `primary reversed`. This inverts the foreground and background colors.
-         *
-         * @type {string}
-         * @memberof SvgIcon
-         */
-        this.appearance = 'tertiary';
-        /**
-         * Set the icon to look disabled.
-         *
-         * @type {boolean}
-         * @memberof SvgIcon
-         */
-        this.disabled = false;
-        /**
-         * Place the icon in a circle wrapper.
-         *
-         * @type {boolean}
-         * @memberof SvgIcon
-         */
-        this.circle = false;
-        /**
-         * Path to the assets folder, including any common svg prefix for the icon sets.
-         * NOTE: do not append a trailing slash. Use forward slashes (URI format)
-         *
-         * @type {string}
-         * @memberof SvgIcon
-         */
-        this.pathPrefix = 'assets/icons/ti_icons-';
-        /**
-         * Set true if the .svg file contains multiple icons, and should use #iconName suffix to access an icon from the set
-         *
-         * @type {boolean}
-         * @memberOf SvgIcon
-         */
-        this.multiIconFile = false;
-        /**
-         * The icon set. There are two sets of icons - `actions` and `objects`. The default is `objects`.
-         *
-         * @type {('actions' | 'objects')}
-         * @memberof SvgIcon
-         */
-        this.iconSet = 'objects';
-        /**
-         * Icon size - one of `xxs` (12x12), `xs` (14x14), `s` (18x18), `m` (24x24), `l` (36x36), or `xl` (48x48). Default is `m`.
-         *
-         * @type {('xxs' | 'xs' | 's' | 'm' | 'l' | 'xl')}
-         * @memberof SvgIcon
-         */
-        this.size = 'm';
+<!--
+Material design: [Navigation drawer](https://www.google.com/design/spec/patterns/navigation-drawer.html)
+
+`paper-drawer-panel` contains a drawer panel and a main panel.  The drawer
+and the main panel are side-by-side with drawer on the left.  When the browser
+window size is smaller than the `responsiveWidth`, `paper-drawer-panel`
+changes to narrow layout.  In narrow layout, the drawer will be stacked on top
+of the main panel.  The drawer will slide in/out to hide/reveal the main
+panel.
+
+Use the attribute `drawer` to indicate that the element is the drawer panel and
+`main` to indicate that the element is the main panel.
+
+Example:
+
+    <paper-drawer-panel>
+      <div drawer> Drawer panel... </div>
+      <div main> Main panel... </div>
+    </paper-drawer-panel>
+
+The drawer and the main panels are not scrollable.  You can set CSS overflow
+property on the elements to make them scrollable or use `paper-header-panel`.
+
+Example:
+
+    <paper-drawer-panel>
+      <paper-header-panel drawer>
+        <paper-toolbar></paper-toolbar>
+        <div> Drawer content... </div>
+      </paper-header-panel>
+      <paper-header-panel main>
+        <paper-toolbar></paper-toolbar>
+        <div> Main content... </div>
+      </paper-header-panel>
+    </paper-drawer-panel>
+
+An element that should toggle the drawer will automatically do so if it's
+given the `paper-drawer-toggle` attribute.  Also this element will automatically
+be hidden in wide layout.
+
+Example:
+
+    <paper-drawer-panel>
+      <paper-header-panel drawer>
+        <paper-toolbar>
+          <div>Application</div>
+        </paper-toolbar>
+        <div> Drawer content... </div>
+      </paper-header-panel>
+      <paper-header-panel main>
+        <paper-toolbar>
+          <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
+          <div>Title</div>
+        </paper-toolbar>
+        <div> Main content... </div>
+      </paper-header-panel>
+    </paper-drawer-panel>
+
+To position the drawer to the right, add `right-drawer` attribute.
+
+    <paper-drawer-panel right-drawer>
+      <div drawer> Drawer panel... </div>
+      <div main> Main panel... </div>
+    </paper-drawer-panel>
+
+### Styling
+
+To change the main container:
+
+    paper-drawer-panel {
+      --paper-drawer-panel-main-container: {
+        background-color: gray;
+      };
     }
-    componentWillLoad() {
-        // get the icon name from the text inside the element if icon name is not defined
-        if (!this.iconName) {
-            this.iconName = this.hostElement.textContent ? this.hostElement.textContent.trim() : 'info-circle';
+
+To change the drawer container when it's in the left side:
+
+    paper-drawer-panel {
+      --paper-drawer-panel-left-drawer-container: {
+        background-color: white;
+      };
+    }
+
+To change the drawer container when it's in the right side:
+
+    paper-drawer-panel {
+      --paper-drawer-panel-right-drawer-container: {
+        background-color: white;
+      };
+    }
+
+To customize the scrim:
+
+    paper-drawer-panel {
+      --paper-drawer-panel-scrim: {
+        background-color: red;
+      };
+    }
+
+The following custom properties and mixins are available for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--paper-drawer-panel-scrim-opacity` | Scrim opacity | 1
+`--paper-drawer-panel-drawer-container` | Mixin applied to drawer container | {}
+`--paper-drawer-panel-left-drawer-container` | Mixin applied to container when it's in the left side | {}
+`--paper-drawer-panel-main-container` | Mixin applied to main container | {}
+`--paper-drawer-panel-right-drawer-container` | Mixin applied to container when it's in the right side | {}
+`--paper-drawer-panel-scrim` | Mixin applied to scrim | {}
+
+@group Paper elements
+@element paper-drawer-panel
+@demo demo/index.html
+@hero hero.svg
+-->
+
+<dom-module id="paper-drawer-panel">
+  <template>
+    <style>
+      :host {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      iron-selector > #drawer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        background-color: white;
+
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+
+        @apply(--paper-drawer-panel-drawer-container);
+      }
+
+      .transition-drawer {
+        transition: -webkit-transform ease-in-out 0.3s, width ease-in-out 0.3s, visibility 0.3s;
+        transition: transform ease-in-out 0.3s, width ease-in-out 0.3s, visibility 0.3s;
+      }
+
+      .left-drawer > #drawer {
+        @apply(--paper-drawer-panel-left-drawer-container);
+      }
+
+      .right-drawer > #drawer {
+        left: auto;
+        right: 0;
+
+        @apply(--paper-drawer-panel-right-drawer-container);
+      }
+
+      iron-selector > #main {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+
+        @apply(--paper-drawer-panel-main-container);
+      }
+
+      .transition > #main {
+        transition: left ease-in-out 0.3s, padding ease-in-out 0.3s;
+      }
+
+      .right-drawer > #main {
+        left: 0;
+      }
+
+      .right-drawer.transition > #main {
+        transition: right ease-in-out 0.3s, padding ease-in-out 0.3s;
+      }
+
+      #main > ::content > [main] {
+        height: 100%;
+      }
+
+      #drawer > ::content > [drawer] {
+        height: 100%;
+      }
+
+      #scrim {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity ease-in-out 0.38s, visibility ease-in-out 0.38s;
+        background-color: rgba(0, 0, 0, 0.3);
+
+        @apply(--paper-drawer-panel-scrim);
+      }
+
+      .narrow-layout > #drawer {
+        will-change: transform;
+      }
+
+      .narrow-layout > #drawer.iron-selected {
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+      }
+
+      .right-drawer.narrow-layout > #drawer.iron-selected {
+        box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.15);
+      }
+
+      .narrow-layout > #drawer > ::content > [drawer] {
+        border: 0;
+      }
+
+      .left-drawer.narrow-layout > #drawer:not(.iron-selected) {
+        visibility: hidden;
+
+        -webkit-transform: translateX(-100%);
+        transform: translateX(-100%);
+      }
+
+      .right-drawer.narrow-layout > #drawer:not(.iron-selected) {
+        left: auto;
+        visibility: hidden;
+
+        -webkit-transform: translateX(100%);
+        transform: translateX(100%);
+      }
+
+      .left-drawer.dragging > #drawer:not(.iron-selected),
+      .left-drawer.peeking > #drawer:not(.iron-selected),
+      .right-drawer.dragging > #drawer:not(.iron-selected),
+      .right-drawer.peeking > #drawer:not(.iron-selected) {
+        visibility: visible;
+      }
+
+      .narrow-layout > #main {
+        padding: 0;
+      }
+
+      .right-drawer.narrow-layout > #main {
+        left: 0;
+        right: 0;
+      }
+
+      .narrow-layout > #main:not(.iron-selected) > #scrim,
+      .dragging > #main > #scrim {
+        visibility: visible;
+        opacity: var(--paper-drawer-panel-scrim-opacity, 1);
+      }
+
+      .narrow-layout > #main > * {
+        margin: 0;
+        min-height: 100%;
+        left: 0;
+        right: 0;
+
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+
+      iron-selector:not(.narrow-layout) ::content [paper-drawer-toggle] {
+        display: none;
+      }
+    </style>
+
+    <iron-media-query
+        id="mq"
+        on-query-matches-changed="_onQueryMatchesChanged"
+        query="[[_computeMediaQuery(forceNarrow, responsiveWidth)]]">
+    </iron-media-query>
+
+    <iron-selector
+        attr-for-selected="id"
+        class$="[[_computeIronSelectorClass(narrow, _transition, dragging, rightDrawer, peeking)]]"
+        activate-event=""
+        selected="[[selected]]">
+
+      <div id="main" style$="[[_computeMainStyle(narrow, rightDrawer, drawerWidth)]]">
+        <content select="[main]"></content>
+        <div id="scrim" on-tap="closeDrawer"></div>
+      </div>
+
+      <div id="drawer" style$="[[_computeDrawerStyle(drawerWidth)]]">
+        <content id="drawerContent" select="[drawer]"></content>
+      </div>
+
+    </iron-selector>
+  </template>
+
+  <script>
+    (function() {
+      'use strict';
+
+      // this would be the only `paper-drawer-panel` in
+      // the whole app that can be in `dragging` state
+      var sharedPanel = null;
+
+      function classNames(obj) {
+        var classes = [];
+        for (var key in obj) {
+          if (obj.hasOwnProperty(key) && obj[key]) {
+            classes.push(key);
+          }
         }
-        this.updateIconUrl();
-        this.handleAppearanceChange();
-    }
-    handleAppearanceChange() {
-        // transform appearance string into an array of options
-        const appearances = this.appearance.toLowerCase().split(/\s+/);
-        if (!appearances.some(color => {
-            if ((SvgIconColorValues).indexOf(color) >= 0) {
-                this._color = color;
-                return true;
+
+        return classes.join(' ');
+      }
+
+      Polymer({
+
+        is: 'paper-drawer-panel',
+
+        behaviors: [Polymer.IronResizableBehavior],
+
+        /**
+         * Fired when the narrow layout changes.
+         *
+         * @event paper-responsive-change {{narrow: boolean}} detail -
+         *     narrow: true if the panel is in narrow layout.
+         */
+
+        /**
+         * Fired when the a panel is selected.
+         *
+         * Listening for this event is an alternative to observing changes in the `selected` attribute.
+         * This event is fired both when a panel is selected.
+         *
+         * @event iron-select {{item: Object}} detail -
+         *     item: The panel that the event refers to.
+         */
+
+        /**
+         * Fired when a panel is deselected.
+         *
+         * Listening for this event is an alternative to observing changes in the `selected` attribute.
+         * This event is fired both when a panel is deselected.
+         *
+         * @event iron-deselect {{item: Object}} detail -
+         *     item: The panel that the event refers to.
+         */
+        properties: {
+
+          /**
+           * The panel to be selected when `paper-drawer-panel` changes to narrow
+           * layout.
+           */
+          defaultSelected: {
+            type: String,
+            value: 'main'
+          },
+
+          /**
+           * If true, swipe from the edge is disabled.
+           */
+          disableEdgeSwipe: {
+            type: Boolean,
+            value: false
+          },
+
+          /**
+           * If true, swipe to open/close the drawer is disabled.
+           */
+          disableSwipe: {
+            type: Boolean,
+            value: false
+          },
+
+          /**
+           * Whether the user is dragging the drawer interactively.
+           */
+          dragging: {
+            type: Boolean,
+            value: false,
+            readOnly: true,
+            notify: true
+          },
+
+          /**
+           * Width of the drawer panel.
+           */
+          drawerWidth: {
+            type: String,
+            value: '256px'
+          },
+
+          /**
+           * How many pixels on the side of the screen are sensitive to edge
+           * swipes and peek.
+           */
+          edgeSwipeSensitivity: {
+            type: Number,
+            value: 30
+          },
+
+          /**
+           * If true, ignore `responsiveWidth` setting and force the narrow layout.
+           */
+          forceNarrow: {
+            type: Boolean,
+            value: false
+          },
+
+          /**
+           * Whether the browser has support for the transform CSS property.
+           */
+          hasTransform: {
+            type: Boolean,
+            value: function() {
+              return 'transform' in this.style;
             }
-            return false;
-        })) {
-            this._color = SvgIconColor.tertiary; // default color
-        }
-    }
-    updateIconUrl() {
-        this._iconUrl = `${this.pathPrefix}${this.iconSet}${this.multiIconFile ? '.svg#' + this.iconName : '/' + this.iconName + '.svg'}`;
-    }
-    render() {
-        return (h(Host, { class: `
-                        ti-svg-icon-${this._color}
-                        ti-svg-icon-size-${this.size}
-                        ${this.circle && 'ti-svg-icon-circle'}
-                        ${this.disabled && 'ti-svg-icon-disabled'}
-                    ` }, this.multiIconFile ? [
-            h("svg", { role: "img" }, h("use", { xlinkHref: this._iconUrl })),
-            h("span", { style: { 'display': 'none' } }, h("slot", null))
-        ] : (h("div", { class: "ti-svg-icon-bg", style: { backgroundImage: `url('${this._iconUrl}')` } }, h("span", { style: { 'display': 'none' } }, h("slot", null))))));
-    }
-    get hostElement() { return getElement(this); }
-    static get watchers() { return {
-        "appearance": ["handleAppearanceChange"],
-        "iconName": ["updateIconUrl"],
-        "pathPrefix": ["updateIconUrl"],
-        "iconSet": ["updateIconUrl"],
-        "multiIconFile": ["updateIconUrl"]
-    }; }
-    static get style() { return "/*\n* ==========================================================================\n* _polaris.colors.scss\n* This file imports the Polaris color palette.\n* ==========================================================================\n*/\n/*\n* --------------------------------------------------------------------------\n* color palette\n* --------------------------------------------------------------------------\n*/\n/*\n* ==========================================================================\n* _polaris.mixins.scss\n* This file contains Polaris mixins\n* prefix with mix-\n* ==========================================================================\n*/\n/*\n* ==========================================================================\n* _polaris-variables.scss\n* This file contains global-css variables and is using component based naming.\n*\n* Naming structure: [application(namespacing)]-[type]-[function]-[property]\n* ==========================================================================\n*/\n/*\n* --------------------------------------------------------------------------\n* Color variables\n* --------------------------------------------------------------------------\n*/\n/*\n* Polaris Component color definitions\n*/\n/*\n* Polaris Card Background color definitions\n* Ref: (http://polaris/01-ui-style-foundations.html#02-style-principles.03-background-color)\n*/\n/*\n* --------------------------------------------------------------------------\n* shape variables\n* --------------------------------------------------------------------------\n*/\n/*\n* Polaris border radius definitions\n* Ref: (http://polaris/01-ui-style-foundations.html#02-style-principles.05-border-radius)\n*/\n/*\n* Polaris box shadow definitions\n* Ref: (http://polaris/01-ui-style-foundations.html#02-style-principles.06-box-shadow)\n*/\n/*\n* --------------------------------------------------------------------------\n* font variables\n* Ref: (http://polaris/01-ui-style-foundations.html#07-typography-fundamentals)\n* --------------------------------------------------------------------------\n*/\n/*\n* Font stack definitions\n*/\n/*\n* Font families\n*/\n/*\n* Root HTML and BODY tag values\n*/\n/*\n* Font size cadence values\n*/\n/*\n* Standard Paragraph font sizes\n*/\n/*\n* Header tag font sizes\n*/\n/*\n* Line height cadence values\n*/\n/*\n* Font weight values\n*/\n/*\n* --------------------------------------------------------------------------\n* spacing values variables\n* --------------------------------------------------------------------------\n*/\n/*\n* Base spacing cadence values\n* (base grid size x multiplier) / root font size = rem value\n*/\n/*\n* Component/element specific spacing\n*/\n/*\n* --------------------------------------------------------------------------\n* page layout variables\n* --------------------------------------------------------------------------\n*/\n/*\n* --------------------------------------------------------------------------\n* animation variables\n* ref: (http://polaris/01-ui-style-foundations.html#04-motion)\n* --------------------------------------------------------------------------\n*/\n/*\n* Animation easing types\n*/\n/*\n* Animation timings\n*/\n/*\n* --------------------------------------------------------------------------\n* icon size variables\n* --------------------------------------------------------------------------\n*/\n/*\n* --------------------------------------------------------------------------\n* legacy variable names\n* - May still be used in other component repos\n* --------------------------------------------------------------------------\n*/\n/* Font variables */\n/* Space size variables */\n/*\n* ==========================================================================\n* _ti-core.scss\n*\n*  This files contains mixins uses within TI Webcomponents\n* ==========================================================================\n*/\n/*\n * Base style for trigger element\n */\n/*\n* Tooltip trigger main mixin.\n* Use to add style to trigger tooltip display.\n* For example:\n*\n* .tooltip-trigger:hover {\n*     \@include ti-tooltip-trigger();\n* }\n*\n* Typically not used directly, but via the other mixins below.\n*/\n/*\n* Mixin for adding style to trigger tooltip display to\n* an element selector on hover, focus and checked.\n* For example:\n*\n* .tooltip-trigger {\n     \@include ti-tooltip-trigger-element();\n* }\n*/\n/*\n* Mixin for adding style to trigger tooltip display to\n* a web component shadow host on hover, focus and checked.\n* Use in the web component style sheet outside of :host{}.\n* For example:\n*\n* \@include ti-tooltip-trigger-host();\n* :host {\n*     ...\n* }\n*\n* The optional $selector parameter allows a CSS selector\n* which will be added to the :host selector to allow control\n* over the host trigger via a style class or another selector.\n* For example:\n*\n* \@include ti-tooltip-trigger-host(\'.ti-tooltip-trigger\');\n*\n* creates code like\n*\n* :host(.ti-tooltip-trigger:hover) {\n*     ...\n* }\n*\n* instead of\n*\n* :host(:hover) {\n*     ...\n* }\n*/\n:host {\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  vertical-align: text-bottom;\n  fill: #555555;\n  width: 24px;\n  height: 24px;\n}\n:host svg {\n  display: block;\n  width: 24px;\n  height: 24px;\n  stroke-width: 0;\n}\n:host .ti-svg-icon-bg {\n  background-repeat: no-repeat;\n  background-position: 0 0;\n  width: 24px;\n  height: 24px;\n}\n\n:host(.ti-svg-icon-circle) {\n  border-radius: 100%;\n}\n:host(.ti-svg-icon-circle) svg,\n:host(.ti-svg-icon-circle) .ti-svg-icon-bg {\n  -webkit-transform: scale(0.75);\n  transform: scale(0.75);\n}\n\n/* svg icon size modifiers */\n:host(.ti-svg-icon-size-xxs) {\n  width: 12px;\n  height: 12px;\n}\n:host(.ti-svg-icon-size-xxs) svg {\n  width: 12px;\n  height: 12px;\n}\n:host(.ti-svg-icon-size-xxs) .ti-svg-icon-bg {\n  background-size: 12px;\n  width: 12px;\n  height: 12px;\n  line-height: 12px;\n}\n\n:host(.ti-svg-icon-size-xs) {\n  width: 14px;\n  height: 14px;\n}\n:host(.ti-svg-icon-size-xs) svg {\n  width: 14px;\n  height: 14px;\n}\n:host(.ti-svg-icon-size-xs) .ti-svg-icon-bg {\n  background-size: 14px;\n  width: 14px;\n  height: 14px;\n  line-height: 14px;\n}\n\n:host(.ti-svg-icon-size-s) {\n  width: 18px;\n  height: 18px;\n}\n:host(.ti-svg-icon-size-s) svg {\n  width: 18px;\n  height: 18px;\n}\n:host(.ti-svg-icon-size-s) .ti-svg-icon-bg {\n  background-size: 18px;\n  width: 18px;\n  height: 18px;\n  line-height: 18px;\n}\n\n:host(.ti-svg-icon-size-m) {\n  width: 24px;\n  height: 24px;\n}\n:host(.ti-svg-icon-size-m) svg {\n  width: 24px;\n  height: 24px;\n}\n:host(.ti-svg-icon-size-m) .ti-svg-icon-bg {\n  background-size: 24px;\n  width: 24px;\n  height: 24px;\n  line-height: 24px;\n}\n\n:host(.ti-svg-icon-size-l) {\n  width: 36px;\n  height: 36px;\n}\n:host(.ti-svg-icon-size-l) svg {\n  width: 36px;\n  height: 36px;\n}\n:host(.ti-svg-icon-size-l) .ti-svg-icon-bg {\n  background-size: 36px;\n  width: 36px;\n  height: 36px;\n  line-height: 36px;\n}\n\n:host(.ti-svg-icon-size-xl) {\n  width: 48px;\n  height: 48px;\n}\n:host(.ti-svg-icon-size-xl) svg {\n  width: 48px;\n  height: 48px;\n}\n:host(.ti-svg-icon-size-xl) .ti-svg-icon-bg {\n  background-size: 48px;\n  width: 48px;\n  height: 48px;\n  line-height: 48px;\n}\n\n/* svg icon color modifiers */\n:host(.ti-svg-icon-tertiary) {\n  fill: #555555;\n}\n\n:host(.ti-svg-icon-tertiary.ti-svg-icon-circle) {\n  fill: #ffffff;\n  background-color: #555555;\n}\n\n:host(.ti-svg-icon-secondary) {\n  fill: #115566;\n}\n\n:host(.ti-svg-icon-secondary.ti-svg-icon-circle) {\n  fill: #ffffff;\n  background-color: #115566;\n}\n\n:host(.ti-svg-icon-primary) {\n  fill: #cc0000;\n}\n\n:host(.ti-svg-icon-primary.ti-svg-icon-circle) {\n  fill: #ffffff;\n  background-color: #cc0000;\n}\n\n:host(.ti-svg-icon-disabled) {\n  fill: #cccccc;\n}\n\n:host(.ti-svg-icon-disabled.ti-svg-icon-circle) {\n  fill: #ffffff;\n  background-color: #cccccc;\n}\n\n:host(.ti-svg-icon-reversed) {\n  fill: #ffffff;\n}\n\n:host(.ti-svg-icon-reversed.ti-svg-icon-circle) {\n  fill: #ffffff;\n  background-color: #ffffff;\n}\n\n:host(.ti-svg-icon-error) {\n  fill: #990000;\n}\n\n:host(.ti-svg-icon-error.ti-svg-icon-circle) {\n  fill: #ffffff;\n  background-color: #990000;\n}\n\n:host(.ti-svg-icon-success) {\n  fill: #44bb55;\n}\n\n:host(.ti-svg-icon-success.ti-svg-icon-circle) {\n  fill: #ffffff;\n  background-color: #44bb55;\n}\n\n:host(.ti-svg-icon-warn) {\n  fill: #ff9933;\n}\n\n:host(.ti-svg-icon-warn.ti-svg-icon-circle) {\n  fill: #ffffff;\n  background-color: #ff9933;\n}\n\n/* bg icon color modifiers - position adjust */\n:host(.ti-svg-icon-tertiary.ti-svg-icon-size-xxs.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -48px;\n}\n\n:host(.ti-svg-icon-secondary.ti-svg-icon-size-xxs) .ti-svg-icon-bg {\n  background-position: 0 -12px;\n}\n\n:host(.ti-svg-icon-secondary.ti-svg-icon-size-xxs.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -48px;\n}\n\n:host(.ti-svg-icon-primary.ti-svg-icon-size-xxs) .ti-svg-icon-bg {\n  background-position: 0 -24px;\n}\n\n:host(.ti-svg-icon-primary.ti-svg-icon-size-xxs.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -48px;\n}\n\n:host(.ti-svg-icon-disabled.ti-svg-icon-size-xxs) .ti-svg-icon-bg {\n  background-position: 0 -36px;\n}\n\n:host(.ti-svg-icon-disabled.ti-svg-icon-size-xxs.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -48px;\n}\n\n:host(.ti-svg-icon-reversed.ti-svg-icon-size-xxs) .ti-svg-icon-bg {\n  background-position: 0 -48px;\n}\n\n:host(.ti-svg-icon-reversed.ti-svg-icon-size-xxs.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -48px;\n}\n\n:host(.ti-svg-icon-error.ti-svg-icon-size-xxs) .ti-svg-icon-bg {\n  background-position: 0 -60px;\n}\n\n:host(.ti-svg-icon-error.ti-svg-icon-size-xxs.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -48px;\n}\n\n:host(.ti-svg-icon-success.ti-svg-icon-size-xxs) .ti-svg-icon-bg {\n  background-position: 0 -72px;\n}\n\n:host(.ti-svg-icon-success.ti-svg-icon-size-xxs.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -48px;\n}\n\n:host(.ti-svg-icon-warn.ti-svg-icon-size-xxs) .ti-svg-icon-bg {\n  background-position: 0 -84px;\n}\n\n:host(.ti-svg-icon-warn.ti-svg-icon-size-xxs.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -48px;\n}\n\n:host(.ti-svg-icon-tertiary.ti-svg-icon-size-xs.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -56px;\n}\n\n:host(.ti-svg-icon-secondary.ti-svg-icon-size-xs) .ti-svg-icon-bg {\n  background-position: 0 -14px;\n}\n\n:host(.ti-svg-icon-secondary.ti-svg-icon-size-xs.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -56px;\n}\n\n:host(.ti-svg-icon-primary.ti-svg-icon-size-xs) .ti-svg-icon-bg {\n  background-position: 0 -28px;\n}\n\n:host(.ti-svg-icon-primary.ti-svg-icon-size-xs.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -56px;\n}\n\n:host(.ti-svg-icon-disabled.ti-svg-icon-size-xs) .ti-svg-icon-bg {\n  background-position: 0 -42px;\n}\n\n:host(.ti-svg-icon-disabled.ti-svg-icon-size-xs.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -56px;\n}\n\n:host(.ti-svg-icon-reversed.ti-svg-icon-size-xs) .ti-svg-icon-bg {\n  background-position: 0 -56px;\n}\n\n:host(.ti-svg-icon-reversed.ti-svg-icon-size-xs.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -56px;\n}\n\n:host(.ti-svg-icon-error.ti-svg-icon-size-xs) .ti-svg-icon-bg {\n  background-position: 0 -70px;\n}\n\n:host(.ti-svg-icon-error.ti-svg-icon-size-xs.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -56px;\n}\n\n:host(.ti-svg-icon-success.ti-svg-icon-size-xs) .ti-svg-icon-bg {\n  background-position: 0 -84px;\n}\n\n:host(.ti-svg-icon-success.ti-svg-icon-size-xs.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -56px;\n}\n\n:host(.ti-svg-icon-warn.ti-svg-icon-size-xs) .ti-svg-icon-bg {\n  background-position: 0 -98px;\n}\n\n:host(.ti-svg-icon-warn.ti-svg-icon-size-xs.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -56px;\n}\n\n:host(.ti-svg-icon-tertiary.ti-svg-icon-size-s.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -72px;\n}\n\n:host(.ti-svg-icon-secondary.ti-svg-icon-size-s) .ti-svg-icon-bg {\n  background-position: 0 -18px;\n}\n\n:host(.ti-svg-icon-secondary.ti-svg-icon-size-s.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -72px;\n}\n\n:host(.ti-svg-icon-primary.ti-svg-icon-size-s) .ti-svg-icon-bg {\n  background-position: 0 -36px;\n}\n\n:host(.ti-svg-icon-primary.ti-svg-icon-size-s.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -72px;\n}\n\n:host(.ti-svg-icon-disabled.ti-svg-icon-size-s) .ti-svg-icon-bg {\n  background-position: 0 -54px;\n}\n\n:host(.ti-svg-icon-disabled.ti-svg-icon-size-s.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -72px;\n}\n\n:host(.ti-svg-icon-reversed.ti-svg-icon-size-s) .ti-svg-icon-bg {\n  background-position: 0 -72px;\n}\n\n:host(.ti-svg-icon-reversed.ti-svg-icon-size-s.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -72px;\n}\n\n:host(.ti-svg-icon-error.ti-svg-icon-size-s) .ti-svg-icon-bg {\n  background-position: 0 -90px;\n}\n\n:host(.ti-svg-icon-error.ti-svg-icon-size-s.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -72px;\n}\n\n:host(.ti-svg-icon-success.ti-svg-icon-size-s) .ti-svg-icon-bg {\n  background-position: 0 -108px;\n}\n\n:host(.ti-svg-icon-success.ti-svg-icon-size-s.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -72px;\n}\n\n:host(.ti-svg-icon-warn.ti-svg-icon-size-s) .ti-svg-icon-bg {\n  background-position: 0 -126px;\n}\n\n:host(.ti-svg-icon-warn.ti-svg-icon-size-s.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -72px;\n}\n\n:host(.ti-svg-icon-tertiary.ti-svg-icon-size-m.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -96px;\n}\n\n:host(.ti-svg-icon-secondary.ti-svg-icon-size-m) .ti-svg-icon-bg {\n  background-position: 0 -24px;\n}\n\n:host(.ti-svg-icon-secondary.ti-svg-icon-size-m.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -96px;\n}\n\n:host(.ti-svg-icon-primary.ti-svg-icon-size-m) .ti-svg-icon-bg {\n  background-position: 0 -48px;\n}\n\n:host(.ti-svg-icon-primary.ti-svg-icon-size-m.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -96px;\n}\n\n:host(.ti-svg-icon-disabled.ti-svg-icon-size-m) .ti-svg-icon-bg {\n  background-position: 0 -72px;\n}\n\n:host(.ti-svg-icon-disabled.ti-svg-icon-size-m.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -96px;\n}\n\n:host(.ti-svg-icon-reversed.ti-svg-icon-size-m) .ti-svg-icon-bg {\n  background-position: 0 -96px;\n}\n\n:host(.ti-svg-icon-reversed.ti-svg-icon-size-m.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -96px;\n}\n\n:host(.ti-svg-icon-error.ti-svg-icon-size-m) .ti-svg-icon-bg {\n  background-position: 0 -120px;\n}\n\n:host(.ti-svg-icon-error.ti-svg-icon-size-m.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -96px;\n}\n\n:host(.ti-svg-icon-success.ti-svg-icon-size-m) .ti-svg-icon-bg {\n  background-position: 0 -144px;\n}\n\n:host(.ti-svg-icon-success.ti-svg-icon-size-m.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -96px;\n}\n\n:host(.ti-svg-icon-warn.ti-svg-icon-size-m) .ti-svg-icon-bg {\n  background-position: 0 -168px;\n}\n\n:host(.ti-svg-icon-warn.ti-svg-icon-size-m.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -96px;\n}\n\n:host(.ti-svg-icon-tertiary.ti-svg-icon-size-l.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -144px;\n}\n\n:host(.ti-svg-icon-secondary.ti-svg-icon-size-l) .ti-svg-icon-bg {\n  background-position: 0 -36px;\n}\n\n:host(.ti-svg-icon-secondary.ti-svg-icon-size-l.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -144px;\n}\n\n:host(.ti-svg-icon-primary.ti-svg-icon-size-l) .ti-svg-icon-bg {\n  background-position: 0 -72px;\n}\n\n:host(.ti-svg-icon-primary.ti-svg-icon-size-l.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -144px;\n}\n\n:host(.ti-svg-icon-disabled.ti-svg-icon-size-l) .ti-svg-icon-bg {\n  background-position: 0 -108px;\n}\n\n:host(.ti-svg-icon-disabled.ti-svg-icon-size-l.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -144px;\n}\n\n:host(.ti-svg-icon-reversed.ti-svg-icon-size-l) .ti-svg-icon-bg {\n  background-position: 0 -144px;\n}\n\n:host(.ti-svg-icon-reversed.ti-svg-icon-size-l.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -144px;\n}\n\n:host(.ti-svg-icon-error.ti-svg-icon-size-l) .ti-svg-icon-bg {\n  background-position: 0 -180px;\n}\n\n:host(.ti-svg-icon-error.ti-svg-icon-size-l.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -144px;\n}\n\n:host(.ti-svg-icon-success.ti-svg-icon-size-l) .ti-svg-icon-bg {\n  background-position: 0 -216px;\n}\n\n:host(.ti-svg-icon-success.ti-svg-icon-size-l.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -144px;\n}\n\n:host(.ti-svg-icon-warn.ti-svg-icon-size-l) .ti-svg-icon-bg {\n  background-position: 0 -252px;\n}\n\n:host(.ti-svg-icon-warn.ti-svg-icon-size-l.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -144px;\n}\n\n:host(.ti-svg-icon-tertiary.ti-svg-icon-size-xl.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -192px;\n}\n\n:host(.ti-svg-icon-secondary.ti-svg-icon-size-xl) .ti-svg-icon-bg {\n  background-position: 0 -48px;\n}\n\n:host(.ti-svg-icon-secondary.ti-svg-icon-size-xl.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -192px;\n}\n\n:host(.ti-svg-icon-primary.ti-svg-icon-size-xl) .ti-svg-icon-bg {\n  background-position: 0 -96px;\n}\n\n:host(.ti-svg-icon-primary.ti-svg-icon-size-xl.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -192px;\n}\n\n:host(.ti-svg-icon-disabled.ti-svg-icon-size-xl) .ti-svg-icon-bg {\n  background-position: 0 -144px;\n}\n\n:host(.ti-svg-icon-disabled.ti-svg-icon-size-xl.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -192px;\n}\n\n:host(.ti-svg-icon-reversed.ti-svg-icon-size-xl) .ti-svg-icon-bg {\n  background-position: 0 -192px;\n}\n\n:host(.ti-svg-icon-reversed.ti-svg-icon-size-xl.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -192px;\n}\n\n:host(.ti-svg-icon-error.ti-svg-icon-size-xl) .ti-svg-icon-bg {\n  background-position: 0 -240px;\n}\n\n:host(.ti-svg-icon-error.ti-svg-icon-size-xl.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -192px;\n}\n\n:host(.ti-svg-icon-success.ti-svg-icon-size-xl) .ti-svg-icon-bg {\n  background-position: 0 -288px;\n}\n\n:host(.ti-svg-icon-success.ti-svg-icon-size-xl.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -192px;\n}\n\n:host(.ti-svg-icon-warn.ti-svg-icon-size-xl) .ti-svg-icon-bg {\n  background-position: 0 -336px;\n}\n\n:host(.ti-svg-icon-warn.ti-svg-icon-size-xl.ti-svg-icon-circle) .ti-svg-icon-bg {\n  background-position: 0 -192px;\n}\n\n/* modifier for disabled icon */\n:host(.ti-svg-icon-disabled) {\n  fill: #cccccc;\n}\n\n:host(.ti-svg-icon-disabled.ti-svg-icon-circle) {\n  fill: #ffffff;\n  background-color: #cccccc;\n}"; }
-};
+          },
 
-export { SvgIcon as ti_svg_icon };
+          /**
+           * Whether the browser has support for the will-change CSS property.
+           */
+          hasWillChange: {
+            type: Boolean,
+            value: function() {
+              return 'willChange' in this.style;
+            }
+          },
+
+          /**
+           * Returns true if the panel is in narrow layout.  This is useful if you
+           * need to show/hide elements based on the layout.
+           */
+          narrow: {
+            reflectToAttribute: true,
+            type: Boolean,
+            value: false,
+            readOnly: true,
+            notify: true
+          },
+
+          /**
+           * Whether the drawer is peeking out from the edge.
+           */
+          peeking: {
+            type: Boolean,
+            value: false,
+            readOnly: true,
+            notify: true
+          },
+
+          /**
+           * Max-width when the panel changes to narrow layout.
+           */
+          responsiveWidth: {
+            type: String,
+            value: '768px'
+          },
+
+          /**
+           * If true, position the drawer to the right.
+           */
+          rightDrawer: {
+            type: Boolean,
+            value: false
+          },
+
+          /**
+           * The panel that is being selected. `drawer` for the drawer panel and
+           * `main` for the main panel.
+           *
+           * @type {string|null}
+           */
+          selected: {
+            reflectToAttribute: true,
+            notify: true,
+            type: String,
+            value: null
+          },
+
+          /**
+           * The attribute on elements that should toggle the drawer on tap, also elements will
+           * automatically be hidden in wide layout.
+           */
+          drawerToggleAttribute: {
+            type: String,
+            value: 'paper-drawer-toggle'
+          },
+
+          /**
+           * The CSS selector for the element that should receive focus when the drawer is open.
+           * By default, when the drawer opens, it focuses the first tabbable element. That is,
+           * the first element that can receive focus.
+           *
+           * To disable this behavior, you can set `drawerFocusSelector` to `null` or an empty string.
+           *
+           */
+          drawerFocusSelector: {
+            type: String,
+            value:
+                'a[href]:not([tabindex="-1"]),'+
+                'area[href]:not([tabindex="-1"]),'+
+                'input:not([disabled]):not([tabindex="-1"]),'+
+                'select:not([disabled]):not([tabindex="-1"]),'+
+                'textarea:not([disabled]):not([tabindex="-1"]),'+
+                'button:not([disabled]):not([tabindex="-1"]),'+
+                'iframe:not([tabindex="-1"]),'+
+                '[tabindex]:not([tabindex="-1"]),'+
+                '[contentEditable=true]:not([tabindex="-1"])'
+          },
+
+          /**
+           * Whether the transition is enabled.
+           */
+          _transition: {
+            type: Boolean,
+            value: false
+          },
+
+        },
+
+        listeners: {
+          tap: '_onTap',
+          track: '_onTrack',
+          down: '_downHandler',
+          up: '_upHandler',
+          transitionend: '_onTransitionEnd'
+        },
+
+        observers: [
+          '_forceNarrowChanged(forceNarrow, defaultSelected)',
+          '_toggleFocusListener(selected)'
+        ],
+
+        ready: function() {
+          // Avoid transition at the beginning e.g. page loads and enable
+          // transitions only after the element is rendered and ready.
+          this._transition = true;
+          this._boundFocusListener = this._didFocus.bind(this);
+        },
+
+        /**
+         * Toggles the panel open and closed.
+         *
+         * @method togglePanel
+         */
+        togglePanel: function() {
+          if (this._isMainSelected()) {
+            this.openDrawer();
+          } else {
+            this.closeDrawer();
+          }
+        },
+
+        /**
+         * Opens the drawer.
+         *
+         * @method openDrawer
+         */
+        openDrawer: function() {
+          requestAnimationFrame(function() {
+            this.toggleClass("transition-drawer", true, this.$.drawer);
+            this.selected = 'drawer';
+          }.bind(this));
+          
+        },
+
+        /**
+         * Closes the drawer.
+         *
+         * @method closeDrawer
+         */
+        closeDrawer: function() {
+          requestAnimationFrame(function() {
+            this.toggleClass("transition-drawer", true, this.$.drawer);
+            this.selected = 'main';
+          }.bind(this));
+        },
+
+        _onTransitionEnd: function (e) {
+          var target = Polymer.dom(e).localTarget;
+          if (target !== this) {
+            // ignore events coming from the light dom
+            return;
+          }
+          if (e.propertyName === 'left' || e.propertyName === 'right') {
+            this.notifyResize();
+          }
+          if (e.propertyName === 'transform') {
+            requestAnimationFrame(function() {
+              this.toggleClass("transition-drawer", false, this.$.drawer);
+            }.bind(this));
+            if (this.selected === 'drawer') {
+              var focusedChild = this._getAutoFocusedNode();
+              focusedChild && focusedChild.focus();
+            }
+          }
+        },
+
+        _computeIronSelectorClass: function(narrow, transition, dragging, rightDrawer, peeking) {
+          return classNames({
+            dragging: dragging,
+            'narrow-layout': narrow,
+            'right-drawer': rightDrawer,
+            'left-drawer': !rightDrawer,
+            transition: transition,
+            peeking: peeking
+          });
+        },
+
+        _computeDrawerStyle: function(drawerWidth) {
+          return 'width:' + drawerWidth + ';';
+        },
+
+        _computeMainStyle: function(narrow, rightDrawer, drawerWidth) {
+          var style = '';
+
+          style += 'left:' + ((narrow || rightDrawer) ? '0' : drawerWidth) + ';';
+
+          if (rightDrawer) {
+            style += 'right:' + (narrow ? '' : drawerWidth) + ';';
+          }
+
+          return style;
+        },
+
+        _computeMediaQuery: function(forceNarrow, responsiveWidth) {
+          return forceNarrow ? '' : '(max-width: ' + responsiveWidth + ')';
+        },
+
+        _computeSwipeOverlayHidden: function(narrow, disableEdgeSwipe) {
+          return !narrow || disableEdgeSwipe;
+        },
+
+        _onTrack: function(event) {
+          if (sharedPanel && this !== sharedPanel) {
+            return;
+          }
+          switch (event.detail.state) {
+            case 'start':
+              this._trackStart(event);
+              break;
+            case 'track':
+              this._trackX(event);
+              break;
+            case 'end':
+              this._trackEnd(event);
+              break;
+          }
+        },
+
+        _responsiveChange: function(narrow) {
+          this._setNarrow(narrow);
+
+          this.selected = this.narrow ? this.defaultSelected : null;
+
+          this.setScrollDirection(this._swipeAllowed() ? 'y' : 'all');
+          this.fire('paper-responsive-change', {narrow: this.narrow});
+        },
+
+        _onQueryMatchesChanged: function(event) {
+          this._responsiveChange(event.detail.value);
+        },
+
+        _forceNarrowChanged: function() {
+          // set the narrow mode only if we reached the `responsiveWidth`
+          this._responsiveChange(this.forceNarrow || this.$.mq.queryMatches);
+        },
+
+        _swipeAllowed: function() {
+          return this.narrow && !this.disableSwipe;
+        },
+
+        _isMainSelected: function() {
+          return this.selected === 'main';
+        },
+
+        _startEdgePeek: function() {
+          this.width = this.$.drawer.offsetWidth;
+          this._moveDrawer(this._translateXForDeltaX(this.rightDrawer ?
+              -this.edgeSwipeSensitivity : this.edgeSwipeSensitivity));
+          this._setPeeking(true);
+        },
+
+        _stopEdgePeek: function() {
+          if (this.peeking) {
+            this._setPeeking(false);
+            this._moveDrawer(null);
+          }
+        },
+
+        _downHandler: function(event) {
+          if (!this.dragging && this._isMainSelected() && this._isEdgeTouch(event) && !sharedPanel) {
+            this._startEdgePeek();
+            // cancel selection
+            event.preventDefault();
+            // grab this panel
+            sharedPanel = this;
+          }
+        },
+
+        _upHandler: function() {
+          this._stopEdgePeek();
+          // release the panel
+          sharedPanel = null;
+        },
+
+        _onTap: function(event) {
+          var targetElement = Polymer.dom(event).localTarget;
+          var isTargetToggleElement = targetElement &&
+            this.drawerToggleAttribute &&
+            targetElement.hasAttribute(this.drawerToggleAttribute);
+
+          if (isTargetToggleElement) {
+            this.togglePanel();
+          }
+        },
+
+        _isEdgeTouch: function(event) {
+          var x = event.detail.x;
+
+          return !this.disableEdgeSwipe && this._swipeAllowed() &&
+            (this.rightDrawer ?
+              x >= this.offsetWidth - this.edgeSwipeSensitivity :
+              x <= this.edgeSwipeSensitivity);
+        },
+
+        _trackStart: function(event) {
+          if (this._swipeAllowed()) {
+            sharedPanel = this;
+            this._setDragging(true);
+
+            if (this._isMainSelected()) {
+              this._setDragging(this.peeking || this._isEdgeTouch(event));
+            }
+
+            if (this.dragging) {
+              this.width = this.$.drawer.offsetWidth;
+              this._transition = false;
+            }
+          }
+        },
+
+        _translateXForDeltaX: function(deltaX) {
+          var isMain = this._isMainSelected();
+
+          if (this.rightDrawer) {
+            return Math.max(0, isMain ? this.width + deltaX : deltaX);
+          } else {
+            return Math.min(0, isMain ? deltaX - this.width : deltaX);
+          }
+        },
+
+        _trackX: function(event) {
+          if (this.dragging) {
+            var dx = event.detail.dx;
+
+            if (this.peeking) {
+              if (Math.abs(dx) <= this.edgeSwipeSensitivity) {
+                // Ignore trackx until we move past the edge peek.
+                return;
+              }
+              this._setPeeking(false);
+            }
+
+            this._moveDrawer(this._translateXForDeltaX(dx));
+          }
+        },
+
+        _trackEnd: function(event) {
+          if (this.dragging) {
+            var xDirection = event.detail.dx > 0;
+
+            this._setDragging(false);
+            this._transition = true;
+            sharedPanel = null;
+            this._moveDrawer(null);
+
+            if (this.rightDrawer) {
+              this[xDirection ? 'closeDrawer' : 'openDrawer']();
+            } else {
+              this[xDirection ? 'openDrawer' : 'closeDrawer']();
+            }
+          }
+        },
+
+        _transformForTranslateX: function(translateX) {
+          if (translateX === null) {
+            return '';
+          }
+          return this.hasWillChange ? 'translateX(' + translateX + 'px)' :
+              'translate3d(' + translateX + 'px, 0, 0)';
+        },
+
+        _moveDrawer: function(translateX) {
+          this.transform(this._transformForTranslateX(translateX), this.$.drawer);
+        },
+
+        _getDrawerContent: function() {
+          return Polymer.dom(this.$.drawerContent).getDistributedNodes()[0];
+        },
+
+        _getAutoFocusedNode: function() {
+          var drawerContent = this._getDrawerContent();
+
+          return this.drawerFocusSelector ?
+              Polymer.dom(drawerContent).querySelector(this.drawerFocusSelector) || drawerContent : null;
+        },
+
+        _toggleFocusListener: function(selected) {
+          if (selected === 'drawer') {
+            this.addEventListener('focus', this._boundFocusListener, true);
+          } else {
+            this.removeEventListener('focus', this._boundFocusListener, true);
+          }
+        },
+
+        _didFocus: function(event) {
+          var autoFocusedNode = this._getAutoFocusedNode();
+          if (!autoFocusedNode) {
+            return;
+          }
+
+          var path = Polymer.dom(event).path;
+          var focusedChild = path[0];
+          var drawerContent = this._getDrawerContent();
+          var focusedChildCameFromDrawer = path.indexOf(drawerContent) !== -1;
+
+          if (!focusedChildCameFromDrawer) {
+            event.stopPropagation();
+            autoFocusedNode.focus();
+          }
+        },
+
+        _isDrawerClosed: function(narrow, selected) {
+          return !narrow || selected !== 'drawer';
+        }
+      });
+
+    }());
+  </script>
+</dom-module>
