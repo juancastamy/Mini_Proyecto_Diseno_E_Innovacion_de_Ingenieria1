@@ -152,6 +152,7 @@ void MPU6050Example(void)
             //
             // Do something with the new accelerometer and gyroscope readings.
             //
+
             if(fGyro[1]>1){
                 GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
             }
