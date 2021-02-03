@@ -27,14 +27,14 @@
 volatile uint32_t servo;
 
 uint32_t COUNT[1];
-uint32_t giro;
+volatile uint32_t giro;
 unsigned long ulPeriod;
 volatile uint32_t load;
 int main(void)
 {
     giro=75;
     //----------------------------------------INICIALIZACION DEL RELOJ-------------------------------------------
-    SysCtlClockSet(SYSCTL_SYSDIV_2_5 | SYSCTL_USE_PLL |  SYSCTL_XTAL_16MHZ | SYSCTL_OSC_MAIN);
+    SysCtlClockSet(SYSCTL_SYSDIV_5 | SYSCTL_USE_PLL |  SYSCTL_XTAL_16MHZ | SYSCTL_OSC_MAIN);
     //---------------------------------------INICIALIZACION DE PERIFERICOS---------------------------------------
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
@@ -68,7 +68,6 @@ int main(void)
     load=(ulPeriod/50)-1;//se divide el periodo por la frecuencia deseada del PWM y se realiza el ajuste con -1
     PWMGenConfigure(PWM1_BASE, PWM_GEN_0,PWM_GEN_MODE_DOWN);//se configura el PWM para contar de un numero haca abajo
     PWMGenPeriodSet(PWM1_BASE,PWM_GEN_0,/*load*/load);//se especifica el periodo del PWM
-    PWMPulseWidthSet(PWM1_BASE, PWM_OUT_0, giro*load/1000);
 
     PWMOutputState(PWM1_BASE,PWM_OUT_0_BIT,true); //se coloca el PWM como salida
     PWMGenEnable(PWM1_BASE,PWM_GEN_0);//se activa el PWM
@@ -107,8 +106,7 @@ int main(void)
             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, 0x00);
         }
         giro=(((125-35)/4095)*COUNT[0])+35;
-        PWMPulseWidthSet(PWM1_BASE, PWM_OUT_0, giro*load/1000); // SETA O DUTY CYCLE DO PWM
-        SysCtlDelay(1000);
+        PWMPulseWidthSet(PWM1_BASE, PWM_OUT_0, COUNT[0]); // SETA O DUTY CYCLE DO PWM
     }
 	return 0;
 }
