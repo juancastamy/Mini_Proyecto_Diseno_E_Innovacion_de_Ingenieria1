@@ -3,6 +3,7 @@
 #include "inc/hw_memmap.h"
 #include "inc/hw_types.h"
 #include "inc/hw_ints.h"
+#include "inc/hw_pwm.h"
 #include "driverlib/sysctl.h"
 #include "driverlib/interrupt.h"
 #include "driverlib/gpio.h"
@@ -26,14 +27,14 @@
 volatile uint32_t servo;
 
 uint32_t COUNT[1];
-uint32_t giro[1];
+uint32_t giro;
 unsigned long ulPeriod;
 volatile uint32_t load;
 int main(void)
 {
-    servo=56;
+    giro=75;
     //----------------------------------------INICIALIZACION DEL RELOJ-------------------------------------------
-    SysCtlClockSet(SYSCTL_SYSDIV_5 | SYSCTL_USE_PLL |  SYSCTL_XTAL_16MHZ | SYSCTL_OSC_MAIN);
+    SysCtlClockSet(SYSCTL_SYSDIV_2_5 | SYSCTL_USE_PLL |  SYSCTL_XTAL_16MHZ | SYSCTL_OSC_MAIN);
     //---------------------------------------INICIALIZACION DE PERIFERICOS---------------------------------------
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
@@ -47,16 +48,15 @@ int main(void)
 
 //----------------------------------PWM-----------------------------------------------
 //--------------------INISCIALIZACION DEL SISTEMA-------------------------------------
-<<<<<<< HEAD
+
     SysCtlPeripheralEnable(SYSCTL_PERIPH_PWM1);//se activa el perifericos PWM1
-    SysCtlPWMClockSet(SYSCTL_PWMDIV_64);
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);//se activa el periferico D
-=======
+
 
     SysCtlPWMClockSet(SYSCTL_PWMDIV_64);
     SysCtlPeripheralEnable(SYSCTL_PERIPH_PWM1);
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);
->>>>>>> parent of f670019... PWM prueba
+
 //----------------------Se configura el  modo del pin---------------------------------
     GPIOPinTypePWM(GPIO_PORTD_BASE, GPIO_PIN_0); // se configura el pin PD0 como salidad de PWM
     GPIOPinConfigure(GPIO_PD0_M1PWM0);//se configura el pin PD0 como PWM1PWM0
@@ -64,16 +64,12 @@ int main(void)
 //-------------------------Se desactiva el M0PWM0-----------------------------------
 
     ulPeriod = SysCtlClockGet() / 64; //se divide el reloj del sistema
-<<<<<<< HEAD
+
     load=(ulPeriod/50)-1;//se divide el periodo por la frecuencia deseada del PWM y se realiza el ajuste con -1
     PWMGenConfigure(PWM1_BASE, PWM_GEN_0,PWM_GEN_MODE_DOWN);//se configura el PWM para contar de un numero haca abajo
-    PWMGenPeriodSet(PWM1_BASE,PWM_GEN_0,load);//se especifica el periodo del PWM
-=======
-    load=(ulPeriod/55)-1;//se divide el periodo por la frecuencia deseada del PWM y se realiza el ajuste con -1
-    PWMGenConfigure(PWM1_BASE, PWM_GEN_0,PWM_GEN_MODE_UP_DOWN);//se configura el PWM para contar de un numero haca abajo
-    PWMGenPeriodSet(PWM1_BASE,PWM_GEN_0,ulPeriod);//se especifica el periodo del PWM
-    PWMPulseWidthSet(PWM1_BASE, PWM_OUT_0, 1000);
->>>>>>> parent of f670019... PWM prueba
+    PWMGenPeriodSet(PWM1_BASE,PWM_GEN_0,/*load*/load);//se especifica el periodo del PWM
+    PWMPulseWidthSet(PWM1_BASE, PWM_OUT_0, giro*load/1000);
+
     PWMOutputState(PWM1_BASE,PWM_OUT_0_BIT,true); //se coloca el PWM como salida
     PWMGenEnable(PWM1_BASE,PWM_GEN_0);//se activa el PWM
 
@@ -81,8 +77,6 @@ int main(void)
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
     GPIOPinTypeADC(GPIO_PORTB_BASE,GPIO_PIN_5);
     SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC0);
-
-    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3);
     ADCSequenceConfigure(ADC0_BASE, 3, ADC_TRIGGER_PROCESSOR, 0);
     ADCSequenceStepConfigure(ADC0_BASE, 3, 0, ADC_CTL_CH11|ADC_CTL_IE|ADC_CTL_END);
     ADCSequenceEnable(ADC0_BASE,3);
@@ -93,10 +87,6 @@ int main(void)
         ADCIntClear(ADC0_BASE, 3);
         ADCProcessorTrigger(ADC0_BASE, 3);
         while(!ADCIntStatus(ADC0_BASE, 3, false));
-<<<<<<< HEAD
-=======
-        giro=(COUNT[0]*360)/4096;
->>>>>>> parent of f670019... PWM prueba
         ADCSequenceDataGet(ADC0_BASE, 3, COUNT);
         if(COUNT[0]>=1 && COUNT[0]<1365){
             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3);
@@ -116,19 +106,9 @@ int main(void)
         else{
             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, 0x00);
         }
-<<<<<<< HEAD
-        if (0<COUNT[0] && COUNT[0]<2048){
-            giro[0]=COUNT[0]-2048;
-        }
-        else{
-            giro[0]=2048-COUNT[0];
-        }
-        PWMPulseWidthSet(PWM1_BASE, PWM_OUT_0, COUNT[0]); // SETA O DUTY CYCLE DO PWM
-=======
-
-        PWMPulseWidthSet(PWM1_BASE, PWM_OUT_0, giro/100*1000); // SETA O DUTY CYCLE DO PWM
->>>>>>> parent of f670019... PWM prueba
-
+        giro=(((125-35)/4095)*COUNT[0])+35;
+        PWMPulseWidthSet(PWM1_BASE, PWM_OUT_0, giro*load/1000); // SETA O DUTY CYCLE DO PWM
+        SysCtlDelay(1000);
     }
 	return 0;
 }
