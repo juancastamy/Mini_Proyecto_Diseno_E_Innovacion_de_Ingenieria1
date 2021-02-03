@@ -2,12 +2,20 @@
 <link_info>
    <banner>TI ARM Linker PC v20.2.4.LTS</banner>
    <copyright>Copyright (c) 1996-2018 Texas Instruments Incorporated</copyright>
+<<<<<<< HEAD
    <link_time>0x60130fde</link_time>
+=======
+   <link_time>0x6011cfdd</link_time>
+>>>>>>> parent of f670019... PWM prueba
    <link_errors>0x0</link_errors>
    <output_file>PWM.out</output_file>
    <entry_point>
       <name>_c_int00_noargs</name>
+<<<<<<< HEAD
       <address>0x951</address>
+=======
+      <address>0x959</address>
+>>>>>>> parent of f670019... PWM prueba
    </entry_point>
    <input_file_list>
       <input_file id="fl-2">
@@ -148,263 +156,437 @@
          <name>.text</name>
          <load_address>0x26c</load_address>
          <run_address>0x26c</run_address>
+<<<<<<< HEAD
          <size>0x220</size>
+=======
+         <size>0x228</size>
+>>>>>>> parent of f670019... PWM prueba
          <input_file_ref idref="fl-2"/>
       </object_component>
       <object_component id="oc-e1">
          <name>.text:GPIOPadConfigSet</name>
+<<<<<<< HEAD
          <load_address>0x48c</load_address>
          <run_address>0x48c</run_address>
+=======
+         <load_address>0x494</load_address>
+         <run_address>0x494</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x132</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
       <object_component id="oc-f9">
          <name>.text:SysCtlClockGet</name>
+<<<<<<< HEAD
          <load_address>0x5c0</load_address>
          <run_address>0x5c0</run_address>
+=======
+         <load_address>0x5c8</load_address>
+         <run_address>0x5c8</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x110</size>
          <input_file_ref idref="fl-d"/>
       </object_component>
       <object_component id="oc-c9">
          <name>.text:SysCtlClockSet</name>
+<<<<<<< HEAD
          <load_address>0x6d0</load_address>
          <run_address>0x6d0</run_address>
+=======
+         <load_address>0x6d8</load_address>
+         <run_address>0x6d8</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0xf4</size>
          <input_file_ref idref="fl-d"/>
       </object_component>
-      <object_component id="oc-129">
+      <object_component id="oc-12f">
          <name>.text:ADCSequenceStepConfigure</name>
+<<<<<<< HEAD
          <load_address>0x7c4</load_address>
          <run_address>0x7c4</run_address>
+=======
+         <load_address>0x7cc</load_address>
+         <run_address>0x7cc</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x7a</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-123">
+      <object_component id="oc-129">
          <name>.text:ADCSequenceConfigure</name>
+<<<<<<< HEAD
          <load_address>0x83e</load_address>
          <run_address>0x83e</run_address>
+=======
+         <load_address>0x846</load_address>
+         <run_address>0x846</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x50</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
       <object_component id="oc-f3">
          <name>.text:GPIOPinConfigure</name>
+<<<<<<< HEAD
          <load_address>0x890</load_address>
          <run_address>0x890</run_address>
+=======
+         <load_address>0x898</load_address>
+         <run_address>0x898</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x48</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
       <object_component id="oc-16b">
          <name>.text:__TI_auto_init_nobinit_nopinit:__TI_auto_init_nobinit_nopinit</name>
+<<<<<<< HEAD
          <load_address>0x8d8</load_address>
          <run_address>0x8d8</run_address>
+=======
+         <load_address>0x8e0</load_address>
+         <run_address>0x8e0</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x44</size>
          <input_file_ref idref="fl-ca"/>
       </object_component>
       <object_component id="oc-cf">
          <name>.text:SysCtlPeripheralEnable</name>
+<<<<<<< HEAD
          <load_address>0x91c</load_address>
          <run_address>0x91c</run_address>
+=======
+         <load_address>0x924</load_address>
+         <run_address>0x924</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x34</size>
          <input_file_ref idref="fl-d"/>
       </object_component>
       <object_component id="oc-59">
          <name>.text:_c_int00_noargs:_c_int00_noargs</name>
+<<<<<<< HEAD
          <load_address>0x950</load_address>
          <run_address>0x950</run_address>
+=======
+         <load_address>0x958</load_address>
+         <run_address>0x958</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x34</size>
          <input_file_ref idref="fl-c7"/>
       </object_component>
-      <object_component id="oc-147">
+      <object_component id="oc-14d">
          <name>.text:ADCIntStatus</name>
+<<<<<<< HEAD
          <load_address>0x984</load_address>
          <run_address>0x984</run_address>
+=======
+         <load_address>0x98c</load_address>
+         <run_address>0x98c</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x2e</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
       <object_component id="oc-db">
          <name>.text:GPIODirModeSet</name>
+<<<<<<< HEAD
          <load_address>0x9b2</load_address>
          <run_address>0x9b2</run_address>
+=======
+         <load_address>0x9ba</load_address>
+         <run_address>0x9ba</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x2a</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
       <object_component id="oc-ff">
          <name>.text:PWMGenConfigure</name>
+<<<<<<< HEAD
          <load_address>0x9dc</load_address>
          <run_address>0x9dc</run_address>
+=======
+         <load_address>0x9e4</load_address>
+         <run_address>0x9e4</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x22</size>
          <input_file_ref idref="fl-c"/>
       </object_component>
-      <object_component id="oc-14d">
+      <object_component id="oc-153">
          <name>.text:ADCSequenceDataGet</name>
+<<<<<<< HEAD
          <load_address>0x9fe</load_address>
          <run_address>0x9fe</run_address>
+=======
+         <load_address>0xa06</load_address>
+         <run_address>0xa06</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x1e</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-153">
+      <object_component id="oc-10b">
          <name>.text:PWMPulseWidthSet</name>
+<<<<<<< HEAD
          <load_address>0xa1c</load_address>
          <run_address>0xa1c</run_address>
+=======
+         <load_address>0xa24</load_address>
+         <run_address>0xa24</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x1e</size>
          <input_file_ref idref="fl-c"/>
       </object_component>
       <object_component id="oc-47">
          <name>.text:decompress:ZI:__TI_zero_init_nomemset:__TI_zero_init_nomemset</name>
+<<<<<<< HEAD
          <load_address>0xa3a</load_address>
          <run_address>0xa3a</run_address>
+=======
+         <load_address>0xa42</load_address>
+         <run_address>0xa42</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x1c</size>
          <input_file_ref idref="fl-c4"/>
       </object_component>
-      <object_component id="oc-141">
+      <object_component id="oc-147">
          <name>.text:ADCProcessorTrigger</name>
+<<<<<<< HEAD
          <load_address>0xa56</load_address>
          <run_address>0xa56</run_address>
+=======
+         <load_address>0xa5e</load_address>
+         <run_address>0xa5e</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x18</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
       <object_component id="oc-d5">
          <name>.text:GPIOPinTypeGPIOOutput</name>
+<<<<<<< HEAD
          <load_address>0xa6e</load_address>
          <run_address>0xa6e</run_address>
+=======
+         <load_address>0xa76</load_address>
+         <run_address>0xa76</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x18</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
       <object_component id="oc-e7">
          <name>.text:SysCtlPWMClockSet</name>
+<<<<<<< HEAD
          <load_address>0xa88</load_address>
          <run_address>0xa88</run_address>
+=======
+         <load_address>0xa90</load_address>
+         <run_address>0xa90</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x14</size>
          <input_file_ref idref="fl-d"/>
       </object_component>
-      <object_component id="oc-117">
+      <object_component id="oc-11d">
          <name>.text:GPIOPinTypeADC</name>
+<<<<<<< HEAD
          <load_address>0xa9c</load_address>
          <run_address>0xa9c</run_address>
+=======
+         <load_address>0xaa4</load_address>
+         <run_address>0xaa4</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x12</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
       <object_component id="oc-ed">
          <name>.text:GPIOPinTypePWM</name>
+<<<<<<< HEAD
          <load_address>0xaae</load_address>
          <run_address>0xaae</run_address>
+=======
+         <load_address>0xab6</load_address>
+         <run_address>0xab6</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x12</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
-      <object_component id="oc-10b">
+      <object_component id="oc-111">
          <name>.text:PWMOutputState</name>
+<<<<<<< HEAD
          <load_address>0xac0</load_address>
          <run_address>0xac0</run_address>
+=======
+         <load_address>0xac8</load_address>
+         <run_address>0xac8</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x12</size>
          <input_file_ref idref="fl-c"/>
       </object_component>
-      <object_component id="oc-135">
+      <object_component id="oc-13b">
          <name>.text:IntMasterEnable</name>
+<<<<<<< HEAD
          <load_address>0xad2</load_address>
          <run_address>0xad2</run_address>
+=======
+         <load_address>0xada</load_address>
+         <run_address>0xada</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x10</size>
          <input_file_ref idref="fl-b"/>
       </object_component>
       <object_component id="oc-105">
          <name>.text:PWMGenPeriodSet</name>
+<<<<<<< HEAD
          <load_address>0xae2</load_address>
          <run_address>0xae2</run_address>
+=======
+         <load_address>0xaea</load_address>
+         <run_address>0xaea</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x10</size>
          <input_file_ref idref="fl-c"/>
       </object_component>
-      <object_component id="oc-12f">
+      <object_component id="oc-135">
          <name>.text:ADCSequenceEnable</name>
+<<<<<<< HEAD
          <load_address>0xaf2</load_address>
          <run_address>0xaf2</run_address>
+=======
+         <load_address>0xafa</load_address>
+         <run_address>0xafa</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0xe</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-1c2">
+      <object_component id="oc-1c3">
          <name>.text:CPUcpsie</name>
+<<<<<<< HEAD
          <load_address>0xb00</load_address>
          <run_address>0xb00</run_address>
+=======
+         <load_address>0xb08</load_address>
+         <run_address>0xb08</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0xc</size>
          <input_file_ref idref="fl-e"/>
       </object_component>
-      <object_component id="oc-111">
+      <object_component id="oc-117">
          <name>.text:PWMGenEnable</name>
+<<<<<<< HEAD
          <load_address>0xb0c</load_address>
          <run_address>0xb0c</run_address>
+=======
+         <load_address>0xb14</load_address>
+         <run_address>0xb14</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0xc</size>
          <input_file_ref idref="fl-c"/>
       </object_component>
       <object_component id="oc-27">
          <name>.text</name>
+<<<<<<< HEAD
          <load_address>0xb18</load_address>
          <run_address>0xb18</run_address>
+=======
+         <load_address>0xb20</load_address>
+         <run_address>0xb20</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0xc</size>
          <input_file_ref idref="fl-3"/>
       </object_component>
-      <object_component id="oc-13b">
+      <object_component id="oc-141">
          <name>.text:ADCIntClear</name>
+<<<<<<< HEAD
          <load_address>0xb24</load_address>
          <run_address>0xb24</run_address>
+=======
+         <load_address>0xb2c</load_address>
+         <run_address>0xb2c</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0xa</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-11d">
+      <object_component id="oc-123">
          <name>.text:GPIOPinWrite</name>
+<<<<<<< HEAD
          <load_address>0xb2e</load_address>
          <run_address>0xb2e</run_address>
+=======
+         <load_address>0xb36</load_address>
+         <run_address>0xb36</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x6</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
       <object_component id="oc-19f">
          <name>.text:SysCtlDelay</name>
+<<<<<<< HEAD
          <load_address>0xb34</load_address>
          <run_address>0xb34</run_address>
+=======
+         <load_address>0xb3c</load_address>
+         <run_address>0xb3c</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x6</size>
          <input_file_ref idref="fl-d"/>
       </object_component>
       <object_component id="oc-95">
          <name>.text:_system_pre_init</name>
+<<<<<<< HEAD
          <load_address>0xb3a</load_address>
          <run_address>0xb3a</run_address>
+=======
+         <load_address>0xb42</load_address>
+         <run_address>0xb42</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x4</size>
          <input_file_ref idref="fl-cb"/>
       </object_component>
       <object_component id="oc-15f">
          <name>.text:abort:abort</name>
+<<<<<<< HEAD
          <load_address>0xb3e</load_address>
          <run_address>0xb3e</run_address>
+=======
+         <load_address>0xb46</load_address>
+         <run_address>0xb46</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x4</size>
          <input_file_ref idref="fl-cd"/>
       </object_component>
       <object_component id="oc-1ae">
          <name>.const:g_pui32GPIOBaseAddrs</name>
+<<<<<<< HEAD
          <load_address>0xb44</load_address>
          <run_address>0xb44</run_address>
+=======
+         <load_address>0xb4c</load_address>
+         <run_address>0xb4c</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x90</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
       <object_component id="oc-1b2">
          <name>.const:g_pui32Xtals</name>
+<<<<<<< HEAD
          <load_address>0xbd4</load_address>
          <run_address>0xbd4</run_address>
+=======
+         <load_address>0xbdc</load_address>
+         <run_address>0xbdc</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x6c</size>
          <input_file_ref idref="fl-d"/>
       </object_component>
       <object_component id="oc-25b">
          <name>.cinit..bss.load</name>
-         <load_address>0xc40</load_address>
-         <run_address>0xc40</run_address>
+         <load_address>0xc48</load_address>
+         <run_address>0xc48</run_address>
          <size>0x8</size>
       </object_component>
       <object_component id="oc-259">
          <name>__TI_handler_table</name>
-         <load_address>0xc48</load_address>
-         <run_address>0xc48</run_address>
+         <load_address>0xc50</load_address>
+         <run_address>0xc50</run_address>
          <size>0x4</size>
       </object_component>
       <object_component id="oc-25a">
          <name>__TI_cinit_table</name>
-         <load_address>0xc4c</load_address>
-         <run_address>0xc4c</run_address>
+         <load_address>0xc54</load_address>
+         <run_address>0xc54</run_address>
          <size>0x8</size>
       </object_component>
       <object_component id="oc-159">
@@ -459,48 +641,80 @@
       </object_component>
       <object_component id="oc-9f">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x87a</load_address>
          <run_address>0x87a</run_address>
          <size>0x425</size>
+=======
+         <load_address>0x89d</load_address>
+         <run_address>0x89d</run_address>
+         <size>0x43c</size>
+>>>>>>> parent of f670019... PWM prueba
          <input_file_ref idref="fl-2"/>
       </object_component>
       <object_component id="oc-70">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0xc9f</load_address>
          <run_address>0xc9f</run_address>
+=======
+         <load_address>0xcd9</load_address>
+         <run_address>0xcd9</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x26b</size>
          <input_file_ref idref="fl-2"/>
       </object_component>
       <object_component id="oc-b2">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0xf0a</load_address>
          <run_address>0xf0a</run_address>
+=======
+         <load_address>0xf44</load_address>
+         <run_address>0xf44</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x8b</size>
          <input_file_ref idref="fl-2"/>
       </object_component>
       <object_component id="oc-ad">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0xf95</load_address>
          <run_address>0xf95</run_address>
+=======
+         <load_address>0xfcf</load_address>
+         <run_address>0xfcf</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x2a4</size>
          <input_file_ref idref="fl-2"/>
       </object_component>
       <object_component id="oc-75">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x1239</load_address>
          <run_address>0x1239</run_address>
+=======
+         <load_address>0x1273</load_address>
+         <run_address>0x1273</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0xbb</size>
          <input_file_ref idref="fl-2"/>
       </object_component>
       <object_component id="oc-2f">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x12f4</load_address>
          <run_address>0x12f4</run_address>
+=======
+         <load_address>0x132e</load_address>
+         <run_address>0x132e</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x2d6</size>
          <input_file_ref idref="fl-3"/>
       </object_component>
       <object_component id="oc-13">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x15ca</load_address>
          <run_address>0x15ca</run_address>
          <size>0x115</size>
@@ -510,39 +724,71 @@
          <name>.debug_info</name>
          <load_address>0x16df</load_address>
          <run_address>0x16df</run_address>
+=======
+         <load_address>0x1604</load_address>
+         <run_address>0x1604</run_address>
+         <size>0x115</size>
+         <input_file_ref idref="fl-3"/>
+      </object_component>
+      <object_component id="oc-2b">
+         <name>.debug_info</name>
+         <load_address>0x1719</load_address>
+         <run_address>0x1719</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x291</size>
          <input_file_ref idref="fl-3"/>
       </object_component>
       <object_component id="oc-36">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x1970</load_address>
          <run_address>0x1970</run_address>
+=======
+         <load_address>0x19aa</load_address>
+         <run_address>0x19aa</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x84</size>
          <input_file_ref idref="fl-3"/>
       </object_component>
-      <object_component id="oc-1be">
+      <object_component id="oc-1bf">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x19f4</load_address>
          <run_address>0x19f4</run_address>
+=======
+         <load_address>0x1a2e</load_address>
+         <run_address>0x1a2e</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x24d</size>
-         <input_file_ref idref="fl-9"/>
-      </object_component>
-      <object_component id="oc-12a">
-         <name>.debug_info</name>
-         <load_address>0x1c41</load_address>
-         <run_address>0x1c41</run_address>
-         <size>0x333</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
       <object_component id="oc-130">
          <name>.debug_info</name>
+<<<<<<< HEAD
+         <load_address>0x1c41</load_address>
+         <run_address>0x1c41</run_address>
+=======
+         <load_address>0x1c7b</load_address>
+         <run_address>0x1c7b</run_address>
+>>>>>>> parent of f670019... PWM prueba
+         <size>0x333</size>
+         <input_file_ref idref="fl-9"/>
+      </object_component>
+      <object_component id="oc-136">
+         <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x1f74</load_address>
          <run_address>0x1f74</run_address>
+=======
+         <load_address>0x1fae</load_address>
+         <run_address>0x1fae</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x2a0</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-14e">
+      <object_component id="oc-154">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x2214</load_address>
          <run_address>0x2214</run_address>
          <size>0x2ff</size>
@@ -552,11 +798,23 @@
          <name>.debug_info</name>
          <load_address>0x2513</load_address>
          <run_address>0x2513</run_address>
+=======
+         <load_address>0x224e</load_address>
+         <run_address>0x224e</run_address>
+         <size>0x2ff</size>
+         <input_file_ref idref="fl-9"/>
+      </object_component>
+      <object_component id="oc-12b">
+         <name>.debug_info</name>
+         <load_address>0x254d</load_address>
+         <run_address>0x254d</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x326</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-142">
+      <object_component id="oc-149">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x2839</load_address>
          <run_address>0x2839</run_address>
          <size>0x2a4</size>
@@ -566,32 +824,59 @@
          <name>.debug_info</name>
          <load_address>0x2add</load_address>
          <run_address>0x2add</run_address>
+=======
+         <load_address>0x2873</load_address>
+         <run_address>0x2873</run_address>
+         <size>0x2a4</size>
+         <input_file_ref idref="fl-9"/>
+      </object_component>
+      <object_component id="oc-14f">
+         <name>.debug_info</name>
+         <load_address>0x2b17</load_address>
+         <run_address>0x2b17</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x2e7</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-13c">
+      <object_component id="oc-142">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x2dc4</load_address>
          <run_address>0x2dc4</run_address>
+=======
+         <load_address>0x2dfe</load_address>
+         <run_address>0x2dfe</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x294</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
       <object_component id="oc-1a1">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x3058</load_address>
          <run_address>0x3058</run_address>
+=======
+         <load_address>0x3092</load_address>
+         <run_address>0x3092</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x18b</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
       <object_component id="oc-1a9">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x31e3</load_address>
          <run_address>0x31e3</run_address>
+=======
+         <load_address>0x321d</load_address>
+         <run_address>0x321d</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x240</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
       <object_component id="oc-1af">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x3423</load_address>
          <run_address>0x3423</run_address>
          <size>0x15b</size>
@@ -601,242 +886,419 @@
          <name>.debug_info</name>
          <load_address>0x357e</load_address>
          <run_address>0x357e</run_address>
+=======
+         <load_address>0x345d</load_address>
+         <run_address>0x345d</run_address>
+         <size>0x15b</size>
+         <input_file_ref idref="fl-a"/>
+      </object_component>
+      <object_component id="oc-124">
+         <name>.debug_info</name>
+         <load_address>0x35b8</load_address>
+         <run_address>0x35b8</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x2a3</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
       <object_component id="oc-dd">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x3821</load_address>
          <run_address>0x3821</run_address>
+=======
+         <load_address>0x385b</load_address>
+         <run_address>0x385b</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x2b3</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
       <object_component id="oc-e3">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x3ad4</load_address>
          <run_address>0x3ad4</run_address>
+=======
+         <load_address>0x3b0e</load_address>
+         <run_address>0x3b0e</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x316</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
       <object_component id="oc-ef">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x3dea</load_address>
          <run_address>0x3dea</run_address>
+=======
+         <load_address>0x3e24</load_address>
+         <run_address>0x3e24</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x279</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
       <object_component id="oc-d7">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x4063</load_address>
          <run_address>0x4063</run_address>
+=======
+         <load_address>0x409d</load_address>
+         <run_address>0x409d</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x2b7</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
-      <object_component id="oc-118">
+      <object_component id="oc-11e">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x431a</load_address>
          <run_address>0x431a</run_address>
+=======
+         <load_address>0x4354</load_address>
+         <run_address>0x4354</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x279</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
       <object_component id="oc-f4">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x4593</load_address>
          <run_address>0x4593</run_address>
+=======
+         <load_address>0x45cd</load_address>
+         <run_address>0x45cd</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x280</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
-      <object_component id="oc-137">
+      <object_component id="oc-13d">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x4813</load_address>
          <run_address>0x4813</run_address>
+=======
+         <load_address>0x484d</load_address>
+         <run_address>0x484d</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x23e</size>
          <input_file_ref idref="fl-b"/>
       </object_component>
       <object_component id="oc-1b7">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x4a51</load_address>
          <run_address>0x4a51</run_address>
+=======
+         <load_address>0x4a8b</load_address>
+         <run_address>0x4a8b</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x1ed</size>
-         <input_file_ref idref="fl-c"/>
-      </object_component>
-      <object_component id="oc-155">
-         <name>.debug_info</name>
-         <load_address>0x4c3e</load_address>
-         <run_address>0x4c3e</run_address>
-         <size>0x2f6</size>
          <input_file_ref idref="fl-c"/>
       </object_component>
       <object_component id="oc-10d">
          <name>.debug_info</name>
-         <load_address>0x4f34</load_address>
-         <run_address>0x4f34</run_address>
-         <size>0x2c4</size>
-         <input_file_ref idref="fl-c"/>
-      </object_component>
-      <object_component id="oc-108">
-         <name>.debug_info</name>
-         <load_address>0x51f8</load_address>
-         <run_address>0x51f8</run_address>
-         <size>0x2b6</size>
+<<<<<<< HEAD
+         <load_address>0x4c3e</load_address>
+         <run_address>0x4c3e</run_address>
+=======
+         <load_address>0x4c78</load_address>
+         <run_address>0x4c78</run_address>
+>>>>>>> parent of f670019... PWM prueba
+         <size>0x2f6</size>
          <input_file_ref idref="fl-c"/>
       </object_component>
       <object_component id="oc-113">
          <name>.debug_info</name>
+<<<<<<< HEAD
+         <load_address>0x4f34</load_address>
+         <run_address>0x4f34</run_address>
+=======
+         <load_address>0x4f6e</load_address>
+         <run_address>0x4f6e</run_address>
+>>>>>>> parent of f670019... PWM prueba
+         <size>0x2c4</size>
+         <input_file_ref idref="fl-c"/>
+      </object_component>
+      <object_component id="oc-107">
+         <name>.debug_info</name>
+<<<<<<< HEAD
+         <load_address>0x51f8</load_address>
+         <run_address>0x51f8</run_address>
+=======
+         <load_address>0x5232</load_address>
+         <run_address>0x5232</run_address>
+>>>>>>> parent of f670019... PWM prueba
+         <size>0x2b6</size>
+         <input_file_ref idref="fl-c"/>
+      </object_component>
+      <object_component id="oc-118">
+         <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x54ae</load_address>
          <run_address>0x54ae</run_address>
+=======
+         <load_address>0x54e8</load_address>
+         <run_address>0x54e8</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x276</size>
          <input_file_ref idref="fl-c"/>
       </object_component>
-      <object_component id="oc-101">
+      <object_component id="oc-100">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x5724</load_address>
          <run_address>0x5724</run_address>
+=======
+         <load_address>0x575e</load_address>
+         <run_address>0x575e</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x2b3</size>
          <input_file_ref idref="fl-c"/>
       </object_component>
       <object_component id="oc-1a6">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x59d7</load_address>
          <run_address>0x59d7</run_address>
+=======
+         <load_address>0x5a11</load_address>
+         <run_address>0x5a11</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x298</size>
          <input_file_ref idref="fl-d"/>
       </object_component>
       <object_component id="oc-1b3">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x5c6f</load_address>
          <run_address>0x5c6f</run_address>
+=======
+         <load_address>0x5ca9</load_address>
+         <run_address>0x5ca9</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x14d</size>
          <input_file_ref idref="fl-d"/>
       </object_component>
       <object_component id="oc-d0">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x5dbc</load_address>
          <run_address>0x5dbc</run_address>
+=======
+         <load_address>0x5df6</load_address>
+         <run_address>0x5df6</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x27d</size>
          <input_file_ref idref="fl-d"/>
       </object_component>
       <object_component id="oc-e8">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x6039</load_address>
          <run_address>0x6039</run_address>
+=======
+         <load_address>0x6073</load_address>
+         <run_address>0x6073</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x263</size>
          <input_file_ref idref="fl-d"/>
       </object_component>
       <object_component id="oc-ca">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x629c</load_address>
          <run_address>0x629c</run_address>
+=======
+         <load_address>0x62d6</load_address>
+         <run_address>0x62d6</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x2db</size>
          <input_file_ref idref="fl-d"/>
       </object_component>
       <object_component id="oc-fa">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x6577</load_address>
          <run_address>0x6577</run_address>
+=======
+         <load_address>0x65b1</load_address>
+         <run_address>0x65b1</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x2b5</size>
          <input_file_ref idref="fl-d"/>
       </object_component>
       <object_component id="oc-1f0">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x682c</load_address>
          <run_address>0x682c</run_address>
+=======
+         <load_address>0x6866</load_address>
+         <run_address>0x6866</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x5f</size>
          <input_file_ref idref="fl-d"/>
       </object_component>
-      <object_component id="oc-1c3">
+      <object_component id="oc-1c4">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x688b</load_address>
          <run_address>0x688b</run_address>
+=======
+         <load_address>0x68c5</load_address>
+         <run_address>0x68c5</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x212</size>
          <input_file_ref idref="fl-e"/>
       </object_component>
       <object_component id="oc-8e">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x6a9d</load_address>
          <run_address>0x6a9d</run_address>
+=======
+         <load_address>0x6ad7</load_address>
+         <run_address>0x6ad7</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x2d4</size>
          <input_file_ref idref="fl-c4"/>
       </object_component>
       <object_component id="oc-48">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x6d71</load_address>
          <run_address>0x6d71</run_address>
+=======
+         <load_address>0x6dab</load_address>
+         <run_address>0x6dab</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x1d2</size>
          <input_file_ref idref="fl-c4"/>
       </object_component>
       <object_component id="oc-89">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x6f43</load_address>
          <run_address>0x6f43</run_address>
+=======
+         <load_address>0x6f7d</load_address>
+         <run_address>0x6f7d</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x46</size>
          <input_file_ref idref="fl-c4"/>
       </object_component>
       <object_component id="oc-c0">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x6f89</load_address>
          <run_address>0x6f89</run_address>
+=======
+         <load_address>0x6fc3</load_address>
+         <run_address>0x6fc3</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x2c</size>
          <input_file_ref idref="fl-c4"/>
       </object_component>
       <object_component id="oc-25">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x6fb5</load_address>
          <run_address>0x6fb5</run_address>
+=======
+         <load_address>0x6fef</load_address>
+         <run_address>0x6fef</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x10b</size>
          <input_file_ref idref="fl-c7"/>
       </object_component>
       <object_component id="oc-5c">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x70c0</load_address>
          <run_address>0x70c0</run_address>
+=======
+         <load_address>0x70fa</load_address>
+         <run_address>0x70fa</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x1a9</size>
          <input_file_ref idref="fl-c7"/>
       </object_component>
       <object_component id="oc-1d9">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x7269</load_address>
          <run_address>0x7269</run_address>
+=======
+         <load_address>0x72a3</load_address>
+         <run_address>0x72a3</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x4b3</size>
          <input_file_ref idref="fl-ca"/>
       </object_component>
       <object_component id="oc-16c">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x771c</load_address>
          <run_address>0x771c</run_address>
+=======
+         <load_address>0x7756</load_address>
+         <run_address>0x7756</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x1a6</size>
          <input_file_ref idref="fl-ca"/>
       </object_component>
       <object_component id="oc-210">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x78c2</load_address>
          <run_address>0x78c2</run_address>
+=======
+         <load_address>0x78fc</load_address>
+         <run_address>0x78fc</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x39</size>
          <input_file_ref idref="fl-ca"/>
       </object_component>
       <object_component id="oc-224">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x78fb</load_address>
          <run_address>0x78fb</run_address>
+=======
+         <load_address>0x7935</load_address>
+         <run_address>0x7935</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x39</size>
          <input_file_ref idref="fl-ca"/>
       </object_component>
       <object_component id="oc-215">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x7934</load_address>
          <run_address>0x7934</run_address>
+=======
+         <load_address>0x796e</load_address>
+         <run_address>0x796e</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x39</size>
          <input_file_ref idref="fl-ca"/>
       </object_component>
       <object_component id="oc-21a">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x796d</load_address>
          <run_address>0x796d</run_address>
+=======
+         <load_address>0x79a7</load_address>
+         <run_address>0x79a7</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0xcd</size>
          <input_file_ref idref="fl-ca"/>
       </object_component>
       <object_component id="oc-98">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x7a3a</load_address>
          <run_address>0x7a3a</run_address>
          <size>0x153</size>
@@ -846,13 +1308,29 @@
          <name>.debug_info</name>
          <load_address>0x7b8d</load_address>
          <run_address>0x7b8d</run_address>
+=======
+         <load_address>0x7a74</load_address>
+         <run_address>0x7a74</run_address>
+         <size>0x153</size>
+         <input_file_ref idref="fl-cb"/>
+      </object_component>
+      <object_component id="oc-162">
+         <name>.debug_info</name>
+         <load_address>0x7bc7</load_address>
+         <run_address>0x7bc7</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x122</size>
          <input_file_ref idref="fl-cd"/>
       </object_component>
       <object_component id="oc-25e">
          <name>.debug_info</name>
+<<<<<<< HEAD
          <load_address>0x7caf</load_address>
          <run_address>0x7caf</run_address>
+=======
+         <load_address>0x7ce9</load_address>
+         <run_address>0x7ce9</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0xc8</size>
       </object_component>
       <object_component id="oc-19e">
@@ -866,46 +1344,76 @@
          <name>.debug_line</name>
          <load_address>0x140</load_address>
          <run_address>0x140</run_address>
+<<<<<<< HEAD
          <size>0x92</size>
+=======
+         <size>0x8e</size>
+>>>>>>> parent of f670019... PWM prueba
          <input_file_ref idref="fl-2"/>
       </object_component>
       <object_component id="oc-73">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x1d2</load_address>
          <run_address>0x1d2</run_address>
+=======
+         <load_address>0x1ce</load_address>
+         <run_address>0x1ce</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x6f</size>
          <input_file_ref idref="fl-2"/>
       </object_component>
       <object_component id="oc-b5">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x241</load_address>
          <run_address>0x241</run_address>
+=======
+         <load_address>0x23d</load_address>
+         <run_address>0x23d</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x20</size>
          <input_file_ref idref="fl-2"/>
       </object_component>
       <object_component id="oc-b0">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x261</load_address>
          <run_address>0x261</run_address>
+=======
+         <load_address>0x25d</load_address>
+         <run_address>0x25d</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x73</size>
          <input_file_ref idref="fl-2"/>
       </object_component>
       <object_component id="oc-78">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x2d4</load_address>
          <run_address>0x2d4</run_address>
+=======
+         <load_address>0x2d0</load_address>
+         <run_address>0x2d0</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x70</size>
          <input_file_ref idref="fl-2"/>
       </object_component>
       <object_component id="oc-6f">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x344</load_address>
          <run_address>0x344</run_address>
+=======
+         <load_address>0x340</load_address>
+         <run_address>0x340</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x41</size>
          <input_file_ref idref="fl-3"/>
       </object_component>
       <object_component id="oc-2e">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x385</load_address>
          <run_address>0x385</run_address>
          <size>0x41</size>
@@ -915,39 +1423,71 @@
          <name>.debug_line</name>
          <load_address>0x3c6</load_address>
          <run_address>0x3c6</run_address>
+=======
+         <load_address>0x381</load_address>
+         <run_address>0x381</run_address>
+         <size>0x41</size>
+         <input_file_ref idref="fl-3"/>
+      </object_component>
+      <object_component id="oc-2a">
+         <name>.debug_line</name>
+         <load_address>0x3c2</load_address>
+         <run_address>0x3c2</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0xa1</size>
          <input_file_ref idref="fl-3"/>
       </object_component>
       <object_component id="oc-39">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x467</load_address>
          <run_address>0x467</run_address>
+=======
+         <load_address>0x463</load_address>
+         <run_address>0x463</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x20</size>
          <input_file_ref idref="fl-3"/>
       </object_component>
       <object_component id="oc-1fe">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x487</load_address>
          <run_address>0x487</run_address>
+=======
+         <load_address>0x483</load_address>
+         <run_address>0x483</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0xde</size>
-         <input_file_ref idref="fl-9"/>
-      </object_component>
-      <object_component id="oc-12d">
-         <name>.debug_line</name>
-         <load_address>0x565</load_address>
-         <run_address>0x565</run_address>
-         <size>0xa7</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
       <object_component id="oc-133">
          <name>.debug_line</name>
+<<<<<<< HEAD
+         <load_address>0x565</load_address>
+         <run_address>0x565</run_address>
+=======
+         <load_address>0x561</load_address>
+         <run_address>0x561</run_address>
+>>>>>>> parent of f670019... PWM prueba
+         <size>0xa7</size>
+         <input_file_ref idref="fl-9"/>
+      </object_component>
+      <object_component id="oc-139">
+         <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x60c</load_address>
          <run_address>0x60c</run_address>
+=======
+         <load_address>0x608</load_address>
+         <run_address>0x608</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x91</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-151">
+      <object_component id="oc-157">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x69d</load_address>
          <run_address>0x69d</run_address>
          <size>0x9c</size>
@@ -957,11 +1497,23 @@
          <name>.debug_line</name>
          <load_address>0x739</load_address>
          <run_address>0x739</run_address>
+=======
+         <load_address>0x699</load_address>
+         <run_address>0x699</run_address>
+         <size>0x9c</size>
+         <input_file_ref idref="fl-9"/>
+      </object_component>
+      <object_component id="oc-12a">
+         <name>.debug_line</name>
+         <load_address>0x735</load_address>
+         <run_address>0x735</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0xa4</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-145">
+      <object_component id="oc-148">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x7dd</load_address>
          <run_address>0x7dd</run_address>
          <size>0x91</size>
@@ -971,32 +1523,59 @@
          <name>.debug_line</name>
          <load_address>0x86e</load_address>
          <run_address>0x86e</run_address>
+=======
+         <load_address>0x7d9</load_address>
+         <run_address>0x7d9</run_address>
+         <size>0x91</size>
+         <input_file_ref idref="fl-9"/>
+      </object_component>
+      <object_component id="oc-14e">
+         <name>.debug_line</name>
+         <load_address>0x86a</load_address>
+         <run_address>0x86a</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x9b</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-13f">
+      <object_component id="oc-145">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x909</load_address>
          <run_address>0x909</run_address>
+=======
+         <load_address>0x905</load_address>
+         <run_address>0x905</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x91</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
       <object_component id="oc-1a4">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x99a</load_address>
          <run_address>0x99a</run_address>
+=======
+         <load_address>0x996</load_address>
+         <run_address>0x996</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x69</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
       <object_component id="oc-1f6">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0xa03</load_address>
          <run_address>0xa03</run_address>
+=======
+         <load_address>0x9ff</load_address>
+         <run_address>0x9ff</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x82</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
       <object_component id="oc-1f8">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0xa85</load_address>
          <run_address>0xa85</run_address>
          <size>0x7d</size>
@@ -1006,32 +1585,59 @@
          <name>.debug_line</name>
          <load_address>0xb02</load_address>
          <run_address>0xb02</run_address>
+=======
+         <load_address>0xa81</load_address>
+         <run_address>0xa81</run_address>
+         <size>0x7d</size>
+         <input_file_ref idref="fl-a"/>
+      </object_component>
+      <object_component id="oc-127">
+         <name>.debug_line</name>
+         <load_address>0xafe</load_address>
+         <run_address>0xafe</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x92</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
       <object_component id="oc-dc">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0xb94</load_address>
          <run_address>0xb94</run_address>
+=======
+         <load_address>0xb90</load_address>
+         <run_address>0xb90</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x95</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
       <object_component id="oc-e2">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0xc29</load_address>
          <run_address>0xc29</run_address>
+=======
+         <load_address>0xc25</load_address>
+         <run_address>0xc25</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0xd1</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
       <object_component id="oc-ee">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0xcfa</load_address>
          <run_address>0xcfa</run_address>
+=======
+         <load_address>0xcf6</load_address>
+         <run_address>0xcf6</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x93</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
       <object_component id="oc-d6">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0xd8d</load_address>
          <run_address>0xd8d</run_address>
          <size>0x99</size>
@@ -1041,25 +1647,47 @@
          <name>.debug_line</name>
          <load_address>0xe26</load_address>
          <run_address>0xe26</run_address>
+=======
+         <load_address>0xd89</load_address>
+         <run_address>0xd89</run_address>
+         <size>0x99</size>
+         <input_file_ref idref="fl-a"/>
+      </object_component>
+      <object_component id="oc-121">
+         <name>.debug_line</name>
+         <load_address>0xe22</load_address>
+         <run_address>0xe22</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x93</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
-      <object_component id="oc-f8">
+      <object_component id="oc-f7">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0xeb9</load_address>
          <run_address>0xeb9</run_address>
+=======
+         <load_address>0xeb5</load_address>
+         <run_address>0xeb5</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0xa7</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
-      <object_component id="oc-136">
+      <object_component id="oc-13c">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0xf60</load_address>
          <run_address>0xf60</run_address>
+=======
+         <load_address>0xf5c</load_address>
+         <run_address>0xf5c</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x97</size>
          <input_file_ref idref="fl-b"/>
       </object_component>
       <object_component id="oc-1fc">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0xff7</load_address>
          <run_address>0xff7</run_address>
          <size>0x82</size>
@@ -1076,74 +1704,138 @@
          <name>.debug_line</name>
          <load_address>0x1117</load_address>
          <run_address>0x1117</run_address>
-         <size>0x95</size>
+=======
+         <load_address>0xff3</load_address>
+         <run_address>0xff3</run_address>
+         <size>0x82</size>
          <input_file_ref idref="fl-c"/>
       </object_component>
-      <object_component id="oc-10a">
+      <object_component id="oc-110">
          <name>.debug_line</name>
-         <load_address>0x11ac</load_address>
-         <run_address>0x11ac</run_address>
-         <size>0x96</size>
+         <load_address>0x1075</load_address>
+         <run_address>0x1075</run_address>
+         <size>0x9e</size>
          <input_file_ref idref="fl-c"/>
       </object_component>
       <object_component id="oc-116">
          <name>.debug_line</name>
+         <load_address>0x1113</load_address>
+         <run_address>0x1113</run_address>
+>>>>>>> parent of f670019... PWM prueba
+         <size>0x95</size>
+         <input_file_ref idref="fl-c"/>
+      </object_component>
+      <object_component id="oc-109">
+         <name>.debug_line</name>
+<<<<<<< HEAD
+         <load_address>0x11ac</load_address>
+         <run_address>0x11ac</run_address>
+=======
+         <load_address>0x11a8</load_address>
+         <run_address>0x11a8</run_address>
+>>>>>>> parent of f670019... PWM prueba
+         <size>0x96</size>
+         <input_file_ref idref="fl-c"/>
+      </object_component>
+      <object_component id="oc-11b">
+         <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x1242</load_address>
          <run_address>0x1242</run_address>
+=======
+         <load_address>0x123e</load_address>
+         <run_address>0x123e</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x91</size>
          <input_file_ref idref="fl-c"/>
       </object_component>
-      <object_component id="oc-104">
+      <object_component id="oc-103">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x12d3</load_address>
          <run_address>0x12d3</run_address>
+=======
+         <load_address>0x12cf</load_address>
+         <run_address>0x12cf</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x9b</size>
          <input_file_ref idref="fl-c"/>
       </object_component>
       <object_component id="oc-1ef">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x136e</load_address>
          <run_address>0x136e</run_address>
+=======
+         <load_address>0x136a</load_address>
+         <run_address>0x136a</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x13d</size>
          <input_file_ref idref="fl-d"/>
       </object_component>
       <object_component id="oc-1fa">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x14ab</load_address>
          <run_address>0x14ab</run_address>
+=======
+         <load_address>0x14a7</load_address>
+         <run_address>0x14a7</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x7f</size>
          <input_file_ref idref="fl-d"/>
       </object_component>
       <object_component id="oc-d3">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x152a</load_address>
          <run_address>0x152a</run_address>
+=======
+         <load_address>0x1526</load_address>
+         <run_address>0x1526</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x94</size>
          <input_file_ref idref="fl-d"/>
       </object_component>
       <object_component id="oc-eb">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x15be</load_address>
          <run_address>0x15be</run_address>
+=======
+         <load_address>0x15ba</load_address>
+         <run_address>0x15ba</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x94</size>
          <input_file_ref idref="fl-d"/>
       </object_component>
       <object_component id="oc-cd">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x1652</load_address>
          <run_address>0x1652</run_address>
+=======
+         <load_address>0x164e</load_address>
+         <run_address>0x164e</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0xee</size>
          <input_file_ref idref="fl-d"/>
       </object_component>
       <object_component id="oc-fd">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x1740</load_address>
          <run_address>0x1740</run_address>
+=======
+         <load_address>0x173c</load_address>
+         <run_address>0x173c</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x11a</size>
          <input_file_ref idref="fl-d"/>
       </object_component>
       <object_component id="oc-1f3">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x185a</load_address>
          <run_address>0x185a</run_address>
          <size>0x7f</size>
@@ -1153,95 +1845,167 @@
          <name>.debug_line</name>
          <load_address>0x18d9</load_address>
          <run_address>0x18d9</run_address>
+=======
+         <load_address>0x1856</load_address>
+         <run_address>0x1856</run_address>
+         <size>0x7f</size>
+         <input_file_ref idref="fl-d"/>
+      </object_component>
+      <object_component id="oc-1c8">
+         <name>.debug_line</name>
+         <load_address>0x18d5</load_address>
+         <run_address>0x18d5</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x91</size>
          <input_file_ref idref="fl-e"/>
       </object_component>
       <object_component id="oc-c6">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x196a</load_address>
          <run_address>0x196a</run_address>
+=======
+         <load_address>0x1966</load_address>
+         <run_address>0x1966</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x92</size>
          <input_file_ref idref="fl-c4"/>
       </object_component>
-      <object_component id="oc-4c">
+      <object_component id="oc-4b">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x19fc</load_address>
          <run_address>0x19fc</run_address>
+=======
+         <load_address>0x19f8</load_address>
+         <run_address>0x19f8</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x56</size>
          <input_file_ref idref="fl-c4"/>
       </object_component>
       <object_component id="oc-8c">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x1a52</load_address>
          <run_address>0x1a52</run_address>
+=======
+         <load_address>0x1a4e</load_address>
+         <run_address>0x1a4e</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x34</size>
          <input_file_ref idref="fl-c4"/>
       </object_component>
       <object_component id="oc-c3">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x1a86</load_address>
          <run_address>0x1a86</run_address>
+=======
+         <load_address>0x1a82</load_address>
+         <run_address>0x1a82</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x92</size>
          <input_file_ref idref="fl-c4"/>
       </object_component>
       <object_component id="oc-6c">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x1b18</load_address>
          <run_address>0x1b18</run_address>
+=======
+         <load_address>0x1b14</load_address>
+         <run_address>0x1b14</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x33</size>
          <input_file_ref idref="fl-c7"/>
       </object_component>
       <object_component id="oc-5a">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x1b4b</load_address>
          <run_address>0x1b4b</run_address>
+=======
+         <load_address>0x1b47</load_address>
+         <run_address>0x1b47</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x45</size>
          <input_file_ref idref="fl-c7"/>
       </object_component>
       <object_component id="oc-20f">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x1b90</load_address>
          <run_address>0x1b90</run_address>
+=======
+         <load_address>0x1b8c</load_address>
+         <run_address>0x1b8c</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0xbf</size>
          <input_file_ref idref="fl-ca"/>
       </object_component>
       <object_component id="oc-16f">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x1c4f</load_address>
          <run_address>0x1c4f</run_address>
+=======
+         <load_address>0x1c4b</load_address>
+         <run_address>0x1c4b</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x6f</size>
          <input_file_ref idref="fl-ca"/>
       </object_component>
       <object_component id="oc-213">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x1cbe</load_address>
          <run_address>0x1cbe</run_address>
+=======
+         <load_address>0x1cba</load_address>
+         <run_address>0x1cba</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x2e</size>
          <input_file_ref idref="fl-ca"/>
       </object_component>
       <object_component id="oc-227">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x1cec</load_address>
          <run_address>0x1cec</run_address>
+=======
+         <load_address>0x1ce8</load_address>
+         <run_address>0x1ce8</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x9a</size>
          <input_file_ref idref="fl-ca"/>
       </object_component>
       <object_component id="oc-218">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x1d86</load_address>
          <run_address>0x1d86</run_address>
+=======
+         <load_address>0x1d82</load_address>
+         <run_address>0x1d82</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x97</size>
          <input_file_ref idref="fl-ca"/>
       </object_component>
       <object_component id="oc-21d">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x1e1d</load_address>
          <run_address>0x1e1d</run_address>
+=======
+         <load_address>0x1e19</load_address>
+         <run_address>0x1e19</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0x93</size>
          <input_file_ref idref="fl-ca"/>
       </object_component>
-      <object_component id="oc-96">
+      <object_component id="oc-9a">
          <name>.debug_line</name>
+<<<<<<< HEAD
          <load_address>0x1eb0</load_address>
          <run_address>0x1eb0</run_address>
          <size>0x40</size>
@@ -1255,69 +2019,84 @@
          <input_file_ref idref="fl-cd"/>
       </object_component>
       <object_component id="oc-9e">
+=======
+         <load_address>0x1eac</load_address>
+         <run_address>0x1eac</run_address>
+         <size>0x40</size>
+         <input_file_ref idref="fl-cb"/>
+      </object_component>
+      <object_component id="oc-161">
+         <name>.debug_line</name>
+         <load_address>0x1eec</load_address>
+         <run_address>0x1eec</run_address>
+         <size>0x3c</size>
+         <input_file_ref idref="fl-cd"/>
+      </object_component>
+      <object_component id="oc-9d">
+>>>>>>> parent of f670019... PWM prueba
          <name>.debug_frame</name>
          <load_address>0x0</load_address>
          <run_address>0x0</run_address>
          <size>0x5c</size>
          <input_file_ref idref="fl-2"/>
       </object_component>
-      <object_component id="oc-2c">
+      <object_component id="oc-28">
          <name>.debug_frame</name>
          <load_address>0x5c</load_address>
          <run_address>0x5c</run_address>
          <size>0x90</size>
          <input_file_ref idref="fl-3"/>
       </object_component>
-      <object_component id="oc-12e">
+      <object_component id="oc-134">
          <name>.debug_frame</name>
          <load_address>0x294</load_address>
          <run_address>0x294</run_address>
          <size>0x8a</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-134">
+      <object_component id="oc-13a">
          <name>.debug_frame</name>
          <load_address>0x31e</load_address>
          <run_address>0x31e</run_address>
          <size>0x7f</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-152">
+      <object_component id="oc-158">
          <name>.debug_frame</name>
          <load_address>0x39d</load_address>
          <run_address>0x39d</run_address>
          <size>0x7f</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-128">
+      <object_component id="oc-12e">
          <name>.debug_frame</name>
          <load_address>0x41c</load_address>
          <run_address>0x41c</run_address>
          <size>0x8e</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-146">
+      <object_component id="oc-14c">
          <name>.debug_frame</name>
          <load_address>0x4aa</load_address>
          <run_address>0x4aa</run_address>
          <size>0x86</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-14c">
+      <object_component id="oc-152">
          <name>.debug_frame</name>
          <load_address>0x530</load_address>
          <run_address>0x530</run_address>
          <size>0x83</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-140">
+      <object_component id="oc-146">
          <name>.debug_frame</name>
          <load_address>0x5b3</load_address>
          <run_address>0x5b3</run_address>
          <size>0x7f</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-122">
+      <object_component id="oc-128">
          <name>.debug_frame</name>
          <load_address>0x632</load_address>
          <run_address>0x632</run_address>
@@ -1352,56 +2131,68 @@
          <size>0x8a</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
+<<<<<<< HEAD
       <object_component id="oc-11c">
+=======
+      <object_component id="oc-122">
+>>>>>>> parent of f670019... PWM prueba
          <name>.debug_frame</name>
          <load_address>0x8cf</load_address>
          <run_address>0x8cf</run_address>
          <size>0x86</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
-      <object_component id="oc-f7">
+      <object_component id="oc-f8">
          <name>.debug_frame</name>
          <load_address>0x955</load_address>
          <run_address>0x955</run_address>
          <size>0x86</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
-      <object_component id="oc-13a">
+      <object_component id="oc-140">
          <name>.debug_frame</name>
          <load_address>0x9db</load_address>
          <run_address>0x9db</run_address>
          <size>0x86</size>
          <input_file_ref idref="fl-b"/>
       </object_component>
+<<<<<<< HEAD
       <object_component id="oc-158">
+=======
+      <object_component id="oc-10f">
+>>>>>>> parent of f670019... PWM prueba
          <name>.debug_frame</name>
          <load_address>0xa61</load_address>
          <run_address>0xa61</run_address>
          <size>0x7f</size>
          <input_file_ref idref="fl-c"/>
       </object_component>
+<<<<<<< HEAD
       <object_component id="oc-110">
+=======
+      <object_component id="oc-115">
+>>>>>>> parent of f670019... PWM prueba
          <name>.debug_frame</name>
          <load_address>0xae0</load_address>
          <run_address>0xae0</run_address>
          <size>0x7f</size>
          <input_file_ref idref="fl-c"/>
       </object_component>
-      <object_component id="oc-107">
+      <object_component id="oc-10a">
          <name>.debug_frame</name>
          <load_address>0xb5f</load_address>
          <run_address>0xb5f</run_address>
          <size>0x7f</size>
          <input_file_ref idref="fl-c"/>
       </object_component>
-      <object_component id="oc-112">
+      <object_component id="oc-11c">
          <name>.debug_frame</name>
          <load_address>0xbde</load_address>
          <run_address>0xbde</run_address>
          <size>0x7f</size>
          <input_file_ref idref="fl-c"/>
       </object_component>
-      <object_component id="oc-100">
+      <object_component id="oc-104">
          <name>.debug_frame</name>
          <load_address>0xc5d</load_address>
          <run_address>0xc5d</run_address>
@@ -1443,7 +2234,7 @@
          <size>0x7f</size>
          <input_file_ref idref="fl-e"/>
       </object_component>
-      <object_component id="oc-4b">
+      <object_component id="oc-4c">
          <name>.debug_frame</name>
          <load_address>0xec</load_address>
          <run_address>0xec</run_address>
@@ -1464,7 +2255,11 @@
          <size>0x5c</size>
          <input_file_ref idref="fl-ca"/>
       </object_component>
+<<<<<<< HEAD
       <object_component id="oc-97">
+=======
+      <object_component id="oc-96">
+>>>>>>> parent of f670019... PWM prueba
          <name>.debug_frame</name>
          <load_address>0x1ec</load_address>
          <run_address>0x1ec</run_address>
@@ -1555,49 +2350,49 @@
          <size>0x86</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-1c0">
+      <object_component id="oc-1c1">
          <name>.debug_abbrev</name>
          <load_address>0x40f</load_address>
          <run_address>0x40f</run_address>
          <size>0x6c</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-1c1">
+      <object_component id="oc-1c2">
          <name>.debug_abbrev</name>
          <load_address>0x47b</load_address>
          <run_address>0x47b</run_address>
          <size>0x6c</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-1cc">
+      <object_component id="oc-1cd">
          <name>.debug_abbrev</name>
          <load_address>0x4e7</load_address>
          <run_address>0x4e7</run_address>
          <size>0x6e</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-1bd">
+      <object_component id="oc-1be">
          <name>.debug_abbrev</name>
          <load_address>0x555</load_address>
          <run_address>0x555</run_address>
          <size>0x6c</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-1ca">
+      <object_component id="oc-1cb">
          <name>.debug_abbrev</name>
          <load_address>0x5c1</load_address>
          <run_address>0x5c1</run_address>
          <size>0x6c</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-1cb">
+      <object_component id="oc-1cc">
          <name>.debug_abbrev</name>
          <load_address>0x62d</load_address>
          <run_address>0x62d</run_address>
          <size>0x6e</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-1c9">
+      <object_component id="oc-1ca">
          <name>.debug_abbrev</name>
          <load_address>0x69b</load_address>
          <run_address>0x69b</run_address>
@@ -1625,7 +2420,7 @@
          <size>0x27</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
-      <object_component id="oc-1bc">
+      <object_component id="oc-1bd">
          <name>.debug_abbrev</name>
          <load_address>0x7d5</load_address>
          <run_address>0x7d5</run_address>
@@ -1660,7 +2455,7 @@
          <size>0x7a</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
-      <object_component id="oc-1bb">
+      <object_component id="oc-1bc">
          <name>.debug_abbrev</name>
          <load_address>0x9ff</load_address>
          <run_address>0x9ff</run_address>
@@ -1674,7 +2469,7 @@
          <size>0x6c</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
-      <object_component id="oc-1c8">
+      <object_component id="oc-1c9">
          <name>.debug_abbrev</name>
          <load_address>0xad7</load_address>
          <run_address>0xad7</run_address>
@@ -1688,14 +2483,14 @@
          <size>0x5e</size>
          <input_file_ref idref="fl-c"/>
       </object_component>
-      <object_component id="oc-1cd">
+      <object_component id="oc-1b9">
          <name>.debug_abbrev</name>
          <load_address>0xb95</load_address>
          <run_address>0xb95</run_address>
          <size>0x6c</size>
          <input_file_ref idref="fl-c"/>
       </object_component>
-      <object_component id="oc-1b9">
+      <object_component id="oc-1ba">
          <name>.debug_abbrev</name>
          <load_address>0xc01</load_address>
          <run_address>0xc01</run_address>
@@ -1709,7 +2504,7 @@
          <size>0x6c</size>
          <input_file_ref idref="fl-c"/>
       </object_component>
-      <object_component id="oc-1ba">
+      <object_component id="oc-1bb">
          <name>.debug_abbrev</name>
          <load_address>0xcd9</load_address>
          <run_address>0xcd9</run_address>
@@ -1988,91 +2783,111 @@
          <size>0x38</size>
          <input_file_ref idref="fl-3"/>
       </object_component>
-      <object_component id="oc-12b">
+      <object_component id="oc-131">
          <name>.debug_aranges</name>
          <load_address>0x58</load_address>
          <run_address>0x58</run_address>
          <size>0x20</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-131">
+      <object_component id="oc-137">
          <name>.debug_aranges</name>
          <load_address>0x78</load_address>
          <run_address>0x78</run_address>
          <size>0x20</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-14f">
+      <object_component id="oc-155">
          <name>.debug_aranges</name>
          <load_address>0x98</load_address>
          <run_address>0x98</run_address>
          <size>0x20</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
+<<<<<<< HEAD
       <object_component id="oc-126">
+=======
+      <object_component id="oc-12c">
+>>>>>>> parent of f670019... PWM prueba
          <name>.debug_aranges</name>
          <load_address>0xb8</load_address>
          <run_address>0xb8</run_address>
          <size>0x20</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
+<<<<<<< HEAD
       <object_component id="oc-143">
+=======
+      <object_component id="oc-14a">
+>>>>>>> parent of f670019... PWM prueba
          <name>.debug_aranges</name>
          <load_address>0xd8</load_address>
          <run_address>0xd8</run_address>
          <size>0x20</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
+<<<<<<< HEAD
       <object_component id="oc-14b">
+=======
+      <object_component id="oc-150">
+>>>>>>> parent of f670019... PWM prueba
          <name>.debug_aranges</name>
          <load_address>0xf8</load_address>
          <run_address>0xf8</run_address>
          <size>0x20</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
+<<<<<<< HEAD
       <object_component id="oc-13e">
+=======
+      <object_component id="oc-143">
+>>>>>>> parent of f670019... PWM prueba
          <name>.debug_aranges</name>
          <load_address>0x118</load_address>
          <run_address>0x118</run_address>
          <size>0x20</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-120">
+      <object_component id="oc-125">
          <name>.debug_aranges</name>
          <load_address>0x138</load_address>
          <run_address>0x138</run_address>
          <size>0x20</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
-      <object_component id="oc-de">
+      <object_component id="oc-dd">
          <name>.debug_aranges</name>
          <load_address>0x158</load_address>
          <run_address>0x158</run_address>
          <size>0x20</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
-      <object_component id="oc-e4">
+      <object_component id="oc-e3">
          <name>.debug_aranges</name>
          <load_address>0x178</load_address>
          <run_address>0x178</run_address>
          <size>0x20</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
-      <object_component id="oc-f0">
+      <object_component id="oc-ef">
          <name>.debug_aranges</name>
          <load_address>0x198</load_address>
          <run_address>0x198</run_address>
          <size>0x20</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
-      <object_component id="oc-d8">
+      <object_component id="oc-d7">
          <name>.debug_aranges</name>
          <load_address>0x1b8</load_address>
          <run_address>0x1b8</run_address>
          <size>0x20</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
+<<<<<<< HEAD
       <object_component id="oc-119">
+=======
+      <object_component id="oc-11f">
+>>>>>>> parent of f670019... PWM prueba
          <name>.debug_aranges</name>
          <load_address>0x1d8</load_address>
          <run_address>0x1d8</run_address>
@@ -2086,21 +2901,21 @@
          <size>0x20</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
-      <object_component id="oc-138">
+      <object_component id="oc-13e">
          <name>.debug_aranges</name>
          <load_address>0x218</load_address>
          <run_address>0x218</run_address>
          <size>0x20</size>
          <input_file_ref idref="fl-b"/>
       </object_component>
-      <object_component id="oc-154">
+      <object_component id="oc-10c">
          <name>.debug_aranges</name>
          <load_address>0x238</load_address>
          <run_address>0x238</run_address>
          <size>0x20</size>
          <input_file_ref idref="fl-c"/>
       </object_component>
-      <object_component id="oc-10c">
+      <object_component id="oc-112">
          <name>.debug_aranges</name>
          <load_address>0x258</load_address>
          <run_address>0x258</run_address>
@@ -2114,7 +2929,11 @@
          <size>0x20</size>
          <input_file_ref idref="fl-c"/>
       </object_component>
+<<<<<<< HEAD
       <object_component id="oc-114">
+=======
+      <object_component id="oc-119">
+>>>>>>> parent of f670019... PWM prueba
          <name>.debug_aranges</name>
          <load_address>0x298</load_address>
          <run_address>0x298</run_address>
@@ -2156,14 +2975,14 @@
          <size>0x20</size>
          <input_file_ref idref="fl-d"/>
       </object_component>
-      <object_component id="oc-1c4">
+      <object_component id="oc-1c5">
          <name>.debug_aranges</name>
          <load_address>0x358</load_address>
          <run_address>0x358</run_address>
          <size>0x20</size>
          <input_file_ref idref="fl-e"/>
       </object_component>
-      <object_component id="oc-4a">
+      <object_component id="oc-49">
          <name>.debug_aranges</name>
          <load_address>0x378</load_address>
          <run_address>0x378</run_address>
@@ -2177,7 +2996,11 @@
          <size>0x20</size>
          <input_file_ref idref="fl-c7"/>
       </object_component>
+<<<<<<< HEAD
       <object_component id="oc-16d">
+=======
+      <object_component id="oc-16f">
+>>>>>>> parent of f670019... PWM prueba
          <name>.debug_aranges</name>
          <load_address>0x3b8</load_address>
          <run_address>0x3b8</run_address>
@@ -2191,7 +3014,11 @@
          <size>0x20</size>
          <input_file_ref idref="fl-cb"/>
       </object_component>
+<<<<<<< HEAD
       <object_component id="oc-162">
+=======
+      <object_component id="oc-164">
+>>>>>>> parent of f670019... PWM prueba
          <name>.debug_aranges</name>
          <load_address>0x3f8</load_address>
          <run_address>0x3f8</run_address>
@@ -2219,63 +3046,79 @@
          <size>0x23</size>
          <input_file_ref idref="fl-3"/>
       </object_component>
+<<<<<<< HEAD
       <object_component id="oc-2a">
+=======
+      <object_component id="oc-2c">
+>>>>>>> parent of f670019... PWM prueba
          <name>.debug_pubnames</name>
          <load_address>0x83</load_address>
          <run_address>0x83</run_address>
          <size>0x4c</size>
          <input_file_ref idref="fl-3"/>
       </object_component>
-      <object_component id="oc-1bf">
+      <object_component id="oc-1c0">
          <name>.debug_pubnames</name>
          <load_address>0xcf</load_address>
          <run_address>0xcf</run_address>
          <size>0x2d</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-12c">
+      <object_component id="oc-132">
          <name>.debug_pubnames</name>
          <load_address>0xfc</load_address>
          <run_address>0xfc</run_address>
          <size>0x2f</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-132">
+      <object_component id="oc-138">
          <name>.debug_pubnames</name>
          <load_address>0x12b</load_address>
          <run_address>0x12b</run_address>
          <size>0x28</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-150">
+      <object_component id="oc-156">
          <name>.debug_pubnames</name>
          <load_address>0x153</load_address>
          <run_address>0x153</run_address>
          <size>0x29</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
+<<<<<<< HEAD
       <object_component id="oc-127">
+=======
+      <object_component id="oc-12d">
+>>>>>>> parent of f670019... PWM prueba
          <name>.debug_pubnames</name>
          <load_address>0x17c</load_address>
          <run_address>0x17c</run_address>
          <size>0x2b</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
+<<<<<<< HEAD
       <object_component id="oc-144">
+=======
+      <object_component id="oc-14b">
+>>>>>>> parent of f670019... PWM prueba
          <name>.debug_pubnames</name>
          <load_address>0x1a7</load_address>
          <run_address>0x1a7</run_address>
          <size>0x2a</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
-      <object_component id="oc-14a">
+      <object_component id="oc-151">
          <name>.debug_pubnames</name>
          <load_address>0x1d1</load_address>
          <run_address>0x1d1</run_address>
          <size>0x23</size>
          <input_file_ref idref="fl-9"/>
       </object_component>
+<<<<<<< HEAD
       <object_component id="oc-13d">
+=======
+      <object_component id="oc-144">
+>>>>>>> parent of f670019... PWM prueba
          <name>.debug_pubnames</name>
          <load_address>0x1f4</load_address>
          <run_address>0x1f4</run_address>
@@ -2289,42 +3132,66 @@
          <size>0x2b</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
+<<<<<<< HEAD
       <object_component id="oc-121">
+=======
+      <object_component id="oc-126">
+>>>>>>> parent of f670019... PWM prueba
          <name>.debug_pubnames</name>
          <load_address>0x241</load_address>
          <run_address>0x241</run_address>
          <size>0x23</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
+<<<<<<< HEAD
       <object_component id="oc-df">
+=======
+      <object_component id="oc-de">
+>>>>>>> parent of f670019... PWM prueba
          <name>.debug_pubnames</name>
          <load_address>0x264</load_address>
          <run_address>0x264</run_address>
          <size>0x25</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
+<<<<<<< HEAD
       <object_component id="oc-e5">
+=======
+      <object_component id="oc-e4">
+>>>>>>> parent of f670019... PWM prueba
          <name>.debug_pubnames</name>
          <load_address>0x289</load_address>
          <run_address>0x289</run_address>
          <size>0x27</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
+<<<<<<< HEAD
       <object_component id="oc-f1">
+=======
+      <object_component id="oc-f0">
+>>>>>>> parent of f670019... PWM prueba
          <name>.debug_pubnames</name>
          <load_address>0x2b0</load_address>
          <run_address>0x2b0</run_address>
          <size>0x25</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
+<<<<<<< HEAD
       <object_component id="oc-d9">
+=======
+      <object_component id="oc-d8">
+>>>>>>> parent of f670019... PWM prueba
          <name>.debug_pubnames</name>
          <load_address>0x2d5</load_address>
          <run_address>0x2d5</run_address>
          <size>0x2c</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
+<<<<<<< HEAD
       <object_component id="oc-11a">
+=======
+      <object_component id="oc-120">
+>>>>>>> parent of f670019... PWM prueba
          <name>.debug_pubnames</name>
          <load_address>0x301</load_address>
          <run_address>0x301</run_address>
@@ -2338,42 +3205,46 @@
          <size>0x27</size>
          <input_file_ref idref="fl-a"/>
       </object_component>
-      <object_component id="oc-139">
+      <object_component id="oc-13f">
          <name>.debug_pubnames</name>
          <load_address>0x34d</load_address>
          <run_address>0x34d</run_address>
          <size>0x26</size>
          <input_file_ref idref="fl-b"/>
       </object_component>
-      <object_component id="oc-156">
+      <object_component id="oc-10e">
          <name>.debug_pubnames</name>
          <load_address>0x373</load_address>
          <run_address>0x373</run_address>
          <size>0x27</size>
          <input_file_ref idref="fl-c"/>
       </object_component>
-      <object_component id="oc-10e">
+      <object_component id="oc-114">
          <name>.debug_pubnames</name>
          <load_address>0x39a</load_address>
          <run_address>0x39a</run_address>
          <size>0x25</size>
          <input_file_ref idref="fl-c"/>
       </object_component>
-      <object_component id="oc-109">
+      <object_component id="oc-108">
          <name>.debug_pubnames</name>
          <load_address>0x3bf</load_address>
          <run_address>0x3bf</run_address>
          <size>0x26</size>
          <input_file_ref idref="fl-c"/>
       </object_component>
+<<<<<<< HEAD
       <object_component id="oc-115">
+=======
+      <object_component id="oc-11a">
+>>>>>>> parent of f670019... PWM prueba
          <name>.debug_pubnames</name>
          <load_address>0x3e5</load_address>
          <run_address>0x3e5</run_address>
          <size>0x23</size>
          <input_file_ref idref="fl-c"/>
       </object_component>
-      <object_component id="oc-103">
+      <object_component id="oc-101">
          <name>.debug_pubnames</name>
          <load_address>0x408</load_address>
          <run_address>0x408</run_address>
@@ -2415,14 +3286,14 @@
          <size>0x25</size>
          <input_file_ref idref="fl-d"/>
       </object_component>
-      <object_component id="oc-1c5">
+      <object_component id="oc-1c6">
          <name>.debug_pubnames</name>
          <load_address>0x4f0</load_address>
          <run_address>0x4f0</run_address>
          <size>0x1f</size>
          <input_file_ref idref="fl-e"/>
       </object_component>
-      <object_component id="oc-49">
+      <object_component id="oc-4a">
          <name>.debug_pubnames</name>
          <load_address>0x50f</load_address>
          <run_address>0x50f</run_address>
@@ -2457,7 +3328,11 @@
          <size>0x27</size>
          <input_file_ref idref="fl-cb"/>
       </object_component>
+<<<<<<< HEAD
       <object_component id="oc-161">
+=======
+      <object_component id="oc-163">
+>>>>>>> parent of f670019... PWM prueba
          <name>.debug_pubnames</name>
          <load_address>0x5dd</load_address>
          <run_address>0x5dd</run_address>
@@ -2570,38 +3445,42 @@
          <name>.text</name>
          <load_address>0x26c</load_address>
          <run_address>0x26c</run_address>
+<<<<<<< HEAD
          <size>0x8d6</size>
+=======
+         <size>0x8de</size>
+>>>>>>> parent of f670019... PWM prueba
          <contents>
             <object_component_ref idref="oc-9b"/>
             <object_component_ref idref="oc-e1"/>
             <object_component_ref idref="oc-f9"/>
             <object_component_ref idref="oc-c9"/>
+            <object_component_ref idref="oc-12f"/>
             <object_component_ref idref="oc-129"/>
-            <object_component_ref idref="oc-123"/>
             <object_component_ref idref="oc-f3"/>
             <object_component_ref idref="oc-16b"/>
             <object_component_ref idref="oc-cf"/>
             <object_component_ref idref="oc-59"/>
-            <object_component_ref idref="oc-147"/>
+            <object_component_ref idref="oc-14d"/>
             <object_component_ref idref="oc-db"/>
             <object_component_ref idref="oc-ff"/>
-            <object_component_ref idref="oc-14d"/>
             <object_component_ref idref="oc-153"/>
+            <object_component_ref idref="oc-10b"/>
             <object_component_ref idref="oc-47"/>
-            <object_component_ref idref="oc-141"/>
+            <object_component_ref idref="oc-147"/>
             <object_component_ref idref="oc-d5"/>
             <object_component_ref idref="oc-e7"/>
-            <object_component_ref idref="oc-117"/>
-            <object_component_ref idref="oc-ed"/>
-            <object_component_ref idref="oc-10b"/>
-            <object_component_ref idref="oc-135"/>
-            <object_component_ref idref="oc-105"/>
-            <object_component_ref idref="oc-12f"/>
-            <object_component_ref idref="oc-1c2"/>
-            <object_component_ref idref="oc-111"/>
-            <object_component_ref idref="oc-27"/>
-            <object_component_ref idref="oc-13b"/>
             <object_component_ref idref="oc-11d"/>
+            <object_component_ref idref="oc-ed"/>
+            <object_component_ref idref="oc-111"/>
+            <object_component_ref idref="oc-13b"/>
+            <object_component_ref idref="oc-105"/>
+            <object_component_ref idref="oc-135"/>
+            <object_component_ref idref="oc-1c3"/>
+            <object_component_ref idref="oc-117"/>
+            <object_component_ref idref="oc-27"/>
+            <object_component_ref idref="oc-141"/>
+            <object_component_ref idref="oc-123"/>
             <object_component_ref idref="oc-19f"/>
             <object_component_ref idref="oc-95"/>
             <object_component_ref idref="oc-15f"/>
@@ -2609,8 +3488,13 @@
       </logical_group>
       <logical_group id="lg-5" display="no" color="cyan">
          <name>.const</name>
+<<<<<<< HEAD
          <load_address>0xb44</load_address>
          <run_address>0xb44</run_address>
+=======
+         <load_address>0xb4c</load_address>
+         <run_address>0xb4c</run_address>
+>>>>>>> parent of f670019... PWM prueba
          <size>0xfc</size>
          <contents>
             <object_component_ref idref="oc-1ae"/>
@@ -2619,8 +3503,8 @@
       </logical_group>
       <logical_group id="lg-6" display="no" color="cyan">
          <name>.cinit</name>
-         <load_address>0xc40</load_address>
-         <run_address>0xc40</run_address>
+         <load_address>0xc48</load_address>
+         <run_address>0xc48</run_address>
          <size>0x14</size>
          <contents>
             <object_component_ref idref="oc-25b"/>
@@ -2709,7 +3593,11 @@
          <name>.debug_info</name>
          <load_address>0x0</load_address>
          <run_address>0x0</run_address>
+<<<<<<< HEAD
          <size>0x7d77</size>
+=======
+         <size>0x7db1</size>
+>>>>>>> parent of f670019... PWM prueba
          <contents>
             <object_component_ref idref="oc-b7"/>
             <object_component_ref idref="oc-9f"/>
@@ -2719,11 +3607,15 @@
             <object_component_ref idref="oc-75"/>
             <object_component_ref idref="oc-2f"/>
             <object_component_ref idref="oc-13"/>
+<<<<<<< HEAD
             <object_component_ref idref="oc-28"/>
+=======
+            <object_component_ref idref="oc-2b"/>
+>>>>>>> parent of f670019... PWM prueba
             <object_component_ref idref="oc-36"/>
-            <object_component_ref idref="oc-1be"/>
-            <object_component_ref idref="oc-12a"/>
+            <object_component_ref idref="oc-1bf"/>
             <object_component_ref idref="oc-130"/>
+<<<<<<< HEAD
             <object_component_ref idref="oc-14e"/>
             <object_component_ref idref="oc-125"/>
             <object_component_ref idref="oc-142"/>
@@ -2738,14 +3630,31 @@
             <object_component_ref idref="oc-ef"/>
             <object_component_ref idref="oc-d7"/>
             <object_component_ref idref="oc-118"/>
+=======
+            <object_component_ref idref="oc-136"/>
+            <object_component_ref idref="oc-154"/>
+            <object_component_ref idref="oc-12b"/>
+            <object_component_ref idref="oc-149"/>
+            <object_component_ref idref="oc-14f"/>
+            <object_component_ref idref="oc-142"/>
+            <object_component_ref idref="oc-1a1"/>
+            <object_component_ref idref="oc-1a9"/>
+            <object_component_ref idref="oc-1af"/>
+            <object_component_ref idref="oc-124"/>
+            <object_component_ref idref="oc-dc"/>
+            <object_component_ref idref="oc-e2"/>
+            <object_component_ref idref="oc-ee"/>
+            <object_component_ref idref="oc-d6"/>
+            <object_component_ref idref="oc-11e"/>
+>>>>>>> parent of f670019... PWM prueba
             <object_component_ref idref="oc-f4"/>
-            <object_component_ref idref="oc-137"/>
+            <object_component_ref idref="oc-13d"/>
             <object_component_ref idref="oc-1b7"/>
-            <object_component_ref idref="oc-155"/>
             <object_component_ref idref="oc-10d"/>
-            <object_component_ref idref="oc-108"/>
             <object_component_ref idref="oc-113"/>
-            <object_component_ref idref="oc-101"/>
+            <object_component_ref idref="oc-107"/>
+            <object_component_ref idref="oc-118"/>
+            <object_component_ref idref="oc-100"/>
             <object_component_ref idref="oc-1a6"/>
             <object_component_ref idref="oc-1b3"/>
             <object_component_ref idref="oc-d0"/>
@@ -2753,7 +3662,7 @@
             <object_component_ref idref="oc-ca"/>
             <object_component_ref idref="oc-fa"/>
             <object_component_ref idref="oc-1f0"/>
-            <object_component_ref idref="oc-1c3"/>
+            <object_component_ref idref="oc-1c4"/>
             <object_component_ref idref="oc-8e"/>
             <object_component_ref idref="oc-48"/>
             <object_component_ref idref="oc-89"/>
@@ -2766,8 +3675,13 @@
             <object_component_ref idref="oc-224"/>
             <object_component_ref idref="oc-215"/>
             <object_component_ref idref="oc-21a"/>
+<<<<<<< HEAD
             <object_component_ref idref="oc-98"/>
             <object_component_ref idref="oc-160"/>
+=======
+            <object_component_ref idref="oc-97"/>
+            <object_component_ref idref="oc-162"/>
+>>>>>>> parent of f670019... PWM prueba
             <object_component_ref idref="oc-25e"/>
          </contents>
       </logical_group>
@@ -2775,7 +3689,11 @@
          <name>.debug_line</name>
          <load_address>0x0</load_address>
          <run_address>0x0</run_address>
+<<<<<<< HEAD
          <size>0x1f2c</size>
+=======
+         <size>0x1f28</size>
+>>>>>>> parent of f670019... PWM prueba
          <contents>
             <object_component_ref idref="oc-19e"/>
             <object_component_ref idref="oc-9c"/>
@@ -2785,11 +3703,15 @@
             <object_component_ref idref="oc-78"/>
             <object_component_ref idref="oc-6f"/>
             <object_component_ref idref="oc-2e"/>
+<<<<<<< HEAD
             <object_component_ref idref="oc-2b"/>
+=======
+            <object_component_ref idref="oc-2a"/>
+>>>>>>> parent of f670019... PWM prueba
             <object_component_ref idref="oc-39"/>
             <object_component_ref idref="oc-1fe"/>
-            <object_component_ref idref="oc-12d"/>
             <object_component_ref idref="oc-133"/>
+<<<<<<< HEAD
             <object_component_ref idref="oc-151"/>
             <object_component_ref idref="oc-124"/>
             <object_component_ref idref="oc-145"/>
@@ -2810,8 +3732,31 @@
             <object_component_ref idref="oc-157"/>
             <object_component_ref idref="oc-10f"/>
             <object_component_ref idref="oc-10a"/>
+=======
+            <object_component_ref idref="oc-139"/>
+            <object_component_ref idref="oc-157"/>
+            <object_component_ref idref="oc-12a"/>
+            <object_component_ref idref="oc-148"/>
+            <object_component_ref idref="oc-14e"/>
+            <object_component_ref idref="oc-145"/>
+            <object_component_ref idref="oc-1a4"/>
+            <object_component_ref idref="oc-1f6"/>
+            <object_component_ref idref="oc-1f8"/>
+            <object_component_ref idref="oc-127"/>
+            <object_component_ref idref="oc-df"/>
+            <object_component_ref idref="oc-e5"/>
+            <object_component_ref idref="oc-f1"/>
+            <object_component_ref idref="oc-d9"/>
+            <object_component_ref idref="oc-121"/>
+            <object_component_ref idref="oc-f7"/>
+            <object_component_ref idref="oc-13c"/>
+            <object_component_ref idref="oc-1fc"/>
+            <object_component_ref idref="oc-110"/>
+>>>>>>> parent of f670019... PWM prueba
             <object_component_ref idref="oc-116"/>
-            <object_component_ref idref="oc-104"/>
+            <object_component_ref idref="oc-109"/>
+            <object_component_ref idref="oc-11b"/>
+            <object_component_ref idref="oc-103"/>
             <object_component_ref idref="oc-1ef"/>
             <object_component_ref idref="oc-1fa"/>
             <object_component_ref idref="oc-d3"/>
@@ -2819,9 +3764,13 @@
             <object_component_ref idref="oc-cd"/>
             <object_component_ref idref="oc-fd"/>
             <object_component_ref idref="oc-1f3"/>
+<<<<<<< HEAD
             <object_component_ref idref="oc-1c7"/>
+=======
+            <object_component_ref idref="oc-1c8"/>
+>>>>>>> parent of f670019... PWM prueba
             <object_component_ref idref="oc-c6"/>
-            <object_component_ref idref="oc-4c"/>
+            <object_component_ref idref="oc-4b"/>
             <object_component_ref idref="oc-8c"/>
             <object_component_ref idref="oc-c3"/>
             <object_component_ref idref="oc-6c"/>
@@ -2832,8 +3781,13 @@
             <object_component_ref idref="oc-227"/>
             <object_component_ref idref="oc-218"/>
             <object_component_ref idref="oc-21d"/>
+<<<<<<< HEAD
             <object_component_ref idref="oc-96"/>
             <object_component_ref idref="oc-163"/>
+=======
+            <object_component_ref idref="oc-9a"/>
+            <object_component_ref idref="oc-161"/>
+>>>>>>> parent of f670019... PWM prueba
          </contents>
       </logical_group>
       <logical_group id="lg-245" display="never" color="cyan">
@@ -2842,20 +3796,27 @@
          <run_address>0x0</run_address>
          <size>0xf7a</size>
          <contents>
+<<<<<<< HEAD
             <object_component_ref idref="oc-9e"/>
             <object_component_ref idref="oc-2c"/>
             <object_component_ref idref="oc-12e"/>
+=======
+            <object_component_ref idref="oc-9d"/>
+            <object_component_ref idref="oc-28"/>
+>>>>>>> parent of f670019... PWM prueba
             <object_component_ref idref="oc-134"/>
-            <object_component_ref idref="oc-152"/>
-            <object_component_ref idref="oc-128"/>
-            <object_component_ref idref="oc-146"/>
+            <object_component_ref idref="oc-13a"/>
+            <object_component_ref idref="oc-158"/>
+            <object_component_ref idref="oc-12e"/>
             <object_component_ref idref="oc-14c"/>
-            <object_component_ref idref="oc-140"/>
-            <object_component_ref idref="oc-122"/>
+            <object_component_ref idref="oc-152"/>
+            <object_component_ref idref="oc-146"/>
+            <object_component_ref idref="oc-128"/>
             <object_component_ref idref="oc-e0"/>
             <object_component_ref idref="oc-e6"/>
             <object_component_ref idref="oc-f2"/>
             <object_component_ref idref="oc-da"/>
+<<<<<<< HEAD
             <object_component_ref idref="oc-11c"/>
             <object_component_ref idref="oc-f7"/>
             <object_component_ref idref="oc-13a"/>
@@ -2864,16 +3825,35 @@
             <object_component_ref idref="oc-107"/>
             <object_component_ref idref="oc-112"/>
             <object_component_ref idref="oc-100"/>
+=======
+            <object_component_ref idref="oc-122"/>
+            <object_component_ref idref="oc-f8"/>
+            <object_component_ref idref="oc-140"/>
+            <object_component_ref idref="oc-10f"/>
+            <object_component_ref idref="oc-115"/>
+            <object_component_ref idref="oc-10a"/>
+            <object_component_ref idref="oc-11c"/>
+            <object_component_ref idref="oc-104"/>
+>>>>>>> parent of f670019... PWM prueba
             <object_component_ref idref="oc-d4"/>
             <object_component_ref idref="oc-ec"/>
             <object_component_ref idref="oc-ce"/>
             <object_component_ref idref="oc-fe"/>
+<<<<<<< HEAD
             <object_component_ref idref="oc-1c6"/>
             <object_component_ref idref="oc-4b"/>
             <object_component_ref idref="oc-5b"/>
             <object_component_ref idref="oc-170"/>
             <object_component_ref idref="oc-97"/>
             <object_component_ref idref="oc-164"/>
+=======
+            <object_component_ref idref="oc-1c7"/>
+            <object_component_ref idref="oc-4c"/>
+            <object_component_ref idref="oc-5b"/>
+            <object_component_ref idref="oc-170"/>
+            <object_component_ref idref="oc-96"/>
+            <object_component_ref idref="oc-160"/>
+>>>>>>> parent of f670019... PWM prueba
          </contents>
       </logical_group>
       <logical_group id="lg-247" display="never" color="cyan">
@@ -2893,29 +3873,29 @@
             <object_component_ref idref="oc-6d"/>
             <object_component_ref idref="oc-38"/>
             <object_component_ref idref="oc-1fd"/>
-            <object_component_ref idref="oc-1c0"/>
             <object_component_ref idref="oc-1c1"/>
-            <object_component_ref idref="oc-1cc"/>
-            <object_component_ref idref="oc-1bd"/>
-            <object_component_ref idref="oc-1ca"/>
+            <object_component_ref idref="oc-1c2"/>
+            <object_component_ref idref="oc-1cd"/>
+            <object_component_ref idref="oc-1be"/>
             <object_component_ref idref="oc-1cb"/>
-            <object_component_ref idref="oc-1c9"/>
+            <object_component_ref idref="oc-1cc"/>
+            <object_component_ref idref="oc-1ca"/>
             <object_component_ref idref="oc-1a3"/>
             <object_component_ref idref="oc-1f5"/>
             <object_component_ref idref="oc-1f7"/>
-            <object_component_ref idref="oc-1bc"/>
+            <object_component_ref idref="oc-1bd"/>
             <object_component_ref idref="oc-1aa"/>
             <object_component_ref idref="oc-1ab"/>
             <object_component_ref idref="oc-1ad"/>
             <object_component_ref idref="oc-1a8"/>
-            <object_component_ref idref="oc-1bb"/>
+            <object_component_ref idref="oc-1bc"/>
             <object_component_ref idref="oc-1b1"/>
-            <object_component_ref idref="oc-1c8"/>
+            <object_component_ref idref="oc-1c9"/>
             <object_component_ref idref="oc-1fb"/>
-            <object_component_ref idref="oc-1cd"/>
             <object_component_ref idref="oc-1b9"/>
-            <object_component_ref idref="oc-1b8"/>
             <object_component_ref idref="oc-1ba"/>
+            <object_component_ref idref="oc-1b8"/>
+            <object_component_ref idref="oc-1bb"/>
             <object_component_ref idref="oc-1b6"/>
             <object_component_ref idref="oc-1ee"/>
             <object_component_ref idref="oc-1f9"/>
@@ -2971,8 +3951,8 @@
          <contents>
             <object_component_ref idref="oc-9d"/>
             <object_component_ref idref="oc-29"/>
-            <object_component_ref idref="oc-12b"/>
             <object_component_ref idref="oc-131"/>
+<<<<<<< HEAD
             <object_component_ref idref="oc-14f"/>
             <object_component_ref idref="oc-126"/>
             <object_component_ref idref="oc-143"/>
@@ -2987,20 +3967,50 @@
             <object_component_ref idref="oc-f5"/>
             <object_component_ref idref="oc-138"/>
             <object_component_ref idref="oc-154"/>
+=======
+            <object_component_ref idref="oc-137"/>
+            <object_component_ref idref="oc-155"/>
+            <object_component_ref idref="oc-12c"/>
+            <object_component_ref idref="oc-14a"/>
+            <object_component_ref idref="oc-150"/>
+            <object_component_ref idref="oc-143"/>
+            <object_component_ref idref="oc-125"/>
+            <object_component_ref idref="oc-dd"/>
+            <object_component_ref idref="oc-e3"/>
+            <object_component_ref idref="oc-ef"/>
+            <object_component_ref idref="oc-d7"/>
+            <object_component_ref idref="oc-11f"/>
+            <object_component_ref idref="oc-f5"/>
+            <object_component_ref idref="oc-13e"/>
+>>>>>>> parent of f670019... PWM prueba
             <object_component_ref idref="oc-10c"/>
+            <object_component_ref idref="oc-112"/>
             <object_component_ref idref="oc-106"/>
+<<<<<<< HEAD
             <object_component_ref idref="oc-114"/>
+=======
+            <object_component_ref idref="oc-119"/>
+>>>>>>> parent of f670019... PWM prueba
             <object_component_ref idref="oc-102"/>
             <object_component_ref idref="oc-d1"/>
             <object_component_ref idref="oc-e9"/>
             <object_component_ref idref="oc-cb"/>
             <object_component_ref idref="oc-fb"/>
+<<<<<<< HEAD
             <object_component_ref idref="oc-1c4"/>
             <object_component_ref idref="oc-4a"/>
             <object_component_ref idref="oc-5d"/>
             <object_component_ref idref="oc-16d"/>
             <object_component_ref idref="oc-9a"/>
             <object_component_ref idref="oc-162"/>
+=======
+            <object_component_ref idref="oc-1c5"/>
+            <object_component_ref idref="oc-49"/>
+            <object_component_ref idref="oc-5d"/>
+            <object_component_ref idref="oc-16f"/>
+            <object_component_ref idref="oc-98"/>
+            <object_component_ref idref="oc-164"/>
+>>>>>>> parent of f670019... PWM prueba
          </contents>
       </logical_group>
       <logical_group id="lg-24d" display="never" color="cyan">
@@ -3012,6 +4022,7 @@
             <object_component_ref idref="oc-b8"/>
             <object_component_ref idref="oc-a0"/>
             <object_component_ref idref="oc-14"/>
+<<<<<<< HEAD
             <object_component_ref idref="oc-2a"/>
             <object_component_ref idref="oc-1bf"/>
             <object_component_ref idref="oc-12c"/>
@@ -3030,23 +4041,58 @@
             <object_component_ref idref="oc-11a"/>
             <object_component_ref idref="oc-f6"/>
             <object_component_ref idref="oc-139"/>
+=======
+            <object_component_ref idref="oc-2c"/>
+            <object_component_ref idref="oc-1c0"/>
+            <object_component_ref idref="oc-132"/>
+            <object_component_ref idref="oc-138"/>
+>>>>>>> parent of f670019... PWM prueba
             <object_component_ref idref="oc-156"/>
+            <object_component_ref idref="oc-12d"/>
+            <object_component_ref idref="oc-14b"/>
+            <object_component_ref idref="oc-151"/>
+            <object_component_ref idref="oc-144"/>
+            <object_component_ref idref="oc-1b0"/>
+            <object_component_ref idref="oc-126"/>
+            <object_component_ref idref="oc-de"/>
+            <object_component_ref idref="oc-e4"/>
+            <object_component_ref idref="oc-f0"/>
+            <object_component_ref idref="oc-d8"/>
+            <object_component_ref idref="oc-120"/>
+            <object_component_ref idref="oc-f6"/>
+            <object_component_ref idref="oc-13f"/>
             <object_component_ref idref="oc-10e"/>
+<<<<<<< HEAD
             <object_component_ref idref="oc-109"/>
             <object_component_ref idref="oc-115"/>
             <object_component_ref idref="oc-103"/>
+=======
+            <object_component_ref idref="oc-114"/>
+            <object_component_ref idref="oc-108"/>
+            <object_component_ref idref="oc-11a"/>
+            <object_component_ref idref="oc-101"/>
+>>>>>>> parent of f670019... PWM prueba
             <object_component_ref idref="oc-1b4"/>
             <object_component_ref idref="oc-d2"/>
             <object_component_ref idref="oc-ea"/>
             <object_component_ref idref="oc-cc"/>
             <object_component_ref idref="oc-fc"/>
+<<<<<<< HEAD
             <object_component_ref idref="oc-1c5"/>
             <object_component_ref idref="oc-49"/>
+=======
+            <object_component_ref idref="oc-1c6"/>
+            <object_component_ref idref="oc-4a"/>
+>>>>>>> parent of f670019... PWM prueba
             <object_component_ref idref="oc-26"/>
             <object_component_ref idref="oc-5e"/>
             <object_component_ref idref="oc-16e"/>
             <object_component_ref idref="oc-99"/>
+<<<<<<< HEAD
             <object_component_ref idref="oc-161"/>
+=======
+            <object_component_ref idref="oc-163"/>
+>>>>>>> parent of f670019... PWM prueba
          </contents>
       </logical_group>
       <logical_group id="lg-24f" display="never" color="cyan">
@@ -3081,7 +4127,7 @@
          <name>SEGMENT_0</name>
          <load_address>0x0</load_address>
          <run_address>0x0</run_address>
-         <size>0xc54</size>
+         <size>0xc5c</size>
          <flags>0x5</flags>
          <contents>
             <logical_group_ref idref="lg-3"/>
@@ -3107,8 +4153,13 @@
          <page_id>0x0</page_id>
          <origin>0x0</origin>
          <length>0x40000</length>
+<<<<<<< HEAD
          <used_space>0xc52</used_space>
          <unused_space>0x3f3ae</unused_space>
+=======
+         <used_space>0xc5a</used_space>
+         <unused_space>0x3f3a6</unused_space>
+>>>>>>> parent of f670019... PWM prueba
          <attributes>RX</attributes>
          <usage_details>
             <allocated_space>
@@ -3118,6 +4169,7 @@
             </allocated_space>
             <allocated_space>
                <start_address>0x26c</start_address>
+<<<<<<< HEAD
                <size>0x8d6</size>
                <logical_group_ref idref="lg-4"/>
             </allocated_space>
@@ -3127,17 +4179,28 @@
             </available_space>
             <allocated_space>
                <start_address>0xb44</start_address>
+=======
+               <size>0x8de</size>
+               <logical_group_ref idref="lg-4"/>
+            </allocated_space>
+            <available_space>
+               <start_address>0xb4a</start_address>
+               <size>0x2</size>
+            </available_space>
+            <allocated_space>
+               <start_address>0xb4c</start_address>
+>>>>>>> parent of f670019... PWM prueba
                <size>0xfc</size>
                <logical_group_ref idref="lg-5"/>
             </allocated_space>
             <allocated_space>
-               <start_address>0xc40</start_address>
+               <start_address>0xc48</start_address>
                <size>0x14</size>
                <logical_group_ref idref="lg-6"/>
             </allocated_space>
             <available_space>
-               <start_address>0xc54</start_address>
-               <size>0x3f3ac</size>
+               <start_address>0xc5c</start_address>
+               <size>0x3f3a4</size>
             </available_space>
          </usage_details>
       </memory_area>
@@ -3177,7 +4240,7 @@
          <name>__TI_cinit_table</name>
          <cprec>
             <name>.bss</name>
-            <load_address>0xc40</load_address>
+            <load_address>0xc48</load_address>
             <load_size>0x8</load_size>
             <run_address>0x20000200</run_address>
             <run_size>0x14</run_size>
@@ -3207,19 +4270,19 @@
       </symbol>
       <symbol id="sm-4">
          <name>__TI_CINIT_Base</name>
-         <value>0xc4c</value>
+         <value>0xc54</value>
       </symbol>
       <symbol id="sm-5">
          <name>__TI_CINIT_Limit</name>
-         <value>0xc54</value>
+         <value>0xc5c</value>
       </symbol>
       <symbol id="sm-6">
          <name>__TI_Handler_Table_Base</name>
-         <value>0xc48</value>
+         <value>0xc50</value>
       </symbol>
       <symbol id="sm-7">
          <name>__TI_Handler_Table_Limit</name>
-         <value>0xc4c</value>
+         <value>0xc54</value>
       </symbol>
       <symbol id="sm-8">
          <name>binit</name>
@@ -3280,7 +4343,11 @@
       </symbol>
       <symbol id="sm-8d">
          <name>ResetISR</name>
+<<<<<<< HEAD
          <value>0xb19</value>
+=======
+         <value>0xb21</value>
+>>>>>>> parent of f670019... PWM prueba
          <object_component_ref idref="oc-27"/>
       </symbol>
       <symbol id="sm-8e">
@@ -3290,137 +4357,259 @@
       </symbol>
       <symbol id="sm-d9">
          <name>ADCProcessorTrigger</name>
+<<<<<<< HEAD
          <value>0xa57</value>
          <object_component_ref idref="oc-141"/>
+=======
+         <value>0xa5f</value>
+         <object_component_ref idref="oc-147"/>
+>>>>>>> parent of f670019... PWM prueba
       </symbol>
       <symbol id="sm-da">
          <name>ADCSequenceEnable</name>
+<<<<<<< HEAD
          <value>0xaf3</value>
          <object_component_ref idref="oc-12f"/>
+=======
+         <value>0xafb</value>
+         <object_component_ref idref="oc-135"/>
+>>>>>>> parent of f670019... PWM prueba
       </symbol>
       <symbol id="sm-db">
          <name>ADCSequenceConfigure</name>
+<<<<<<< HEAD
          <value>0x83f</value>
          <object_component_ref idref="oc-123"/>
+=======
+         <value>0x847</value>
+         <object_component_ref idref="oc-129"/>
+>>>>>>> parent of f670019... PWM prueba
       </symbol>
       <symbol id="sm-dc">
          <name>ADCSequenceStepConfigure</name>
+<<<<<<< HEAD
          <value>0x7c5</value>
          <object_component_ref idref="oc-129"/>
+=======
+         <value>0x7cd</value>
+         <object_component_ref idref="oc-12f"/>
+>>>>>>> parent of f670019... PWM prueba
       </symbol>
       <symbol id="sm-dd">
          <name>ADCIntClear</name>
+<<<<<<< HEAD
          <value>0xb25</value>
          <object_component_ref idref="oc-13b"/>
+=======
+         <value>0xb2d</value>
+         <object_component_ref idref="oc-141"/>
+>>>>>>> parent of f670019... PWM prueba
       </symbol>
       <symbol id="sm-de">
          <name>ADCIntStatus</name>
+<<<<<<< HEAD
          <value>0x985</value>
          <object_component_ref idref="oc-147"/>
+=======
+         <value>0x98d</value>
+         <object_component_ref idref="oc-14d"/>
+>>>>>>> parent of f670019... PWM prueba
       </symbol>
       <symbol id="sm-df">
          <name>ADCSequenceDataGet</name>
+<<<<<<< HEAD
          <value>0x9ff</value>
          <object_component_ref idref="oc-14d"/>
+=======
+         <value>0xa07</value>
+         <object_component_ref idref="oc-153"/>
+>>>>>>> parent of f670019... PWM prueba
       </symbol>
       <symbol id="sm-129">
          <name>GPIOPinTypePWM</name>
+<<<<<<< HEAD
          <value>0xaaf</value>
+=======
+         <value>0xab7</value>
+>>>>>>> parent of f670019... PWM prueba
          <object_component_ref idref="oc-ed"/>
       </symbol>
       <symbol id="sm-12a">
          <name>GPIOPinConfigure</name>
+<<<<<<< HEAD
          <value>0x891</value>
+=======
+         <value>0x899</value>
+>>>>>>> parent of f670019... PWM prueba
          <object_component_ref idref="oc-f3"/>
       </symbol>
       <symbol id="sm-12b">
          <name>GPIOPinTypeADC</name>
+<<<<<<< HEAD
          <value>0xa9d</value>
          <object_component_ref idref="oc-117"/>
+=======
+         <value>0xaa5</value>
+         <object_component_ref idref="oc-11d"/>
+>>>>>>> parent of f670019... PWM prueba
       </symbol>
       <symbol id="sm-12c">
          <name>GPIOPinTypeGPIOOutput</name>
+<<<<<<< HEAD
          <value>0xa6f</value>
+=======
+         <value>0xa77</value>
+>>>>>>> parent of f670019... PWM prueba
          <object_component_ref idref="oc-d5"/>
       </symbol>
       <symbol id="sm-12d">
          <name>GPIODirModeSet</name>
+<<<<<<< HEAD
          <value>0x9b3</value>
+=======
+         <value>0x9bb</value>
+>>>>>>> parent of f670019... PWM prueba
          <object_component_ref idref="oc-db"/>
       </symbol>
       <symbol id="sm-12e">
          <name>GPIOPinWrite</name>
+<<<<<<< HEAD
          <value>0xb2f</value>
          <object_component_ref idref="oc-11d"/>
+=======
+         <value>0xb37</value>
+         <object_component_ref idref="oc-123"/>
+>>>>>>> parent of f670019... PWM prueba
       </symbol>
       <symbol id="sm-12f">
          <name>GPIOPadConfigSet</name>
+<<<<<<< HEAD
          <value>0x48d</value>
+=======
+         <value>0x495</value>
+>>>>>>> parent of f670019... PWM prueba
          <object_component_ref idref="oc-e1"/>
       </symbol>
       <symbol id="sm-13a">
          <name>IntMasterEnable</name>
+<<<<<<< HEAD
          <value>0xad3</value>
          <object_component_ref idref="oc-135"/>
+=======
+         <value>0xadb</value>
+         <object_component_ref idref="oc-13b"/>
+>>>>>>> parent of f670019... PWM prueba
       </symbol>
       <symbol id="sm-167">
          <name>PWMGenPeriodSet</name>
+<<<<<<< HEAD
          <value>0xae3</value>
+=======
+         <value>0xaeb</value>
+>>>>>>> parent of f670019... PWM prueba
          <object_component_ref idref="oc-105"/>
       </symbol>
       <symbol id="sm-168">
          <name>PWMPulseWidthSet</name>
+<<<<<<< HEAD
          <value>0xa1d</value>
          <object_component_ref idref="oc-153"/>
+=======
+         <value>0xa25</value>
+         <object_component_ref idref="oc-10b"/>
+>>>>>>> parent of f670019... PWM prueba
       </symbol>
       <symbol id="sm-169">
          <name>PWMOutputState</name>
+<<<<<<< HEAD
          <value>0xac1</value>
          <object_component_ref idref="oc-10b"/>
+=======
+         <value>0xac9</value>
+         <object_component_ref idref="oc-111"/>
+>>>>>>> parent of f670019... PWM prueba
       </symbol>
       <symbol id="sm-16a">
          <name>PWMGenEnable</name>
+<<<<<<< HEAD
          <value>0xb0d</value>
          <object_component_ref idref="oc-111"/>
+=======
+         <value>0xb15</value>
+         <object_component_ref idref="oc-117"/>
+>>>>>>> parent of f670019... PWM prueba
       </symbol>
       <symbol id="sm-16b">
          <name>PWMGenConfigure</name>
+<<<<<<< HEAD
          <value>0x9dd</value>
+=======
+         <value>0x9e5</value>
+>>>>>>> parent of f670019... PWM prueba
          <object_component_ref idref="oc-ff"/>
       </symbol>
       <symbol id="sm-1c7">
          <name>SysCtlClockSet</name>
+<<<<<<< HEAD
          <value>0x6d1</value>
+=======
+         <value>0x6d9</value>
+>>>>>>> parent of f670019... PWM prueba
          <object_component_ref idref="oc-c9"/>
       </symbol>
       <symbol id="sm-1c8">
          <name>SysCtlDelay</name>
+<<<<<<< HEAD
          <value>0xb35</value>
+=======
+         <value>0xb3d</value>
+>>>>>>> parent of f670019... PWM prueba
          <object_component_ref idref="oc-19f"/>
       </symbol>
       <symbol id="sm-1c9">
          <name>SysCtlPeripheralEnable</name>
+<<<<<<< HEAD
          <value>0x91d</value>
+=======
+         <value>0x925</value>
+>>>>>>> parent of f670019... PWM prueba
          <object_component_ref idref="oc-cf"/>
       </symbol>
       <symbol id="sm-1ca">
          <name>SysCtlClockGet</name>
+<<<<<<< HEAD
          <value>0x5c1</value>
+=======
+         <value>0x5c9</value>
+>>>>>>> parent of f670019... PWM prueba
          <object_component_ref idref="oc-f9"/>
       </symbol>
       <symbol id="sm-1cb">
          <name>SysCtlPWMClockSet</name>
+<<<<<<< HEAD
          <value>0xa89</value>
+=======
+         <value>0xa91</value>
+>>>>>>> parent of f670019... PWM prueba
          <object_component_ref idref="oc-e7"/>
       </symbol>
       <symbol id="sm-1d5">
          <name>CPUcpsie</name>
+<<<<<<< HEAD
          <value>0xb01</value>
          <object_component_ref idref="oc-1c2"/>
+=======
+         <value>0xb09</value>
+         <object_component_ref idref="oc-1c3"/>
+>>>>>>> parent of f670019... PWM prueba
       </symbol>
       <symbol id="sm-1ee">
          <name>__TI_zero_init_nomemset</name>
+<<<<<<< HEAD
          <value>0xa3b</value>
+=======
+         <value>0xa43</value>
+>>>>>>> parent of f670019... PWM prueba
          <object_component_ref idref="oc-47"/>
       </symbol>
       <symbol id="sm-203">
@@ -3430,27 +4619,47 @@
       </symbol>
       <symbol id="sm-204">
          <name>_c_int00_noargs</name>
+<<<<<<< HEAD
          <value>0x951</value>
+=======
+         <value>0x959</value>
+>>>>>>> parent of f670019... PWM prueba
          <object_component_ref idref="oc-59"/>
       </symbol>
       <symbol id="sm-22e">
          <name>__TI_auto_init_nobinit_nopinit</name>
+<<<<<<< HEAD
          <value>0x8d9</value>
+=======
+         <value>0x8e1</value>
+>>>>>>> parent of f670019... PWM prueba
          <object_component_ref idref="oc-16b"/>
       </symbol>
       <symbol id="sm-238">
          <name>_system_pre_init</name>
+<<<<<<< HEAD
          <value>0xb3b</value>
+=======
+         <value>0xb43</value>
+>>>>>>> parent of f670019... PWM prueba
          <object_component_ref idref="oc-95"/>
       </symbol>
       <symbol id="sm-244">
          <name>C$$EXIT</name>
+<<<<<<< HEAD
          <value>0xb3f</value>
+=======
+         <value>0xb47</value>
+>>>>>>> parent of f670019... PWM prueba
          <object_component_ref idref="oc-15f"/>
       </symbol>
       <symbol id="sm-245">
          <name>abort</name>
+<<<<<<< HEAD
          <value>0xb3f</value>
+=======
+         <value>0xb47</value>
+>>>>>>> parent of f670019... PWM prueba
          <object_component_ref idref="oc-15f"/>
       </symbol>
       <symbol id="sm-248">
