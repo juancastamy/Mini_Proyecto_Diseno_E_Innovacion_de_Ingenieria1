@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.egit.ui.internal.staging.StagingView">
+		<item key="HORIZONTAL_SASH_FORM_WEIGHT" value="200,200"/>
+		<item key="STAGING_SASH_FORM_WEIGHT" value="200,200"/>
+		<item key="sortItemState" value="false"/>
+	</section>
+	<section name="GitCommitMessageComponent">
+		<list key="C:\Users\juan\Documents\GitHub\Mini_Proyecto_Diseno_E_Innovacion_de_Ingenieria1\.git">
+			<item value="false"/>
+			<item value="juancastamy &lt;45299603+juancastamy@users.noreply.github.com&gt;"/>
+			<item value="inicio de proyecto"/>
+			<item value="juancastamy &lt;45299603+juancastamy@users.noreply.github.com&gt;"/>
+			<item value="fc4a030b9362eb1e7da5ca19522fa9cdcae207a3"/>
+			<item value="0"/>
+			<item value="false"/>
+		</list>
+	</section>
+</section>
