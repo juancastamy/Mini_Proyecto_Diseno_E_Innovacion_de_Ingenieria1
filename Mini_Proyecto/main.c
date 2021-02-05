@@ -25,14 +25,274 @@
 #include "sensorlib/i2cm_drv.h"
 #include "sensorlib/hw_mpu6050.h"
 #include "sensorlib/mpu6050.h"
+#include "utils/uartstdio.h"
 #include <math.h>
 
+// definimos registors de MPU6050
+#define SELF_TEST_X         0x0D
+#define SELF_TEST_Y         0x0E
+#define SELF_TEST_Z         0x0F
+#define SELF_TEST_A         0x10
+#define SMPLRT_DIV          0x19
+#define CONFIG              0x1A
+#define GYRO_CONFIG         0x1B
+#define ACCEL_CONFIG        0x1C
+#define FIFO_EN             0x23
+#define I2C_MST_CTRL        0x24
+#define I2C_SLV0_ADDR       0x25
+#define I2C_SLV0_REG        0x26
+#define I2C_SLV0_CTRL       0x27
+
+#define I2C_SLV1_ADDR       0x28
+#define I2C_SLV1_REG        0x29
+#define I2C_SLV1_CTRL       0x2A
+
+#define I2C_SLV2_ADDR       0x2B
+#define I2C_SLV2_REG        0x2C
+#define I2C_SLV2_CTRL       0x2D
+
+#define I2C_SLV3_ADDR       0x2E
+#define I2C_SLV3_REG        0x2F
+#define I2C_SLV3_CTRL       0x30
+
+#define I2C_SLV4_ADDR       0x31
+#define I2C_SLV4_REG        0x32
+#define I2C_SLV4_DO         0x33
+#define I2C_SLV4_CTRL       0x34
+#define I2C_SLV4_DI         0X35
+
+#define I2C_MST_STATUS      0x36
+
+#define INT_PIN_CFG         0x37
+#define INT_ENABLE          0x38
+#define INT_STATUS          0x3A
+
+#define ACCEL_XOUT_H        0x3B
+#define ACCEL_XOUT_L        0x3C
+#define ACCEL_YOUT_H        0x3D
+#define ACCEL_YOUT_L        0x3E
+#define ACCEL_ZOUT_H        0x3F
+#define ACCEL_ZOUT_L        0x40
+
+#define TEMP_OUT_H          0x41
+#define TEMP_OUT_L          0x42
+
+#define GYRO_XOUT_H         0x43
+#define GYRO_XOUT_L         0x44
+#define GYRO_YOUT_H         0x45
+#define GYRO_YOUT_L         0x46
+#define GYRO_ZOUT_H         0x47
+#define GYRO_ZOUT_L         0x48
+
+#define EXT_SEND_DATA_00    0x49
+#define EXT_SEND_DATA_01    0x4A
+#define EXT_SEND_DATA_02    0x4B
+#define EXT_SEND_DATA_03    0x4C
+#define EXT_SEND_DATA_04    0x4D
+#define EXT_SEND_DATA_05    0x4E
+#define EXT_SEND_DATA_06    0x4F
+#define EXT_SEND_DATA_07    0x50
+#define EXT_SEND_DATA_08    0x51
+#define EXT_SEND_DATA_09    0x52
+#define EXT_SEND_DATA_10    0x53
+#define EXT_SEND_DATA_11    0x54
+#define EXT_SEND_DATA_12    0x55
+#define EXT_SEND_DATA_13    0x56
+#define EXT_SEND_DATA_14    0x57
+#define EXT_SEND_DATA_15    0x58
+#define EXT_SEND_DATA_16    0x59
+#define EXT_SEND_DATA_17    0x5A
+#define EXT_SEND_DATA_18    0x5B
+#define EXT_SEND_DATA_19    0x5C
+#define EXT_SEND_DATA_20    0x5D
+#define EXT_SEND_DATA_21    0x5E
+#define EXT_SEND_DATA_22    0x5F
+#define EXT_SEND_DATA_23    0x60
+
+#define I2C_SLV0_DO         0x63
+#define I2C_SLV1_DO         0x64
+#define I2C_SLV2_DO         0x65
+#define I2C_SLV3_DO         0x66
+
+#define I2C_MST_DELAY_CTRL  0x67
+#define SIGNAL_PATH_RESET   0x68
+#define USER_CTRL           0x6A
+#define PWR_MGMT_1          0x6B
+#define PWR_MGMT_2          0x6C
+
+#define FIFO_COUNTH         0x72
+#define FIFO_COUNTL         0x73
+#define FIFO_R_W            0X74
+#define WHO_AM_I            0x75
+
+uint8_t gyrox_h;
+uint8_t gyrox_l;
+uint16_t gyro_x;
+
+uint8_t gyroy_h;
+uint8_t gyroy_l;
+uint16_t gyro_y;
+
+uint8_t gyroz_h;
+uint8_t gyroz_l;
+uint16_t gyro_z;
+
+float Gx;
+float Gy;
+float Gz;
+
+//INICIALIZACION Y FUNCIONAMIENTO DE I2C OBTENIDA DE:
+//https://www.digikey.com/eewiki/display/microcontroller/I2C+Communication+with+the+TI+Tiva+TM4C123GXL
+//---------------------------------FUNCION INICIALIZACION I2C-----------------------------------
+void I2CInit(void)
+{
+    //Se activa el periferico de I2C0
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_I2C3);
+    while(!SysCtlPeripheralReady(SYSCTL_PERIPH_I2C3));
+
+    //Se resetea el periferico de I2C0
+    SysCtlPeripheralReset(SYSCTL_PERIPH_I2C3);
+
+    //se activa el puerto B para activar los pines del I2C0
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);
+
+    // Se configuran los pines como SCL y SDA del pueto B (I2C0)
+    GPIOPinConfigure(GPIO_PD0_I2C3SCL);
+    GPIOPinConfigure(GPIO_PD1_I2C3SDA);
+
+    // Se activa la funcion de los pines
+    GPIOPinTypeI2CSCL(GPIO_PORTD_BASE, GPIO_PIN_0);
+    GPIOPinTypeI2C(GPIO_PORTD_BASE, GPIO_PIN_1);
+    I2CMasterEnable(I2C3_BASE);
+    //se activa el I2C a una velocidad de 100kbps
+    I2CMasterInitExpClk(I2C3_BASE, SysCtlClockGet(), false);
+
+    //se limpean los puertos FIFO
+    HWREG(I2C3_BASE + I2C_O_FIFOCTL) = 80008000;
+
+}
+
+
+//-----------------------------------------fUNCION DE ENVIO-------------------------------------------------
+void I2CSend(uint32_t slave_addr, uint32_t reg,uint32_t intruction)
+{
+    // Tell the master module what address it will place on the bus when
+    // communicating with the slave.
+    I2CMasterSlaveAddrSet(I2C3_BASE, slave_addr, false);
+
+
+    //put data to be sent into FIFO
+    I2CMasterDataPut(I2C3_BASE, reg);
+
+    //Initiate send of data from the MCU
+    I2CMasterControl(I2C3_BASE, I2C_MASTER_CMD_SINGLE_SEND);
+
+    //put data to be sent into FIFO
+    I2CMasterDataPut(I2C3_BASE, intruction);
+
+    //Initiate send of data from the MCU
+    I2CMasterControl(I2C3_BASE, I2C_MASTER_CMD_SINGLE_SEND);
+    // Wait until MCU is done transferring.
+    while(I2CMasterBusy(I2C3_BASE));
+
+    }
+
+
+//-----------------------------------------FUNCION DE RECIBIR MENSAJE--------------------------------------------
+uint32_t I2CReceive(uint32_t slave_addr, uint8_t reg)
+{
+    //specify that we are writing (a register address) to the
+    //slave device
+    I2CMasterSlaveAddrSet(I2C3_BASE, slave_addr, false);
+
+    //specify register to be read
+    I2CMasterDataPut(I2C3_BASE, reg);
+
+    //send control byte and register address byte to slave device
+    I2CMasterControl(I2C3_BASE, I2C_MASTER_CMD_BURST_SEND_START);
+
+    //wait for MCU to finish transaction
+    while(I2CMasterBusy(I2C3_BASE));
+
+    //specify that we are going to read from slave device
+    I2CMasterSlaveAddrSet(I2C3_BASE, slave_addr, true);
+
+    //send control byte and read from the register we
+    //specified
+    I2CMasterControl(I2C3_BASE, I2C_MASTER_CMD_SINGLE_RECEIVE);
+
+    //wait for MCU to finish transaction
+    while(I2CMasterBusy(I2C3_BASE));
+
+    //return data pulled from the specified register
+    return I2CMasterDataGet(I2C3_BASE);
+}
+void UARTINIT(void)
+{
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
+    //---------------------------------------SETEAMOS LOS PINES DEL PUERTO A PARA COMUNICACION SERIAL--------------------
+    GPIOPinTypeUART(GPIO_PORTA_BASE,GPIO_PIN_0|GPIO_PIN_1);
+    //----------------------------------------CONFIGURACION DE RELOJ UART---------------------------------
+    UARTConfigSetExpClk(UART0_BASE,SysCtlClockGet(),115200, (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE | UART_CONFIG_PAR_NONE));
+    UARTEnable(UART0_BASE);
+}
+/**
+ * main.c
+ */
+volatile uint32_t mensaje;
+volatile uint32_t roll;
+volatile uint32_t pitch;
+int main(void)
+{
+    SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_PLL | SYSCTL_OSC_INT | SYSCTL_XTAL_16MHZ);
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
+    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
+    I2CInit();
+    //------------------------MPU6050 INITIALITETION---------------------------------
+    I2CSend(0x68,PWR_MGMT_1,0x00);
+    I2CSend(0x68,SMPLRT_DIV,0x07);
+    I2CSend(0x68,CONFIG,0x00);
+    I2CSend(0x68,GYRO_CONFIG,0x00);
+    I2CSend(0x68,ACCEL_CONFIG,0x00);
+    while(1)
+    {
+        gyrox_h=I2CReceive(0x68,GYRO_XOUT_H);
+        gyrox_l=I2CReceive(0x68,GYRO_XOUT_L);
+        gyro_x=(gyrox_h<<8|gyrox_h);
+
+        gyroy_h=I2CReceive(0x68,GYRO_YOUT_H);
+        gyroy_l=I2CReceive(0x68,GYRO_YOUT_L);
+        gyro_y=(gyroy_h<<8|gyroy_h);
+
+        gyroz_h=I2CReceive(0x68,GYRO_ZOUT_H);
+        gyroz_l=I2CReceive(0x68,GYRO_ZOUT_L);
+        gyro_z=(gyroz_h<<8|gyroz_h);
+
+        Gx = gyro_x/131.0;
+        Gy = gyro_y/131.0;
+        Gz = gyro_z/131.0;
+        roll = atan(-Gx/Gz)*180/3.1416;
+        pitch = atan(Gy/sqrt(Gx*Gx+Gz*Gz))*180/3.1416;
+        if (pitch>5)
+        {
+            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3);
+        }
+        else
+        {
+            GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, 0x00);
+        }
+    }
+
+}
+
+
+/*
 //#include "uart.h"
 #include "utils/uartstdio.h"
 #include "driverlib/uart.h"
 /**
  * main.c
- */
+
 volatile bool g_bMPU6050Done;
 tI2CMInstance g_sI2CMSimpleInst;
 ///---------------Se tomo la inicializacion del MPU6050 del manual de TIVAWARE-----------------------------
@@ -175,4 +435,4 @@ int main()
     I2CInit();
     MPU6050Example();
     return(0);
-}
+}*/
