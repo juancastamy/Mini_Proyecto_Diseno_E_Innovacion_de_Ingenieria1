@@ -33,6 +33,7 @@ void ResetISR(void);
 static void NmiSR(void);
 static void FaultISR(void);
 static void IntDefaultHandler(void);
+
 //void I2CMSimpleIntHandler(void);
 //*****************************************************************************
 //
@@ -41,7 +42,8 @@ static void IntDefaultHandler(void);
 //
 //*****************************************************************************
 extern void _c_int00(void);
-
+void UARTIntHandler(void);
+void Timer0IntHandler(void);
 //*****************************************************************************
 //
 // Linker variable that marks the top of the stack.
@@ -88,7 +90,7 @@ void (* const g_pfnVectors[])(void) =
     IntDefaultHandler,                      // GPIO Port C
     IntDefaultHandler,                      // GPIO Port D
     IntDefaultHandler,                      // GPIO Port E
-    IntDefaultHandler,                      // UART0 Rx and Tx
+    UARTIntHandler,                      // UART0 Rx and Tx
     IntDefaultHandler,                      // UART1 Rx and Tx
     IntDefaultHandler,                      // SSI0 Rx and Tx
     IntDefaultHandler,                      // I2C0 Master and Slave
@@ -102,7 +104,7 @@ void (* const g_pfnVectors[])(void) =
     IntDefaultHandler,                      // ADC Sequence 2
     IntDefaultHandler,                      // ADC Sequence 3
     IntDefaultHandler,                      // Watchdog timer
-    IntDefaultHandler,                      // Timer 0 subtimer A
+    Timer0IntHandler,                      // Timer 0 subtimer A
     IntDefaultHandler,                      // Timer 0 subtimer B
     IntDefaultHandler,                      // Timer 1 subtimer A
     IntDefaultHandler,                      // Timer 1 subtimer B
@@ -221,7 +223,7 @@ void (* const g_pfnVectors[])(void) =
     IntDefaultHandler,                      // PWM 1 Generator 1
     IntDefaultHandler,                      // PWM 1 Generator 2
     IntDefaultHandler,                      // PWM 1 Generator 3
-    IntDefaultHandler                       // PWM 1 Fault
+    IntDefaultHandler,                       // PWM 1 Fault
 };
 
 //*****************************************************************************
@@ -234,8 +236,7 @@ void (* const g_pfnVectors[])(void) =
 // application.
 //
 //*****************************************************************************
-void
-ResetISR(void)
+void ResetISR(void)
 {
     //
     // Jump to the CCS C initialization routine.  This will enable the

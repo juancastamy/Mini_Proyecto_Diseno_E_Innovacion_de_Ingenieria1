@@ -125,6 +125,8 @@
 #define FIFO_R_W            0X74
 #define WHO_AM_I            0x75
 
+uint32_t ui32Period;
+
 uint8_t gyrox_h;
 uint8_t gyrox_l;
 uint16_t gyro_x;
@@ -137,12 +139,55 @@ uint8_t gyroz_h;
 uint8_t gyroz_l;
 uint16_t gyro_z;
 
+uint8_t accelx_h;
+uint8_t accelx_l;
+uint16_t accel_x;
+
+uint8_t accely_h;
+uint8_t accely_l;
+uint16_t accel_y;
+
+uint8_t accelz_h;
+uint8_t accelz_l;
+uint16_t accel_z;
+
 float Gx;
 float Gy;
 float Gz;
+float Ax;
+float Ay;
+float Az;
+
+void UARTIntHandler(void){
+    // ISR for UART interrupt handling
+    // Clear the asserted UART interrupts
+    UARTIntClear(UART0_BASE, UARTIntStatus(UART0_BASE, true));
+
+    // While there is a character available at input
+    while(UARTCharsAvail(UART0_BASE)){
+        // Echo the character back to the user
+        UARTCharPutNonBlocking(UART0_BASE, UARTCharGetNonBlocking(UART0_BASE));
+
+        // Blink the Led for approximately 1ms
+        GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
+        TimerEnable(TIMER0_BASE, TIMER_A);
+    }
+}
+
+void Timer0IntHandler(void)
+{   // The ISR for Timer0 Interrupt Handling
+    // Clear the timer interrupt
+    TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
+
+    // Read the current state of the GPIO pin and write back the opposite state
+    GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0);
+    // Disable the timer
+    TimerDisable(TIMER0_BASE, TIMER_A);
+}
 
 //INICIALIZACION Y FUNCIONAMIENTO DE I2C OBTENIDA DE:
 //https://www.digikey.com/eewiki/display/microcontroller/I2C+Communication+with+the+TI+Tiva+TM4C123GXL
+//https://controllerstech.com/how-to-interface-mpu6050-gy-521-with-stm32/
 //---------------------------------FUNCION INICIALIZACION I2C-----------------------------------
 void I2CInit(void)
 {
@@ -185,13 +230,13 @@ void I2CSend(uint32_t slave_addr, uint32_t reg,uint32_t intruction)
     I2CMasterDataPut(I2C3_BASE, reg);
 
     //Initiate send of data from the MCU
-    I2CMasterControl(I2C3_BASE, I2C_MASTER_CMD_SINGLE_SEND);
+    I2CMasterControl(I2C3_BASE, I2C_MASTER_CMD_BURST_SEND_START);
 
     //put data to be sent into FIFO
     I2CMasterDataPut(I2C3_BASE, intruction);
 
     //Initiate send of data from the MCU
-    I2CMasterControl(I2C3_BASE, I2C_MASTER_CMD_SINGLE_SEND);
+    I2CMasterControl(I2C3_BASE, I2C_MASTER_CMD_BURST_SEND_FINISH);
     // Wait until MCU is done transferring.
     while(I2CMasterBusy(I2C3_BASE));
 
@@ -199,7 +244,7 @@ void I2CSend(uint32_t slave_addr, uint32_t reg,uint32_t intruction)
 
 
 //-----------------------------------------FUNCION DE RECIBIR MENSAJE--------------------------------------------
-uint32_t I2CReceive(uint32_t slave_addr, uint8_t reg)
+uint8_t I2CReceive(uint32_t slave_addr, uint32_t reg)
 {
     //specify that we are writing (a register address) to the
     //slave device
@@ -209,7 +254,7 @@ uint32_t I2CReceive(uint32_t slave_addr, uint8_t reg)
     I2CMasterDataPut(I2C3_BASE, reg);
 
     //send control byte and register address byte to slave device
-    I2CMasterControl(I2C3_BASE, I2C_MASTER_CMD_BURST_SEND_START);
+    I2CMasterControl(I2C3_BASE, I2C_MASTER_CMD_SINGLE_SEND);
 
     //wait for MCU to finish transaction
     while(I2CMasterBusy(I2C3_BASE));
@@ -230,15 +275,43 @@ uint32_t I2CReceive(uint32_t slave_addr, uint8_t reg)
 void UARTINIT(void)
 {
     SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
-    //---------------------------------------SETEAMOS LOS PINES DEL PUERTO A PARA COMUNICACION SERIAL--------------------
-    GPIOPinTypeUART(GPIO_PORTA_BASE,GPIO_PIN_0|GPIO_PIN_1);
-    //----------------------------------------CONFIGURACION DE RELOJ UART---------------------------------
-    UARTConfigSetExpClk(UART0_BASE,SysCtlClockGet(),115200, (UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE | UART_CONFIG_PAR_NONE));
-    UARTEnable(UART0_BASE);
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER0);
+
+    // Master interrupt enable API for all interrupts
+    IntMasterEnable();
+
+    // Configure PA0 as UART0_Rx and PA1 as UART0_Tx
+    GPIOPinConfigure(GPIO_PA0_U0RX);
+    GPIOPinConfigure(GPIO_PA1_U0TX);
+    GPIOPinTypeUART(GPIO_PORTA_BASE, GPIO_PIN_0 | GPIO_PIN_1);
+
+    // Configure the baud rate and data setup for the UART0
+    UARTConfigSetExpClk(UART0_BASE, SysCtlClockGet(), 112500, UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE | UART_CONFIG_PAR_NONE );
+
+    // Configure and enable the interrupt for UART0
+    IntEnable(INT_UART0);
+    UARTIntEnable(UART0_BASE, UART_INT_RX | UART_INT_RT);
+
+    // Configure PF2 as output
+    GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_2);
+
+    // Configure Timer0 to run in periodic mode
+    TimerConfigure(TIMER0_BASE, TIMER_CFG_PERIODIC);
+    // Enable the Interrupt specific vector associated with Timer0A
+    IntEnable(INT_TIMER0A);
+    // Enables a specific event within the timer to generate an interrupt
+    TimerIntEnable(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
+
+    // Load the Timer with the calculated period.
+    ui32Period = SysCtlClockGet() / 1000;
+    TimerLoadSet(TIMER0_BASE, TIMER_A, ui32Period - 1);
+
 }
 /**
  * main.c
- */
+*/
 volatile uint32_t mensaje;
 volatile uint32_t roll;
 volatile uint32_t pitch;
@@ -247,6 +320,8 @@ int main(void)
     SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_PLL | SYSCTL_OSC_INT | SYSCTL_XTAL_16MHZ);
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
+    UARTINIT();
+
     I2CInit();
     //------------------------MPU6050 INITIALITETION---------------------------------
     I2CSend(0x68,PWR_MGMT_1,0x00);
@@ -256,6 +331,8 @@ int main(void)
     I2CSend(0x68,ACCEL_CONFIG,0x00);
     while(1)
     {
+        //mensaje=I2CReceive(0x68,0x75);
+
         gyrox_h=I2CReceive(0x68,GYRO_XOUT_H);
         gyrox_l=I2CReceive(0x68,GYRO_XOUT_L);
         gyro_x=(gyrox_h<<8|gyrox_h);
@@ -268,12 +345,29 @@ int main(void)
         gyroz_l=I2CReceive(0x68,GYRO_ZOUT_L);
         gyro_z=(gyroz_h<<8|gyroz_h);
 
+        accelx_h=I2CReceive(0x68,ACCEL_XOUT_H);
+        accelx_l=I2CReceive(0x68,ACCEL_XOUT_L);
+        accel_x=(accelx_h<<8|accelx_h);
+
+        accely_h=I2CReceive(0x68,ACCEL_YOUT_H);
+        accely_l=I2CReceive(0x68,ACCEL_YOUT_L);
+        accel_y=(accely_h<<8|accely_h);
+
+        accelz_h=I2CReceive(0x68,ACCEL_ZOUT_H);
+        accelz_l=I2CReceive(0x68,ACCEL_ZOUT_L);
+        accel_z=(accelz_h<<8|accelz_h);
+
         Gx = gyro_x/131.0;
         Gy = gyro_y/131.0;
         Gz = gyro_z/131.0;
+
+        Ax = accel_x/16384.0;
+        Ay = accel_y/16384.0;
+        Az = accel_z/16384.0;
         roll = atan(-Gx/Gz)*180/3.1416;
         pitch = atan(Gy/sqrt(Gx*Gx+Gz*Gz))*180/3.1416;
-        if (pitch>5)
+        UARTCharPut(UART0_BASE,Ax);
+        if (gyrox_h>5)
         {
             GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3);
         }
@@ -285,8 +379,8 @@ int main(void)
 
 }
 
-
 /*
+
 //#include "uart.h"
 #include "utils/uartstdio.h"
 #include "driverlib/uart.h"
@@ -366,6 +460,7 @@ void I2CMSimpleIntHandler(void)
 void MPU6050Example(void)
     {
         float fAccel[3], fGyro[3];
+        float x = 0, y = 0, z = 0;
 
         tMPU6050 sMPU6050;
 //
@@ -412,9 +507,16 @@ void MPU6050Example(void)
             //
             // Do something with the new accelerometer and gyroscope readings.
             //
+            z = fGyro[2];
 
+           x = (atan2(fAccel[0], sqrt (fAccel[1] * fAccel[1] + fAccel[2] * fAccel[2]))*180.0)/3.14;
+
+           y = (atan2(fAccel[1], sqrt (fAccel[0] * fAccel[0] + fAccel[2] * fAccel[2]))*180.0)/3.14;
+
+            //UARTprintf("Ang. X: %d | Ang. Y: %d | Ang. Z: %d\n", (int)x, (int)y, (int)z);
+           GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3);
             if(fGyro[1]>1){
-                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, GPIO_PIN_2);
+                GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_3, GPIO_PIN_3);
             }
             else{
                 GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_2, 0x00);
@@ -434,5 +536,6 @@ int main()
     GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3);
     I2CInit();
     MPU6050Example();
+
     return(0);
 }*/
