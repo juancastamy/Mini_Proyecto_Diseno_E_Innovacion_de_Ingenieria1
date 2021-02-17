@@ -41,7 +41,7 @@ static void IntDefaultHandler(void);
 //
 //*****************************************************************************
 extern void _c_int00(void);
-
+extern void Timer5IntHandler(void);
 //*****************************************************************************
 //
 // Linker variable that marks the top of the stack.
@@ -175,7 +175,7 @@ void (* const g_pfnVectors[])(void) =
     0,                                      // Reserved
     0,                                      // Reserved
     0,                                      // Reserved
-    IntDefaultHandler,                      // Timer 5 subtimer A
+    Timer5IntHandler,                      // Timer 5 subtimer A
     IntDefaultHandler,                      // Timer 5 subtimer B
     IntDefaultHandler,                      // Wide Timer 0 subtimer A
     IntDefaultHandler,                      // Wide Timer 0 subtimer B

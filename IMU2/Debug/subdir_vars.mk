@@ -9,36 +9,37 @@ CMD_SRCS += \
 ../tm4c123gh6pm.cmd 
 
 LIB_SRCS += \
-C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/ccs/Debug/driverlib.lib 
+C:/ti/TivaWare_C_Series-2.1.4.178/driverlib/ccs/Debug/driverlib.lib \
+C:/ti/TivaWare_C_Series-2.1.4.178/sensorlib/ccs/Debug/sensorlib.lib 
 
 C_SRCS += \
-../DelayTimer.c \
 ../main.c \
-../tm4c123gh6pm_startup_ccs.c 
+../tm4c123gh6pm_startup_ccs.c \
+../uartstdio.c 
 
 C_DEPS += \
-./DelayTimer.d \
 ./main.d \
-./tm4c123gh6pm_startup_ccs.d 
+./tm4c123gh6pm_startup_ccs.d \
+./uartstdio.d 
 
 OBJS += \
-./DelayTimer.obj \
 ./main.obj \
-./tm4c123gh6pm_startup_ccs.obj 
+./tm4c123gh6pm_startup_ccs.obj \
+./uartstdio.obj 
 
 OBJS__QUOTED += \
-"DelayTimer.obj" \
 "main.obj" \
-"tm4c123gh6pm_startup_ccs.obj" 
+"tm4c123gh6pm_startup_ccs.obj" \
+"uartstdio.obj" 
 
 C_DEPS__QUOTED += \
-"DelayTimer.d" \
 "main.d" \
-"tm4c123gh6pm_startup_ccs.d" 
+"tm4c123gh6pm_startup_ccs.d" \
+"uartstdio.d" 
 
 C_SRCS__QUOTED += \
-"../DelayTimer.c" \
 "../main.c" \
-"../tm4c123gh6pm_startup_ccs.c" 
+"../tm4c123gh6pm_startup_ccs.c" \
+"../uartstdio.c" 
 
 
