@@ -53,7 +53,7 @@
 //https://github.com/YashBansod/ARM-TM4C-CCS/blob/master/TM4C123G%20LaunchPad%20PWM%20using%20GP%20Timer/main.c
 //--------------------------------SE DEFINEN LAS VARIABLES A UTILIZAR EN EL PID--------------------------------------
 float ek;
-float entrada=90;
+float entrada=45;
 float ek_1 = 0;
 float Ek_1 = 0;
 float ed = 0;
@@ -62,8 +62,8 @@ float uk;
 float IN;
 //--------------------------------SE DEFINEN LAS COSNTANTES DEL PID----------------------------------------------------
 float Kp=1; //1;
-float Ki=0.0001;
-float Kd=8;
+float Ki=0.000001;//0.0001;
+float Kd=3;//4;//5;//8;
 float x,y,z;
 
 void ConfigureUART(void) { // Função retirada do exemplo hello.c
@@ -92,15 +92,17 @@ int main(void)
     SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_PLL | SYSCTL_OSC_INT | SYSCTL_XTAL_16MHZ);
     InitServo();//Se inicializa el PWM
     ConfigureServo();//Se configura el servo
-    SetServoAngle(90);//Se coloca el servo en 90 grados
+    SetServoAngle(45);//Se coloca el servo en 90 grados
     InitI2C0();
     MPU6050INIT();
     ConfigureUART();
     while(1)
     {
         MPU6050READDATA(&x,&y,&z);
+        x=x+90;
         //UARTprintf("Ang. X: %d | Ang. Y: %d | Ang. Z: %d\n", (int)x, (int)y, (int)z);
         control_pid(&uk, (x));
+        uk=uk+135;
         SetServoAngle(uk);
         UARTprintf("Ang. uk: %d | Ang. x: %d \n", (int)uk, (int)(x));
     }
