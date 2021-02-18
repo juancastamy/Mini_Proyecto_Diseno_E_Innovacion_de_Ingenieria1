@@ -53,7 +53,7 @@
 //https://github.com/YashBansod/ARM-TM4C-CCS/blob/master/TM4C123G%20LaunchPad%20PWM%20using%20GP%20Timer/main.c
 //--------------------------------SE DEFINEN LAS VARIABLES A UTILIZAR EN EL PID--------------------------------------
 float ek;
-float entrada=45;
+float entrada=90;
 float ek_1 = 0;
 float Ek_1 = 0;
 float ed = 0;
@@ -63,7 +63,7 @@ float IN;
 //--------------------------------SE DEFINEN LAS COSNTANTES DEL PID----------------------------------------------------
 float Kp=1; //1;
 float Ki=0.000001;//0.0001;
-float Kd=3;//4;//5;//8;
+float Kd=0.01;//0.1;//4;//5;//8;
 float x,y,z;
 
 void ConfigureUART(void) { // Função retirada do exemplo hello.c
@@ -83,7 +83,7 @@ void control_pid (float *uk, float x)
     Ek = Ek_1+ek;
     Ek_1=Ek;
     ek_1=ek;
-    *uk = Kp*ek + Ki*Ek + Kd*ed;
+    *uk = Kp*ek + Ki*Ek + Kd*ed +90 ;
 }
 
 
@@ -102,7 +102,7 @@ int main(void)
         x=x+90;
         //UARTprintf("Ang. X: %d | Ang. Y: %d | Ang. Z: %d\n", (int)x, (int)y, (int)z);
         control_pid(&uk, (x));
-        uk=uk+135;
+        //SetServoAngle(uk);
         SetServoAngle(uk);
         UARTprintf("Ang. uk: %d | Ang. x: %d \n", (int)uk, (int)(x));
     }

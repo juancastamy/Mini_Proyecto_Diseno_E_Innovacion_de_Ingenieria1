@@ -10,8 +10,8 @@
 
 #define Period  320000 //(16000000/50) 50Hz
 #define SERVO_STEPS         180     // Maximum amount of steps in degrees (180 is common)
-#define SERVO_MIN           11500//9500     // The minimum duty cycle for this servo
-#define SERVO_MAX           40100//35100    // The maximum duty cycle
+#define SERVO_MIN           5000//9500     // The minimum duty cycle for this servo
+#define SERVO_MAX           28800//35100    // The maximum duty cycle
 
 unsigned int servo_lut[SERVO_STEPS+1];
 
